@@ -1,0 +1,448 @@
+{
+  "year": 2025,
+  "country": "Ελλάδα",
+  "currency": "EUR",
+  "lastUpdated": "2025-01-01",
+
+  "summary": {
+    "totalRevenues": 1307907506000,
+    "totalExpenditures": 1310988012000,
+    "budgetResult": -3080506000,
+    "coverageFromCashReserves": 3080506000
+  },
+
+  "revenues": {
+    "total": 1307907506000,
+    "categories": [
+      {
+        "code": "11",
+        "name": "Φόροι",
+        "amount": 1304827000000,
+        "description": "Συνολικά φορολογικά έσοδα"
+      },
+      {
+        "code": "12",
+        "name": "Κοινωνικές εισφορές",
+        "amount": 62055000000,
+        "description": "Εισφορές κοινωνικής ασφάλισης"
+      },
+      {
+        "code": "13",
+        "name": "Μεταβιβάσεις",
+        "amount": 60000000,
+        "description": "Μεταβιβάσεις από άλλους φορείς"
+      },
+      {
+        "code": "14",
+        "name": "Πωλήσεις αγαθών και υπηρεσιών",
+        "amount": 8131000000,
+        "description": "Έσοδα από πωλήσεις"
+      },
+      {
+        "code": "15",
+        "name": "Λοιπά τρέχοντα έσοδα",
+        "amount": 2405000000,
+        "description": "Άλλα τρέχοντα έσοδα"
+      },
+      {
+        "code": "31",
+        "name": "Πάγια Περιουσιακά Στοιχεία",
+        "amount": 2775000000,
+        "description": "Πωλήσεις παγίων"
+      },
+      {
+        "code": "43",
+        "name": "Χρεωστικοί τίτλοι",
+        "amount": 37000000,
+        "description": "Έσοδα από χρεωστικούς τίτλους"
+      },
+      {
+        "code": "44",
+        "name": "Δάνεια (Έσοδα)",
+        "amount": 11000000,
+        "description": "Εισπράξεις δανείων"
+      },
+      {
+        "code": "45",
+        "name": "Συμμετοχικοί τίτλοι και μερίδια επενδυτικών",
+        "amount": 20000000,
+        "description": "Έσοδα από συμμετοχές"
+      },
+      {
+        "code": "52",
+        "name": "Υποχρεώσεις από νόμισμα και καταθέσεις",
+        "amount": 467000000,
+        "description": "Έσοδα από καταθέσεις"
+      },
+      {
+        "code": "53",
+        "name": "Χρεωστικοί τίτλοι (υποχρεώσεις)",
+        "amount": 66000000,
+        "description": "Έκδοση χρεωστικών τίτλων"
+      },
+      {
+        "code": "54",
+        "name": "Δάνεια (Υποχρεώσεις)",
+        "amount": 25973000000,
+        "description": "Λήψη δανείων"
+      },
+      {
+        "code": "57",
+        "name": "Χρηματοοικονομικά παράγωγα",
+        "amount": 1202027000000,
+        "description": "Έσοδα από παράγωγα"
+      }
+    ]
+  },
+
+  "expenditures": {
+    "total": 1310988012000,
+    "categories": [
+      {
+        "code": "21",
+        "name": "Παροχές σε εργαζομένους",
+        "amount": 14889199000,
+        "description": "Μισθοί και παροχές δημοσίων υπαλλήλων",
+        "canDecrease": false,
+        "maxIncreasePercent": 10
+      },
+      {
+        "code": "22",
+        "name": "Κοινωνικές παροχές",
+        "amount": 425136000,
+        "description": "Κοινωνικές δαπάνες",
+        "canDecrease": false,
+        "maxIncreasePercent": 15
+      },
+      {
+        "code": "23",
+        "name": "Μεταβιβάσεις",
+        "amount": 34741365000,
+        "description": "Μεταβιβάσεις σε άλλους φορείς",
+        "canDecrease": true,
+        "maxIncreasePercent": 20
+      },
+      {
+        "code": "24",
+        "name": "Αγορές αγαθών και υπηρεσιών",
+        "amount": 2039542000,
+        "description": "Προμήθειες και υπηρεσίες",
+        "canDecrease": true,
+        "maxIncreasePercent": 25
+      },
+      {
+        "code": "25",
+        "name": "Επιδοτήσεις",
+        "amount": 80630000,
+        "description": "Επιδοτήσεις σε φορείς",
+        "canDecrease": true,
+        "maxIncreasePercent": 30
+      },
+      {
+        "code": "26",
+        "name": "Τόκοι",
+        "amount": 7701101000,
+        "description": "Τόκοι δημοσίου χρέους",
+        "canDecrease": false,
+        "maxIncreasePercent": 5
+      },
+      {
+        "code": "27",
+        "name": "Λοιπές δαπάνες",
+        "amount": 101553000,
+        "description": "Άλλες δαπάνες",
+        "canDecrease": true,
+        "maxIncreasePercent": 20
+      },
+      {
+        "code": "29",
+        "name": "Πιστώσεις υπό κατανομή",
+        "amount": 17283053000,
+        "description": "Πιστώσεις προς κατανομή",
+        "canDecrease": true,
+        "maxIncreasePercent": 15
+      },
+      {
+        "code": "31",
+        "name": "Πάγια περιουσιακά στοιχεία",
+        "amount": 2609600000,
+        "description": "Επενδύσεις σε πάγια",
+        "canDecrease": true,
+        "maxIncreasePercent": 40
+      },
+      {
+        "code": "33",
+        "name": "Τιμαλφή",
+        "amount": 85000,
+        "description": "Αξιόγραφα",
+        "canDecrease": true,
+        "maxIncreasePercent": 10
+      },
+      {
+        "code": "44",
+        "name": "Δάνεια (Εξοδα)",
+        "amount": 3741000000,
+        "description": "Χορήγηση δανείων",
+        "canDecrease": true,
+        "maxIncreasePercent": 20
+      },
+      {
+        "code": "45",
+        "name": "Συμμετοχικοί τίτλοι και μερίδια επενδυτικών κεφαλαίων",
+        "amount": 1755112000,
+        "description": "Επενδύσεις σε κεφάλαια",
+        "canDecrease": true,
+        "maxIncreasePercent": 25
+      },
+      {
+        "code": "53",
+        "name": "Χρεωστικοί τίτλοι (υποχρεώσεις)",
+        "amount": 19375000000,
+        "description": "Εξόφληση χρεωστικών τίτλων",
+        "canDecrease": false,
+        "maxIncreasePercent": 10
+      },
+      {
+        "code": "54",
+        "name": "Δάνεια (Αποπληρωμή)",
+        "amount": 1203165130000,
+        "description": "Αποπληρωμή δανείων",
+        "canDecrease": false,
+        "maxIncreasePercent": 5
+      }
+    ]
+  },
+
+  "ministries": {
+    "total": 1307609637000,
+    "regularBudget": 1293515637000,
+    "publicInvestments": 14094000000,
+    "list": [
+      {
+        "code": "1001",
+        "name": "Προεδρία της Δημοκρατίας",
+        "regularBudget": 4638000,
+        "publicInvestments": 0,
+        "total": 4638000
+      },
+      {
+        "code": "1003",
+        "name": "Βουλή των Ελλήνων",
+        "regularBudget": 169950000,
+        "publicInvestments": 2000000,
+        "total": 171950000
+      },
+      {
+        "code": "1004",
+        "name": "Προεδρία της Κυβέρνησης",
+        "regularBudget": 37689000,
+        "publicInvestments": 4000000,
+        "total": 41689000
+      },
+      {
+        "code": "1007",
+        "name": "Υπουργείο Εσωτερικών",
+        "regularBudget": 3449276000,
+        "publicInvestments": 381000000,
+        "total": 3830276000
+      },
+      {
+        "code": "1009",
+        "name": "Υπουργείο Εξωτερικών",
+        "regularBudget": 390237000,
+        "publicInvestments": 30000000,
+        "total": 420237000
+      },
+      {
+        "code": "1011",
+        "name": "Υπουργείο Εθνικής Άμυνας",
+        "regularBudget": 6061000000,
+        "publicInvestments": 69000000,
+        "total": 6130000000
+      },
+      {
+        "code": "1015",
+        "name": "Υπουργείο Υγείας",
+        "regularBudget": 6608424000,
+        "publicInvestments": 569000000,
+        "total": 7177424000
+      },
+      {
+        "code": "1017",
+        "name": "Υπουργείο Δικαιοσύνης",
+        "regularBudget": 577803000,
+        "publicInvestments": 73000000,
+        "total": 650803000
+      },
+      {
+        "code": "1020",
+        "name": "Υπουργείο Παιδείας, Θρησκευμάτων και Αθλητισμού",
+        "regularBudget": 5594000000,
+        "publicInvestments": 1012000000,
+        "total": 6606000000
+      },
+      {
+        "code": "1022",
+        "name": "Υπουργείο Πολιτισμού",
+        "regularBudget": 257419000,
+        "publicInvestments": 318000000,
+        "total": 575419000
+      },
+      {
+        "code": "1024",
+        "name": "Υπουργείο Εθνικής Οικονομίας και Οικονομικών",
+        "regularBudget": 1243381464000,
+        "publicInvestments": 3137000000,
+        "total": 1246518464000
+      },
+      {
+        "code": "1029",
+        "name": "Υπουργείο Αγροτικής Ανάπτυξης και Τροφίμων",
+        "regularBudget": 222403000,
+        "publicInvestments": 1059000000,
+        "total": 1281403000
+      },
+      {
+        "code": "1031",
+        "name": "Υπουργείο Περιβάλλοντος και Ενέργειας",
+        "regularBudget": 319227000,
+        "publicInvestments": 2022000000,
+        "total": 2341227000
+      },
+      {
+        "code": "1032",
+        "name": "Υπουργείο Εργασίας και Κοινωνικής Ασφάλισης",
+        "regularBudget": 18215084000,
+        "publicInvestments": 463000000,
+        "total": 18678084000
+      },
+      {
+        "code": "1034",
+        "name": "Υπουργείο Κοινωνικής Συνοχής και Οικογένειας",
+        "regularBudget": 3786553000,
+        "publicInvestments": 203000000,
+        "total": 3989553000
+      },
+      {
+        "code": "1036",
+        "name": "Υπουργείο Ανάπτυξης",
+        "regularBudget": 123045000,
+        "publicInvestments": 695000000,
+        "total": 818045000
+      },
+      {
+        "code": "1039",
+        "name": "Υπουργείο Υποδομών και Μεταφορών",
+        "regularBudget": 881810000,
+        "publicInvestments": 1813000000,
+        "total": 2694810000
+      },
+      {
+        "code": "1041",
+        "name": "Υπουργείο Ναυτιλίας και Νησιωτικής Πολίτικης",
+        "regularBudget": 336864000,
+        "publicInvestments": 315000000,
+        "total": 651864000
+      },
+      {
+        "code": "1045",
+        "name": "Υπουργείο Τουρισμού",
+        "regularBudget": 39293000,
+        "publicInvestments": 150000000,
+        "total": 189293000
+      },
+      {
+        "code": "1053",
+        "name": "Υπουργείο Ψηφιακής Διακυβέρνησης",
+        "regularBudget": 151928000,
+        "publicInvestments": 922000000,
+        "total": 1073928000
+      },
+      {
+        "code": "1055",
+        "name": "Υπουργείο Μετανάστευσης και Ασύλου",
+        "regularBudget": 141871000,
+        "publicInvestments": 334000000,
+        "total": 475871000
+      },
+      {
+        "code": "1057",
+        "name": "Υπουργείο Προστασίας του Πολίτη",
+        "regularBudget": 2217820000,
+        "publicInvestments": 68000000,
+        "total": 2285820000
+      },
+      {
+        "code": "1060",
+        "name": "Υπουργείο Κλιματικής Κρίσης και Πολιτικής Προστασίας",
+        "regularBudget": 760116000,
+        "publicInvestments": 461000000,
+        "total": 1221116000
+      }
+    ]
+  },
+
+  "decentralizedAdministrations": {
+    "total": 79592000,
+    "regularBudget": 79592000,
+    "publicInvestments": 0,
+    "list": [
+      {
+        "code": "1901",
+        "name": "Αποκεντρωμένη Διοίκηση Αττικής",
+        "regularBudget": 13091000,
+        "publicInvestments": 0,
+        "total": 13091000
+      },
+      {
+        "code": "1902",
+        "name": "Αποκεντρωμένη Διοίκηση Θεσσαλίας - Στερεάς Ελλάδας",
+        "regularBudget": 10579000,
+        "publicInvestments": 0,
+        "total": 10579000
+      },
+      {
+        "code": "1903",
+        "name": "Αποκεντρωμένη Διοίκηση Ηπείρου - Δυτικής Μακεδονίας",
+        "regularBudget": 9943000,
+        "publicInvestments": 0,
+        "total": 9943000
+      },
+      {
+        "code": "1904",
+        "name": "Αποκεντρωμένη Διοίκηση Πελοποννήσου - Δυτικής Ελλάδας και Ιονίου",
+        "regularBudget": 14918000,
+        "publicInvestments": 0,
+        "total": 14918000
+      },
+      {
+        "code": "1905",
+        "name": "Αποκεντρωμένη Διοίκηση Αιγαίου",
+        "regularBudget": 6188000,
+        "publicInvestments": 0,
+        "total": 6188000
+      },
+      {
+        "code": "1906",
+        "name": "Αποκεντρωμένη Διοίκηση Κρήτης",
+        "regularBudget": 6497000,
+        "publicInvestments": 0,
+        "total": 6497000
+      },
+      {
+        "code": "1907",
+        "name": "Αποκεντρωμένη Διοίκηση Μακεδονίας - Θράκης",
+        "regularBudget": 18376000,
+        "publicInvestments": 0,
+        "total": 18376000
+      }
+    ]
+  },
+
+  "constraints": {
+    "maxDeficitPercent": 3.0,
+    "minRevenueCategories": ["Φόροι", "Κοινωνικές εισφορές"],
+    "protectedExpenditures": ["Παροχές σε εργαζομένους", "Κοινωνικές παροχές", "Τόκοι"],
+    "maxYearlyIncreasePercent": 5.0
+  }
+}
