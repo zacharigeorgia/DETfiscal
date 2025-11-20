@@ -21,4 +21,12 @@ public class FederalBudget {
         }
         return instance;
     }
+    public void loadData(String filePath) {
+    dataLoader.loadData(filePath, summary, details);
+}
+public double calculateTotalBudget() {
+    double revenues = summary.getTotalRevenues();
+    double expenses = summary.getTotalExpenses();
+    return revenues - expenses;
+}
 }
