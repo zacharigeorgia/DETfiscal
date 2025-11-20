@@ -15,3 +15,10 @@ public class FederalBudget {
         summary = new BudgetSummary();
         details = new BudgetDetails();
     }
+    public static FederalBudget getInstance() {
+        if (instance == null) {
+            instance = new FederalBudget();
+        }
+        return instance;
+    }
+}
