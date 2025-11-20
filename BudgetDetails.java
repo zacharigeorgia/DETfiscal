@@ -8,5 +8,13 @@ public class BudgetDetails {
     public double getGDP()M{
         return gdp;
     }
-
+    public String characterizeTotal(double balance) {
+        if (balance > 0) {
+            return "Πλεόνασμα";
+        } else if (balance < 0) {
+            return "Έλλειμμα";
+        } else {
+            return "Ισοσκελισμένος Προϋπολογισμός";
+        }
+    }
 }
