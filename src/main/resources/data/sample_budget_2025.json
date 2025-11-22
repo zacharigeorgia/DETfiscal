@@ -445,4 +445,12 @@
     "protectedExpenditures": ["Παροχές σε εργαζομένους", "Κοινωνικές παροχές", "Τόκοι"],
     "maxYearlyIncreasePercent": 5.0
   }
+
+  ,
+  "economicParameters": {
+    "vatRatePercent": 24.0,
+    "incomeTaxRatePercent": 22.0,
+    "baseRevenueForVat": 180000000000,
+    "baseRevenueForIncomeTax": 100000000000
+  }
 }
