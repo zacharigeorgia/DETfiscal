@@ -38,8 +38,32 @@ public class DataLoader implements IDataLoader{
     }
 
     @Override
-    public List<Expenditure> loadExpenditures(String filePath) {
-        return new ArrayList<>(); // Επιστρέφει άδεια λίστα για τώρα
+    public List<Expenditure> loadExpenditures(String filePath) {   //παιρνει το μονοπατι του json και επιστρεφει λιστα με αντικειμενα Expenditure
+        var list = new ArrayList<Expenditure>();
+        try {
+            var root = getRoot(filePath);
+            var categories = root.path("expenditures").path("categories");
+
+            if (categories.isArray()) {
+                for (var node : categories) {  //για καθενα αντικειμενο node στο json φτιαχνει ενα νεο τυπου Expenditure
+                    var e = new Expenditure();
+                    e.setName(node.path("name").asText());
+                    e.setAmount(node.path("amount").asDouble());
+
+                    // Διάβαζει τους κανόνες (αν υπάρχουν στο JSON)
+                    if (node.has("canDecrease")) {
+                        e.setCanDecrease(node.path("canDecrease").asBoolean());
+                    }
+                    if (node.has("maxIncreasePercent")) {
+                        e.setMaxIncreasePercent(node.path("maxIncreasePercent").asDouble());
+                    }
+                    list.add(e);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     @Override
     public Map<String, Double> loadMacroData(String filePath) {
