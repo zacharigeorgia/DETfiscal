@@ -1,3 +1,4 @@
+package gr.aueb.dmst.detfiscal;
 public class BudgetDetails {
     private double inflation;
     private double gdp;
