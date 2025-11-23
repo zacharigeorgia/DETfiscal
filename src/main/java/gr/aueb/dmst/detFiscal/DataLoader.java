@@ -5,8 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+
 
 public class DataLoader implements IDataLoader{
     private ObjectMapper mapper;
@@ -66,8 +65,32 @@ public class DataLoader implements IDataLoader{
         return list;
     }
     @Override
-    public Map<String, Double> loadMacroData(String filePath) {
-        return new HashMap<>(); // Επιστρέφει άδειο χάρτη για τώρα
+    public MacroData loadMacroData(String filePath) {  //διαβαζει τα δεδομενα απο την κλαση macrodata
+        var macroData = new MacroData(); // Φτιάχνουμε το αντικείμενο
+        try {
+            var root = getRoot(filePath);
+
+            // 1. Διαβάζουμε τα σύνολα
+            var summary = root.path("summary");  //dataloader διαβαζει το json
+            if (!summary.isMissingNode()) {
+                macroData.setTotalRevenues(summary.path("totalRevenues").asDouble());
+                macroData.setTotalExpenditures(summary.path("totalExpenditures").asDouble());
+                macroData.setBudgetResult(summary.path("budgetResult").asDouble());
+            }
+
+            // 2. Διαβάζουμε τις παραμέτρους σεναρίων
+            var params = root.path("economicParameters");
+            if (!params.isMissingNode()) {
+                macroData.setVatRatePercent(params.path("vatRatePercent").asDouble());
+                macroData.setBaseRevenueForVat(params.path("baseRevenueForVat").asDouble());
+                macroData.setBaseRevenueForIncomeTax(params.path("baseRevenueForIncomeTax").asDouble());
+                macroData.setIncomeTaxRatePercent(params.path("incomeTaxRatePercent").asDouble());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return macroData;
     }
     @Override
     public boolean validateData(String filePath) {
