@@ -92,8 +92,19 @@ public class DataLoader implements IDataLoader{
         }
         return macroData;
     }
-    @Override
+   @Override
     public boolean validateData(String filePath) {
-        return false; // Επιστρέφει false για τώρα
+        try {
+            var root = getRoot(filePath);
+            // Ελέγχουμε αν υπάρχουν τα 3 βασικά συστατικά: Έσοδα, Έξοδα, Σύνολα
+            if (root.path("revenues").isMissingNode() ||
+                root.path("expenditures").isMissingNode() ||
+                root.path("summary").isMissingNode()) {
+                return false;
+            }
+            return true;
+        } catch (IOException e) {
+            return false; // Δεν βρέθηκε αρχείο ή είναι χαλασμένο
+        }
     }
 }
