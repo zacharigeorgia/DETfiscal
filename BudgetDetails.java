@@ -2,20 +2,20 @@ public class BudgetDetails {
     private double inflation;
     private double gdp;
     private double deptRatio;
-    public double setInflation() {
-        inflation = 2,6%;
+    public void setInflation() {
+        this.inflation = 0.026;
     }
     public double getInflation() {
-        return Inflation;
+        return inflation;
     }
-    public double setGDP() {
-        gdp = 2,2;
+    public void setGDP() {
+        this.gdp = 0.022;
     }
-    public double getGDP()M{
+    public double getGDP(){
         return gdp;
     }
-    public double setDeptRatio() {
-        deptRatio = 147,6%;
+    public void setDeptRatio() {
+        this.deptRatio = 1.476;
     }
     public double getDeptRatio() {
         return deptRatio;
