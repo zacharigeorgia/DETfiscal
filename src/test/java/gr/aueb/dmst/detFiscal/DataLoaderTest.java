@@ -2,6 +2,7 @@ package gr.aueb.dmst.detFiscal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,25 @@ public class DataLoaderTest {
         assertEquals("Test Revenue", r.getName());
         assertEquals(2000.0, r.getAmount());
     }
+@Test
+    public void testLoadExpenditures() {
+        //  Καλούμε τη μέθοδο για να φορτώσουμε το mock αρχείο
+        List<Expenditure> expenditures = dataLoader.loadExpenditures(MOCK_FILE_PATH);
 
+        //  Ελέγχουμε αν η λίστα δημιουργήθηκε σωστά
+        assertNotNull(expenditures);  //Η λίστα εξόδων δεν πρέπει να είναι null
+        assertEquals(1, expenditures.size()); //Πρέπει να υπάρχει ακριβώς 1 έξοδο, όπως ορίσαμε στο mock_budget.json
+
+        // Παίρνουμε το μοναδικό αντικείμενο για να το ελέγξουμε αναλυτικά
+        Expenditure e = expenditures.get(0);
+
+        // Ελέγχουμε αν τα βασικά δεδομένα (Όνομα, Ποσό) είναι σωστά
+        assertEquals("Test Expenditure", e.getName());  //Το όνομα έπρεπε να είναι 'Test Expenditure
+        assertEquals(1000.0, e.getAmount());  //Το ποσό έπρεπε να είναι 1000.0
+
+        // Ελέγχουμε αν φορτώθηκαν οι κανόνες περιορισμών
+
+        assertFalse(e.isCanDecrease());   //Το canDecrease έπρεπε να διαβαστεί ως false από το αρχείο
+        assertEquals(5.0, e.getMaxIncreasePercent()); //Το μέγιστο ποσοστό αύξησης έπρεπε να είναι 5.0
+    }
 }
