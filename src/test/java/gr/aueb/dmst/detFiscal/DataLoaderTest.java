@@ -1,8 +1,9 @@
 package gr.aueb.dmst.detFiscal;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 public class DataLoaderTest {
     // Ορίζουμε τη διαδρομή του mock αρχείου
@@ -22,4 +23,5 @@ public class DataLoaderTest {
         assertEquals("Test Revenue", r.getName());
         assertEquals(2000.0, r.getAmount());
     }
+
 }
