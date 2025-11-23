@@ -4,6 +4,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class DataLoaderTest {
@@ -45,7 +46,7 @@ public class DataLoaderTest {
         assertFalse(e.isCanDecrease());   //Το canDecrease έπρεπε να διαβαστεί ως false από το αρχείο
         assertEquals(5.0, e.getMaxIncreasePercent()); //Το μέγιστο ποσοστό αύξησης έπρεπε να είναι 5.0
     }
-    @Test
+@Test
     public void testLoadMacroData() {
         // Καλούμε τη μέθοδο
         MacroData macro = dataLoader.loadMacroData(MOCK_FILE_PATH);
@@ -65,5 +66,15 @@ public class DataLoaderTest {
         assertEquals(24.0, macro.getVatRatePercent());
         assertEquals(5000.0, macro.getBaseRevenueForVat());
         assertEquals(22.0, macro.getIncomeTaxRatePercent());
+    }
+@Test
+    public void testValidateData() {
+        // Περίπτωση 1:εγκυρο μοκ αρχειο
+        boolean isValid = dataLoader.validateData(MOCK_FILE_PATH);
+        assertTrue(isValid);
+
+        // Περίπτωση 2:error path, δινουμε ονομα αρχειου που δεν υπαρχει
+        boolean isInvalid = dataLoader.validateData("src/test/resources/testdata/ghost_file.json");
+        assertFalse(isInvalid);
     }
 }
