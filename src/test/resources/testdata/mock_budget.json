@@ -1,0 +1,32 @@
+{
+  "year": 2025,
+  "summary": {
+    "totalRevenues": 2000.0,
+    "totalExpenditures": 1000.0,
+    "budgetResult": 1000.0
+  },
+  "revenues": {
+    "categories": [
+      {
+        "name": "Test Revenue",
+        "amount": 2000.0
+      }
+    ]
+  },
+  "expenditures": {
+    "categories": [
+      {
+        "name": "Test Expenditure",
+        "amount": 1000.0,
+        "canDecrease": false,
+        "maxIncreasePercent": 5.0
+      }
+    ]
+  },
+  "economicParameters": {
+    "vatRatePercent": 24.0,
+    "incomeTaxRatePercent": 22.0,
+    "baseRevenueForVat": 5000.0,
+    "baseRevenueForIncomeTax": 4000.0
+  }
+}
