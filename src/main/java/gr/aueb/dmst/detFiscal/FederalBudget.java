@@ -29,7 +29,7 @@ public double calculateTotalBudget() {
     double expenses = summary.getTotalExpenses();
     return revenues - expenses;
 }
-Java
+
 
 // FederalBudget Class Continuation...
 
