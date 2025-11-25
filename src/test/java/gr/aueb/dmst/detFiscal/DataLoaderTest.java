@@ -77,4 +77,16 @@ public class DataLoaderTest {
         boolean isInvalid = dataLoader.validateData("src/test/resources/testdata/ghost_file.json");
         assertFalse(isInvalid);
     }
+@Test
+public void testLoadMinistries() {
+    List<Ministry> ministries = dataLoader.loadMinistries(MOCK_FILE_PATH);
+
+    assertNotNull(ministries);
+    assertEquals(1, ministries.size());
+
+    Ministry m = ministries.get(0);
+    assertEquals("1001", m.getCode());
+    assertEquals("Test Ministry", m.getName());
+    assertEquals(600.0, m.getTotal());
+}
 }
