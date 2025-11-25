@@ -23,7 +23,18 @@
       }
     ]
   },
-  "economicParameters": {
+"ministries": {
+  "list": [
+    {
+      "code": "1001",
+      "name": "Test Ministry",
+      "regularBudget": 500.0,
+      "publicInvestments": 100.0,
+      "total": 600.0
+    }
+  ]
+},
+ "economicParameters": {
     "vatRatePercent": 24.0,
     "incomeTaxRatePercent": 22.0,
     "baseRevenueForVat": 5000.0,
