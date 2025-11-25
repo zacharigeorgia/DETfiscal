@@ -11,45 +11,114 @@ public class Menu {
         jf.setSize(800, 600);
         jf.setLocationRelativeTo(null);
 
-        // στοίχηση και layout
+        // panel = kentriko parathiro
         JPanel mainPanel = new JPanel();
+        // στοίχηση και layout
         mainPanel.setBackground(new Color(7, 25, 82));
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0; // Στήλη 0
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Να γεμίζουν τον οριζόντιο χώρο
+        gbc.fill = GridBagConstraints.NONE; // Να γεμίζουν τον οριζόντιο χώρο
 
         // titlos
-        JLabel titleLabel = new JLabel("DETfiscal", SwingConstants.NORTH_EAST);
+        JLabel titleLabel = new JLabel("DETfiscal", SwingConstants.LEFT);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
         titleLabel.setForeground(Color.WHITE);
 
         gbc.gridy = 0; // Γραμμή 0
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
         mainPanel.add(titleLabel, gbc);
 
-        // Χώρες dropdown
-        String[] countries = { "Επιλέξτε Χώρα", "Ελλάδα", "Γαλλία", "Γερμανία", "Ιταλία", "Ισπανία", "Κύπρος" };
-        JComboBox<String> countryBox = new JComboBox<>(countries);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 10.0;
 
-        gbc.gridy = 1; // Γραμμή 1
-        mainPanel.add(countryBox, gbc);
+        // panel gia koympia
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2, 2, 20, 20));
+        // background xroma gia buttonPanel = diafano
+        buttonPanel.setOpaque(false);
 
-        // Έτη dropdown
-        // Δημιουργία λίστας ετών (π.χ. από 2010 έως 2025)
-        String[] years = new String[17];
-        years[0] = "Επιλέξτε Έτος";
-        int startYear = 2010;
-        for (int i = 1; i < years.length; i++) {
-            years[i] = String.valueOf(startYear + i - 1);
-        }
-        JComboBox<String> yearBox = new JComboBox<>(years);
+        // Δημιουργία κουμπιών
+        JButton btnYear = new JButton("Compare data | years");
+        JButton btnCountry = new JButton("Compare data | Countries");
+        JButton btnData = new JButton("Display Data");
+        JButton btn4 = new JButton("Button 4");
 
-        gbc.gridy = 2; // Γραμμή 2
-        mainPanel.add(yearBox, gbc);
+        styleButton(btnYear);
+        styleButton(btnCountry);
+        styleButton(btnData);
+        styleButton(btn4);
+
+        // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
+        btnYear.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "Μετάβαση στη Σύγκριση Ετών");
+            /*
+             * Αργότερα εδώ θα βάλουμε:
+             * jf.setVisible(false); // Κρύβει το μενού
+             * new YearPage(); // Ανοίγει τη νέα σελίδα
+             */
+        });
+
+        btnCountry.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "Μετάβαση στη Σύγκριση Χωρών");
+        });
+
+        btnData.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "Προβολή Δεδομένων");
+        });
+
+        btn4.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "4ο κουμπί");
+        });
+
+        // Προσθήκη των κουμπιών
+        buttonPanel.add(btnYear);
+        buttonPanel.add(btnCountry);
+        buttonPanel.add(btnData);
+        buttonPanel.add(btn4);
+
+        // buttonPanel στο mainPanel
+        gbc.gridy = 1; // Μπαίνει 1 grid κάτω από τον τίτλο
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(50, 10, 10, 10);
+
+        mainPanel.add(buttonPanel, gbc);
+
+        // Filler για να σπρώξει τα πάντα πάνω
+        gbc.gridy = 2;
+        gbc.weighty = 1.0; // Όλο το κάθετο βάρος εδώ
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(new JLabel(), gbc); // άδειο
+
+        // Φτιάχνουμε ένα "αόρατο" στοιχείο στην επόμενη γραμμή
+        gbc.gridy = 1;
+        // Αυτό λέει στο Layout: "Πιάσε όλο τον ελεύθερο χώρο που περισσεύει κάτω".
+        gbc.weighty = 1.0;
+
+        // Προσθέτουμε ένα άδειο label απλά για να πιάσει τον χώρο
+        mainPanel.add(new JLabel(), gbc);
 
         jf.add(mainPanel);
         jf.setVisible(true);
     }
+
+    // Μεθοδος για Ομορφα κουμπια:
+
+    private static void styleButton(JButton btn) {
+        // Χρώματα
+        btn.setBackground(Color.WHITE);
+        btn.setForeground(new Color(7, 25, 82)); // xrvma grammata
+        btn.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        // Αφαίρεση του περιγράμματος εστίασης (το κουτάκι που βγαίνει όταν πατάς κλικ)
+        btn.setFocusPainted(false);
+        // Αφαίρεση κλασικού περιγράμματος κουμπιού για πιο flat look
+        btn.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        // Αλλαγή κέρσορα σε χεράκι όταν πάει από πάνω
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    };
+
 }
