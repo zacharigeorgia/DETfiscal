@@ -39,4 +39,8 @@ public class Ministy {
     public void setTotal(double total) {
          this.total = total;
          }
+@Override
+    public String toString() {
+            return String.format("[%s] %-50s : %,15.2f €", name, total, regularBudget);
+         }
 }
