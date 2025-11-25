@@ -107,7 +107,7 @@ public class DataLoader implements IDataLoader{
             return false; // Δεν βρέθηκε αρχείο ή είναι χαλασμένο
         }
     }
-@Override
+   @Override
     public List<Ministry> loadMinistries(String filePath) {
     var list = new ArrayList<Ministry>();
     try {
