@@ -107,4 +107,27 @@ public class DataLoader implements IDataLoader{
             return false; // Δεν βρέθηκε αρχείο ή είναι χαλασμένο
         }
     }
+@Override
+    public List<Ministry> loadMinistries(String filePath) {
+    var list = new ArrayList<Ministry>();
+    try {
+        var root = getRoot(filePath);
+        var ministriesNode = root.path("ministries").path("list");
+
+        if (ministriesNode.isArray()) {
+            for (var node : ministriesNode) {
+                var m = new Ministry();
+                m.setCode(node.path("code").asText());
+                m.setName(node.path("name").asText());
+                m.setRegularBudget(node.path("regularBudget").asDouble());
+                m.setPublicInvestments(node.path("publicInvestments").asDouble());
+                m.setTotal(node.path("total").asDouble());
+                list.add(m);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return list;
+}
 }
