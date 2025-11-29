@@ -18,13 +18,13 @@ public class BudgetDetailsTest {
 
      @Test
      public void setInflation_invalidLowValue() {
-        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setInflation(-1.1);
+        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setInflation(-0.1);
         });
      }
 
      @Test
      public void setInflation_invalidHighValue() {
-        assertThrows(IllegalArgumentException.class, ()  -> {bdgtDetails.setInflation(2.2);
+        assertThrows(IllegalArgumentException.class, ()  -> {bdgtDetails.setInflation(1.1);
         });
      }
 
@@ -42,7 +42,7 @@ public class BudgetDetailsTest {
 
      @Test
      public void setGDP_invalidHighValue() {
-        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setGDP(2.6);
+        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setGDP(1.2);
         });
      }
 
@@ -54,13 +54,13 @@ public class BudgetDetailsTest {
 
      @Test
      public void setDeptRatio_invalidLowValue() {
-        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setDeptRatio(-1.6);
+        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setDeptRatio(-1.1);
         });   
      }
 
      @Test
      public void setDeptRatio_invalidHighValue() {
-        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setDeptRatio(6.6);
+        assertThrows(IllegalArgumentException.class, () -> {bdgtDetails.setDeptRatio(5.2);
         });
      }
 
