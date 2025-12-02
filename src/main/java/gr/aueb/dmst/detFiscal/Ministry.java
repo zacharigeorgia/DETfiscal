@@ -1,4 +1,5 @@
-public class Ministy {
+package gr.aueb.dmst.detFiscal;
+public class Ministry {
     private String code;
     private String name;
     private double regularBudget;
@@ -41,6 +42,6 @@ public class Ministy {
          }
 @Override
     public String toString() {
-            return String.format("[%s] %-50s : %,15.2f €", name, total, regularBudget);
+           return String.format("[%s] %s : %,.2f ", code, name, total);
          }
 }

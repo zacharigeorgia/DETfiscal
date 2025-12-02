@@ -1,0 +1,149 @@
+[33mcommit 87e6e76a69810dd0c5be80672f8357e4b337e4e1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/data-loader[m[33m, [m[1;31morigin/feature/data-loader[m[33m)[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 17:00:27 2025 +0200
+
+     made the test for loadministries method
+
+[33mcommit 0e3b56d68e2465c64e70a0fa37acb6f4b9a2892a[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 16:57:45 2025 +0200
+
+     added ministries in the mock budget to test it
+
+[33mcommit 80d43f32488cab6a666d2142b7b64d2040d3a5cd[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 16:50:47 2025 +0200
+
+     added loadministries method to dataloader correctly
+
+[33mcommit 87670aff0e8a192a6d171330fe992717f7036ff9[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 16:47:33 2025 +0200
+
+    added list ministry as an implimentation contract
+
+[33mcommit e16fbca2c0f4f04428bb63e1471fb6e2cb6b51fd[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 15:52:25 2025 +0200
+
+     added loadministry method
+
+[33mcommit 13cc97dfcbc2809827618317536c9b7943ca142d[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 15:42:26 2025 +0200
+
+    addeed override
+
+[33mcommit 47506257a5d3bc152acded8cd72affa36d288c49[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 15:26:28 2025 +0200
+
+     added getters/setters
+
+[33mcommit ad47d05b85d22c18626b0c6a5e5f3f331064a678[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 25 15:23:29 2025 +0200
+
+    Created new class Ministry for loadministry method in Dataloader
+
+[33mcommit 22255d7566fc23fe63ce394020b2b4a37f9bfdea[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 16:25:02 2025 +0200
+
+    added testValidateData to see if we are reading correctly the json data
+
+[33mcommit 6176ce1fec302ece9d525240c67eafdc0f77bf0f[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 16:17:03 2025 +0200
+
+    added testLoadMacrodata
+
+[33mcommit 67be075915a2395a47b6bb08f197283bd8c8e873[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 16:06:50 2025 +0200
+
+    added testloadExpenditures method
+
+[33mcommit 5d3c52147fb68084ac6a5d57965df9ad1a107b73[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 15:43:31 2025 +0200
+
+    created set and get methods in class Revenue and Expenditure for tests to run in DataLoader. Not a final stage of these classes just needed them to run DataLoader and tests
+
+[33mcommit 4d2d1a94c20de06d8940bb1d3c44021ad499cd63[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 15:27:34 2025 +0200
+
+    created DataLoaderTest and added testLoadRevenues
+
+[33mcommit c87e4bc72e97a357de0a2999c080ee69606878d9[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 15:20:52 2025 +0200
+
+    created mock data budget file to run junit tests
+
+[33mcommit e419822c6abbd72788bc42b9a1c396118a54b926[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 15:06:09 2025 +0200
+
+    feat:added validatedata method to DataLoader
+
+[33mcommit c2fa13858aeb563c98dcadb29edfc61c9d1433b1[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 23 14:54:54 2025 +0200
+
+     Created Macrodata class for loadMacrodata method, created LoadMacrodata method in Dataloader
+
+[33mcommit c2b01e71263f3ff5fae05d3473390407ac6e95b9[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sat Nov 22 22:50:59 2025 +0200
+
+    feat: Implement loadExpenditures
+
+[33mcommit f57e4e6566a2055a31ad7879219e912ea6d6548b[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sat Nov 22 22:16:25 2025 +0200
+
+    refactor: Introduce IDataLoader, apply var syntax, and add uncomplited methods of Dataloader
+
+[33mcommit 8d01e642893e1f5be64f78fe49f74a33456cdccb[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sat Nov 22 21:57:46 2025 +0200
+
+    feat: Add economic parameters to JSON for scenario analysis
+
+[33mcommit 1c8fe296e66208cab88b4c2c3d5ca9865ac1928c[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 18 19:40:09 2025 +0200
+
+    fix: Update JUnit dependency to modern version 5.10.2 to resolve classpath error
+
+[33mcommit a1e992f03712cf1fd691acdf4eda7560fdb76805[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 18 19:14:51 2025 +0200
+
+    feat: Implement loadRevenues method to parse JSON into Java objects
+
+[33mcommit f22d751c6cb59ba8b0bfe9dc27f054b3c4528d2d[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Tue Nov 18 18:02:06 2025 +0200
+
+    fix: Repair pom.xml and setup DataLoader structure
+
+[33mcommit 667279581cb383f536948b8441056c1aa5dfc075[m
+Author: Elpida <t8240271@aueb.gr>
+Date:   Sun Nov 16 00:30:50 2025 +0200
+
+    feat: added sample_budget_2025.json with full data
+
+[33mcommit 47b989a8b7191352b2deb727891f10379fce9f53[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: mirandatzioufa <t8240143@aueb.gr>
+Date:   Fri Nov 14 13:02:21 2025 +0200
+
+    Ανανεωμένο αρχείο, προστεθηκαν plugins, dependencies
+
+[33mcommit 1a0df4cdde4ba353c710295ec1f29f198a1d524f[m
+Author: zacharigeorgia <zaharaki.georgia@gmail.com>
+Date:   Fri Nov 14 03:06:59 2025 +0200
+
+    Initial detFiscal maven push
