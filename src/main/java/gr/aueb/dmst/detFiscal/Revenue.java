@@ -1,7 +1,6 @@
 package gr.aueb.dmst.detFiscal;
 public class Revenue extends Account {
 
-    // Setters (Τους χρειάζεται ο DataLoader)
     public void setName(String name) {
         this.name = name;
         }

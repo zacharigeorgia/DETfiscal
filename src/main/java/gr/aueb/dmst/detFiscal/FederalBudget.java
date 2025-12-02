@@ -1,3 +1,4 @@
+package gr.aueb.dmst.detFiscal;
 import java.util.List;
 
 public class FederalBudget {
@@ -16,8 +17,8 @@ public class FederalBudget {
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
         details = new BudgetDetails();
-        this.countryName = "Undefined"; 
-        this.year = 0; 
+        this.countryName = "Undefined";
+        this.year = 0;
     }
 
     /**
@@ -53,23 +54,23 @@ public class FederalBudget {
             for (Revenue r : revenues) {
                 summary.addRevenue(r);
             }
-            
+
             // 2. Load Expenditures and populate the BudgetSummary
             List<Expenditure> expenditures = dataLoader.loadExpenditures(jsonPath);
             for (Expenditure e : expenditures) {
                 summary.addExpenditure(e);
             }
-            
+
             // 3. Load MacroData (assuming MacroData class exists) and update BudgetDetails
             MacroData macroData = dataLoader.loadMacroData(jsonPath);
-            details.setInflation(macroData.getInflation()); 
-            details.setGdp(macroData.getGdp()); 
-            details.setDebtRatio(macroData.getDebtRatio()); 
-            
+            details.setInflation(macroData.getInflation());
+            details.setGdp(macroData.getGdp());
+            details.setDebtRatio(macroData.getDebtRatio());
+
             // Simple validation check
-            assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative."; 
+            assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative.";
             System.out.println("Data loading successful (OK).");
-            
+
         } catch (Exception e) {
             System.err.println("ERROR! Could not load file: " + e.getMessage());
             e.printStackTrace();
@@ -82,14 +83,14 @@ public class FederalBudget {
     public void showBudgetOverview() {
         // Calculate the balance (Revenues - Expenditures)
         double balance = this.calculateTotalBudget();
-        
+
         // Determine if the result is a Surplus or Deficit
-        String characterization = details.characterizeTotal(balance); 
+        String characterization = details.characterizeTotal(balance);
 
         System.out.println("\n--- Federal Budget Overview ---");
         System.out.printf("Country: %s, Year: %d\n", countryName, year);
-        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());       
-        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());   
+        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());      
+        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());  
         System.out.println("Balance: " + balance);                              
         System.out.println("Result: " + characterization);
         System.out.println("Inflation: " + details.getInflation() + "%");    
@@ -117,7 +118,7 @@ public class FederalBudget {
             System.out.println("The balances are identical.");
         }
     }
-    
+
     // --- Getters and Setters (From Specification) ---
 
     /**
