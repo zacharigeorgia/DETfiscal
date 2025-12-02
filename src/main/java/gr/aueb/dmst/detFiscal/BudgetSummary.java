@@ -1,16 +1,17 @@
+package gr.aueb.dmst.detFiscal;
 import java.util.ArrayList;
 import java.util.List;
 
-// NOTE: This class assumes that Revenue and Expenditure classes exist and extend an abstract 
+// NOTE: This class assumes that Revenue and Expenditure classes exist and extend an abstract
 // Account class (as per your design), and that they have a public method getAmount().
 public class BudgetSummary {
 
     // Fields as per your design
     private List<Revenue> revenues;
     private List<Expenditure> expenditures;
-    private double surplus; 
+    private double surplus;
     private double deficit;
-    
+
     public BudgetSummary() {
         this.revenues = new ArrayList<>();
         this.expenditures = new ArrayList<>();
@@ -65,7 +66,7 @@ public class BudgetSummary {
     public double calculateBalance() {
         return calculateTotalRevenues() - calculateTotalExpenditures();
     }
-    
+
     /**
      * Searches for an Account (Revenue or Expenditure) by name.
      * @param name The name of the account to search for.
@@ -86,3 +87,4 @@ public class BudgetSummary {
         }
         return null; // Not found
     }
+}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DataLoader implements IDataLoader{
+public class DataLoader implements IDataLoader {
     private ObjectMapper mapper;
 
     public DataLoader() {
