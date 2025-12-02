@@ -48,14 +48,6 @@ public class DataLoader implements IDataLoader {
                     var e = new Expenditure();
                     e.setName(node.path("name").asText());
                     e.setAmount(node.path("amount").asDouble());
-
-                    // Διάβαζει τους κανόνες (αν υπάρχουν στο JSON)
-                    if (node.has("canDecrease")) {
-                        e.setCanDecrease(node.path("canDecrease").asBoolean());
-                    }
-                    if (node.has("maxIncreasePercent")) {
-                        e.setMaxIncreasePercent(node.path("maxIncreasePercent").asDouble());
-                    }
                     list.add(e);
                 }
             }

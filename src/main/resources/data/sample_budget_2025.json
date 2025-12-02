@@ -102,113 +102,86 @@
         "code": "21",
         "name": "Παροχές σε εργαζομένους",
         "amount": 14889199000,
-        "description": "Μισθοί και παροχές δημοσίων υπαλλήλων",
-        "canDecrease": false,
-        "maxIncreasePercent": 10
+        "description": "Μισθοί και παροχές δημοσίων υπαλλήλων"
+
       },
       {
         "code": "22",
         "name": "Κοινωνικές παροχές",
         "amount": 425136000,
-        "description": "Κοινωνικές δαπάνες",
-        "canDecrease": false,
-        "maxIncreasePercent": 15
+        "description": "Κοινωνικές δαπάνες"
       },
       {
         "code": "23",
         "name": "Μεταβιβάσεις",
         "amount": 34741365000,
-        "description": "Μεταβιβάσεις σε άλλους φορείς",
-        "canDecrease": true,
-        "maxIncreasePercent": 20
+        "description": "Μεταβιβάσεις σε άλλους φορείς"
       },
       {
         "code": "24",
         "name": "Αγορές αγαθών και υπηρεσιών",
         "amount": 2039542000,
-        "description": "Προμήθειες και υπηρεσίες",
-        "canDecrease": true,
-        "maxIncreasePercent": 25
+        "description": "Προμήθειες και υπηρεσίες"
       },
       {
         "code": "25",
         "name": "Επιδοτήσεις",
         "amount": 80630000,
-        "description": "Επιδοτήσεις σε φορείς",
-        "canDecrease": true,
-        "maxIncreasePercent": 30
+        "description": "Επιδοτήσεις σε φορείς"
       },
       {
         "code": "26",
         "name": "Τόκοι",
         "amount": 7701101000,
-        "description": "Τόκοι δημοσίου χρέους",
-        "canDecrease": false,
-        "maxIncreasePercent": 5
+        "description": "Τόκοι δημοσίου χρέους"
       },
       {
         "code": "27",
         "name": "Λοιπές δαπάνες",
         "amount": 101553000,
-        "description": "Άλλες δαπάνες",
-        "canDecrease": true,
-        "maxIncreasePercent": 20
+        "description": "Άλλες δαπάνες"
       },
       {
         "code": "29",
         "name": "Πιστώσεις υπό κατανομή",
         "amount": 17283053000,
-        "description": "Πιστώσεις προς κατανομή",
-        "canDecrease": true,
-        "maxIncreasePercent": 15
+        "description": "Πιστώσεις προς κατανομή"
       },
       {
         "code": "31",
         "name": "Πάγια περιουσιακά στοιχεία",
         "amount": 2609600000,
-        "description": "Επενδύσεις σε πάγια",
-        "canDecrease": true,
-        "maxIncreasePercent": 40
+        "description": "Επενδύσεις σε πάγια"
       },
       {
         "code": "33",
         "name": "Τιμαλφή",
         "amount": 85000,
-        "description": "Αξιόγραφα",
-        "canDecrease": true,
-        "maxIncreasePercent": 10
+        "description": "Αξιόγραφα"
       },
       {
         "code": "44",
         "name": "Δάνεια (Εξοδα)",
         "amount": 3741000000,
-        "description": "Χορήγηση δανείων",
-        "canDecrease": true,
-        "maxIncreasePercent": 20
+        "description": "Χορήγηση δανείων"
       },
       {
         "code": "45",
         "name": "Συμμετοχικοί τίτλοι και μερίδια επενδυτικών κεφαλαίων",
         "amount": 1755112000,
-        "description": "Επενδύσεις σε κεφάλαια",
-        "canDecrease": true,
-        "maxIncreasePercent": 25
+        "description": "Επενδύσεις σε κεφάλαια"
       },
       {
         "code": "53",
         "name": "Χρεωστικοί τίτλοι (υποχρεώσεις)",
         "amount": 19375000000,
-        "description": "Εξόφληση χρεωστικών τίτλων",
-        "canDecrease": false,
-        "maxIncreasePercent": 10
+        "description": "Εξόφληση χρεωστικών τίτλων"
       },
       {
         "code": "54",
         "name": "Δάνεια (Αποπληρωμή)",
         "amount": 1203165130000,
-        "description": "Αποπληρωμή δανείων",
-        "canDecrease": false,
-        "maxIncreasePercent": 5
+        "description": "Αποπληρωμή δανείων"
       }
     ]
   },
@@ -378,63 +351,6 @@
         "regularBudget": 760116000,
         "publicInvestments": 461000000,
         "total": 1221116000
-      }
-    ]
-  },
-
-  "decentralizedAdministrations": {
-    "total": 79592000,
-    "regularBudget": 79592000,
-    "publicInvestments": 0,
-    "list": [
-      {
-        "code": "1901",
-        "name": "Αποκεντρωμένη Διοίκηση Αττικής",
-        "regularBudget": 13091000,
-        "publicInvestments": 0,
-        "total": 13091000
-      },
-      {
-        "code": "1902",
-        "name": "Αποκεντρωμένη Διοίκηση Θεσσαλίας - Στερεάς Ελλάδας",
-        "regularBudget": 10579000,
-        "publicInvestments": 0,
-        "total": 10579000
-      },
-      {
-        "code": "1903",
-        "name": "Αποκεντρωμένη Διοίκηση Ηπείρου - Δυτικής Μακεδονίας",
-        "regularBudget": 9943000,
-        "publicInvestments": 0,
-        "total": 9943000
-      },
-      {
-        "code": "1904",
-        "name": "Αποκεντρωμένη Διοίκηση Πελοποννήσου - Δυτικής Ελλάδας και Ιονίου",
-        "regularBudget": 14918000,
-        "publicInvestments": 0,
-        "total": 14918000
-      },
-      {
-        "code": "1905",
-        "name": "Αποκεντρωμένη Διοίκηση Αιγαίου",
-        "regularBudget": 6188000,
-        "publicInvestments": 0,
-        "total": 6188000
-      },
-      {
-        "code": "1906",
-        "name": "Αποκεντρωμένη Διοίκηση Κρήτης",
-        "regularBudget": 6497000,
-        "publicInvestments": 0,
-        "total": 6497000
-      },
-      {
-        "code": "1907",
-        "name": "Αποκεντρωμένη Διοίκηση Μακεδονίας - Θράκης",
-        "regularBudget": 18376000,
-        "publicInvestments": 0,
-        "total": 18376000
       }
     ]
   },
