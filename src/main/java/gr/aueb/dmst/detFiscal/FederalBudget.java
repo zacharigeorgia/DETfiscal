@@ -94,11 +94,12 @@ public class FederalBudget {
 
         System.out.println("\n--- Federal Budget Overview ---");
         System.out.printf("Country: %s, Year: %d\n", countryName, year);
-        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());      
-        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());  
-        System.out.println("Balance: " + balance);                              
+
+        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());
+        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());
+        System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
-        System.out.println("Inflation: " + details.getInflation() + "%");    
+        System.out.println("Inflation: " + details.getInflation() + "%");
 
         details.plotGraph(); // Assumes this method exists in BudgetDetails
     }
