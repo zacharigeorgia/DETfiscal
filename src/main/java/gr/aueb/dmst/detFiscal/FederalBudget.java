@@ -9,7 +9,7 @@ public class FederalBudget {
     private int year;                       // Budget year
     private BudgetSummary summary;          // Object holding revenues and expenditures
     private BudgetDetails details;          // Object holding macroeconomic data
-    private DataLoader dataLoader;          // Object responsible for loading data
+    private IDataLoader dataLoader;          // Object responsible for loading data
 
     // Private constructor for Singleton
     private FederalBudget() {
