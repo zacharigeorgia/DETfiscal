@@ -17,8 +17,8 @@ public class FederalBudget {
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
         details = new BudgetDetails();
-        this.countryName = "Undefined";
-        this.year = 0;
+        this.countryName = "Greece";
+        this.year = 2025;
     }
 
     /**
@@ -59,6 +59,10 @@ public class FederalBudget {
             List<Expenditure> expenditures = dataLoader.loadExpenditures(jsonPath);
             for (Expenditure e : expenditures) {
                 summary.addExpenditure(e);
+            }
+            List<Ministry> ministries = dataLoader.loadMinistries(jsonPath);
+            for (Ministry m : ministries) {
+                summary.addMinistry(m);
             }
 
             // 3. Load MacroData (assuming MacroData class exists) and update BudgetDetails
