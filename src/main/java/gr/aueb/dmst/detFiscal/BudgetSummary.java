@@ -9,16 +9,20 @@ public class BudgetSummary {
     // Fields as per your design
     private List<Revenue> revenues;
     private List<Expenditure> expenditures;
+    private List<Ministry> ministries;
     private double surplus;
     private double deficit;
 
     public BudgetSummary() {
         this.revenues = new ArrayList<>();
         this.expenditures = new ArrayList<>();
+        this.ministries = new ArrayList<>();
         this.surplus = 0.0;
         this.deficit = 0.0;
     }
-
+    public void addMinistry(Ministry m) {
+        this.ministries.add(m);
+    }
     /**
      * Adds a Revenue object to the list of revenues.
      * @param r The Revenue object to add.
@@ -26,13 +30,19 @@ public class BudgetSummary {
     public void addRevenue(Revenue r) {
         this.revenues.add(r);
     }
-
-    /**
-     * Adds an Expenditure object to the list of expenditures.
-     * @param e The Expenditure object to add.
-     */
     public void addExpenditure(Expenditure e) {
         this.expenditures.add(e);
+    }
+    //για το φροντεντ οι getters
+    public List<Ministry> getMinistries() {
+        return this.ministries;
+    }
+    public List<Revenue> getRevenues() {
+        return this.revenues;
+    }
+
+    public List<Expenditure> getExpenditures() {
+        return this.expenditures;
     }
 
     /**
@@ -58,6 +68,7 @@ public class BudgetSummary {
         }
         return total;
     }
+
 
     /**
      * Calculates the difference between total revenues and total expenditures (the balance/ισοζύγιο).
@@ -86,5 +97,13 @@ public class BudgetSummary {
             }
         }
         return null; // Not found
+    }
+    public Ministry searchMinistry(String name) {
+        for (Ministry m : ministries) {
+            if (m.getName().equalsIgnoreCase(name) || m.getName().contains(name)) {
+                return m;
+            }
+        }
+        return null;
     }
 }
