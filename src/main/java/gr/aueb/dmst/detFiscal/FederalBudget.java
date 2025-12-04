@@ -65,6 +65,7 @@ public class FederalBudget {
                 summary.addMinistry(m);
             }
 
+
             // 3. Load MacroData (assuming MacroData class exists) and update BudgetDetails
             MacroData macroData = dataLoader.loadMacroData(jsonPath);
             details.setInflation(macroData.getInflation());
