@@ -1,31 +1,13 @@
 package gr.aueb.dmst.detfiscal;
 public class BudgetDetails {
-    private double inflation;
-    private double gdp;
-    private double deptRatio;
-    public void setInflation(double inflation) {
-        if (inflation < 0 || inflation > 1) {
-            throw new IllegalArgumentException("Άκυρη τιμή πληθωρισμού");
-        }
-        this.inflation = inflation;
-    }
+    private final double inflation = 2.8;
+    private final double gdp = 2.1;
+    private  final double deptRatio = 147.6;
     public double getInflation() {
         return inflation;
     }
-    public void setGDP(double gdp) {
-        if (gdp < -1 || gdp > 1) {
-            throw new IllegalArgumentException("Άκυρη τιμή Α.Ε.Π.");
-        }
-        this.gdp = gdp;
-    }
     public double getGDP(){
         return gdp;
-    }
-    public void setDeptRatio(double deptRatio) {
-        if (deptRatio < 0 || deptRatio > 5) {
-            throw new IllegalArgumentException("Άκυρη τιμή λόγου χρέους");
-        }
-        this.deptRatio = deptRatio;
     }
     public double getDeptRatio() {
         return deptRatio;
