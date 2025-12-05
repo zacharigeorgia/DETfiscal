@@ -1,36 +1,36 @@
 package gr.aueb.dmst.detFiscal;
 
-public class Expenditure {
-    private String name;
-    private double amount;
-    private boolean canDecrease;
-    private double maxIncreasePercent;
-
-    // Setters
+public class Expenditure extends Account {
     public void setName(String name) {
         this.name = name;
         }
     public void setAmount(double amount) {
         this.amount = amount;
         }
-    public void setCanDecrease(boolean canDecrease) {
-         this.canDecrease = canDecrease;
-         }
-    public void setMaxIncreasePercent(double maxIncreasePercent) {
-        this.maxIncreasePercent = maxIncreasePercent;
-         }
 
-    // Getters
+    @Override
     public String getName() {
         return name;
         }
+    @Override
     public double getAmount() {
          return amount;
           }
-    public boolean isCanDecrease() {
-         return canDecrease;
-         }
-    public double getMaxIncreasePercent() {
-        return maxIncreasePercent;
-        }
+
+
+    @Override
+    public void increase(double amount) {
+            this.amount += amount;
+    }
+
+    @Override
+    public void decrease(double amount) {
+         this.amount -= amount;
+    }
+    @Override
+    public String toString() {
+
+        return String.format("[Έξοδο] %-40s : %,15.2f €", getName(), getAmount());
+    }
 }
+

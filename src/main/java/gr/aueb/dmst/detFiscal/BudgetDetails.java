@@ -1,4 +1,4 @@
-package gr.aueb.dmst.detfiscal;
+package gr.aueb.dmst.detFiscal;
 public class BudgetDetails {
     private final double inflation = 2.8;
     private final double gdp = 2.1;
@@ -21,4 +21,4 @@ public class BudgetDetails {
             return "Ισοσκελισμένος Προϋπολογισμός";
         }
     }
-} 
+}
