@@ -19,11 +19,11 @@ public class Revenue extends Account {
 
     @Override
     public void increase(double x) {
-        this.amount += amount;
+        this.amount += x;
     }
     @Override
     public void decrease(double x) {
-        this.amount -= amount;
+        this.amount -= x;
     }
     @Override
     public String toString() {

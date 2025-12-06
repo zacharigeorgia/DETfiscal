@@ -1,6 +1,13 @@
 package gr.aueb.dmst.detFiscal;
 import java.util.List;
 
+import gr.aueb.dmst.detFiscal.Expenditure;
+import gr.aueb.dmst.detFiscal.Ministry;
+import gr.aueb.dmst.detFiscal.Revenue;
+import main.java.gr.aueb.dmst.detFiscal.BudgetDetails;
+import main.java.gr.aueb.dmst.detFiscal.BudgetSummary;
+import main.java.gr.aueb.dmst.detFiscal.DataLoader;
+
 public class FederalBudget {
 
     // Fields
@@ -47,35 +54,51 @@ public class FederalBudget {
      * The loaded data is then stored in the BudgetSummary and BudgetDetails objects.
      * @param jsonPath The file path (String) to the JSON data source.
      */
-    public void initializeData(String jsonPath) {
+    public void initializeData(String pathMain, String path2024) {
         try {
             // 1. Load Revenues and populate the BudgetSummary
-            List<Revenue> revenues = dataLoader.loadRevenues(jsonPath);
-            for (Revenue r : revenues) {
-                summary.addRevenue(r);
+           // REPLACE THE ENTIRE BODY OF initializeData (inside the try block) with this:
+
+            // 1. Load MAIN Budget Data (2025)
+            List<Revenue> revenuesMain = dataLoader.loadRevenues(pathMain);
+            for (Revenue r : revenuesMain) {
+                summary.addRevenue(r); // Adds to the main 'revenues' list
             }
 
-            // 2. Load Expenditures and populate the BudgetSummary
-            List<Expenditure> expenditures = dataLoader.loadExpenditures(jsonPath);
-            for (Expenditure e : expenditures) {
-                summary.addExpenditure(e);
+            List<Expenditure> expendituresMain = dataLoader.loadExpenditures(pathMain);
+            for (Expenditure e : expendituresMain) {
+                summary.addExpenditure(e); // Adds to the main 'expenditures' list
+            }
+            
+            // Load Ministries (assumed to be based on the main path/budget)
+            List<Ministry> ministries = dataLoader.loadMinistries(pathMain);
+            for (Ministry m : ministries) {
+                summary.addMinistry(m);
             }
 
-            // 3. Load MacroData (assuming MacroData class exists) and update BudgetDetails
-            MacroData macroData = dataLoader.loadMacroData(jsonPath);
-            details.setInflation(macroData.getInflation());
-            details.setGdp(macroData.getGdp());
-            details.setDebtRatio(macroData.getDebtRatio());
+            // ----------------------------------------------------------------------
+            
+            // 2. Load COMPARISON Budget Data (2024)
+            List<Revenue> revenues24 = dataLoader.loadRevenues(path2024);
+            for (Revenue r : revenues24) {
+                summary.getRevenues2024().add(r); 
+            }
 
-            // Simple validation check
+            List<Expenditure> expenditures24 = dataLoader.loadExpenditures(path2024);
+            for (Expenditure e : expenditures24) {
+                summary.getExpenditures2024().add(e);
+            }
+
+            // Simple validation check (using main budget data)
             assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative.";
             System.out.println("Data loading successful (OK).");
-
+        // ADD THIS BLOCK immediately after the closing '}' of the try block:
         } catch (Exception e) {
             System.err.println("ERROR! Could not load file: " + e.getMessage());
             e.printStackTrace();
         }
-    }
+    } // End of initializeData method
+    
 
     /**
      * Displays a comprehensive overview of the budget, including totals and balance.

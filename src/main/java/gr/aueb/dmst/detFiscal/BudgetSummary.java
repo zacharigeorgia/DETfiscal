@@ -2,21 +2,30 @@ package gr.aueb.dmst.detFiscal;
 import java.util.ArrayList;
 import java.util.List;
 
-// NOTE: This class assumes that Revenue and Expenditure classes exist and extend an abstract
-// Account class (as per your design), and that they have a public method getAmount().
+import gr.aueb.dmst.detFiscal.Expenditure;
+import gr.aueb.dmst.detFiscal.Ministry;
+import gr.aueb.dmst.detFiscal.Revenue;
+
+
 public class BudgetSummary {
 
-    // Fields as per your design
+
+    private List<Ministry> ministries;
     private List<Revenue> revenues;
     private List<Expenditure> expenditures;
     private double surplus;
     private double deficit;
+    // Fields for Comparative Budget (2024)
+    private List<Revenue> revenues2024;
+    private List<Expenditure> expenditures2024;
 
     public BudgetSummary() {
         this.revenues = new ArrayList<>();
         this.expenditures = new ArrayList<>();
         this.surplus = 0.0;
         this.deficit = 0.0;
+        this.revenues2024 = new ArrayList<>();
+        this.expenditures2024 = new ArrayList<>();
     }
 
     /**
@@ -86,5 +95,31 @@ public class BudgetSummary {
             }
         }
         return null; // Not found
+    }
+    /**
+     * Adds a Ministry object to the list of ministries.
+     */
+    public void addMinistry(Ministry m) {
+        this.ministries.add(m);
+    }
+    
+    /**
+     * Returns the list of Ministry objects.
+     */
+    public List<Ministry> getMinistries() {
+        return this.ministries;
+    }
+    /**
+     * Returns the list of Revenue accounts for the 2024 budget.
+     */
+    public List<Revenue> getRevenues2024() {
+        return this.revenues2024;
+    }
+
+    /**
+     * Returns the list of Expenditure accounts for the 2024 budget.
+     */
+    public List<Expenditure> getExpenditures2024() {
+        return this.expenditures2024;
     }
 }
