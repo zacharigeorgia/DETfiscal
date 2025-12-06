@@ -16,7 +16,7 @@ public class FederalBudget {
     private int year;                       // Budget year
     private BudgetSummary summary;          // Object holding revenues and expenditures
     private BudgetDetails details;          // Object holding macroeconomic data
-    private DataLoader dataLoader;          // Object responsible for loading data
+    private IDataLoader dataLoader;          // Object responsible for loading data
 
     // Private constructor for Singleton
     private FederalBudget() {
@@ -24,8 +24,8 @@ public class FederalBudget {
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
         details = new BudgetDetails();
-        this.countryName = "Undefined";
-        this.year = 0;
+        this.countryName = "Greece";
+        this.year = 2025;
     }
 
     /**
@@ -75,6 +75,11 @@ public class FederalBudget {
             for (Ministry m : ministries) {
                 summary.addMinistry(m);
             }
+            List<Ministry> ministries = dataLoader.loadMinistries(jsonPath);
+            for (Ministry m : ministries) {
+                summary.addMinistry(m);
+            }
+
 
             // ----------------------------------------------------------------------
             
@@ -112,11 +117,12 @@ public class FederalBudget {
 
         System.out.println("\n--- Federal Budget Overview ---");
         System.out.printf("Country: %s, Year: %d\n", countryName, year);
-        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());      
-        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());  
-        System.out.println("Balance: " + balance);                              
+
+        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());
+        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());
+        System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
-        System.out.println("Inflation: " + details.getInflation() + "%");    
+        System.out.println("Inflation: " + details.getInflation() + "%");
 
         details.plotGraph(); // Assumes this method exists in BudgetDetails
     }

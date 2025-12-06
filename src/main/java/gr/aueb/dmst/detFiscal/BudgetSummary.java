@@ -9,7 +9,7 @@ import gr.aueb.dmst.detFiscal.Revenue;
 
 public class BudgetSummary {
 
-
+    // ΔΙΟΡΘΩΣΗ: Κρατάμε μόνο έναν ορισμό για κάθε λίστα
     private List<Ministry> ministries;
     private List<Revenue> revenues;
     private List<Expenditure> expenditures;
@@ -22,12 +22,20 @@ public class BudgetSummary {
     public BudgetSummary() {
         this.revenues = new ArrayList<>();
         this.expenditures = new ArrayList<>();
+        this.ministries = new ArrayList<>();
         this.surplus = 0.0;
         this.deficit = 0.0;
         this.revenues2024 = new ArrayList<>();
         this.expenditures2024 = new ArrayList<>();
     }
 
+    /**
+     * Adds a Ministry object to the list of ministries.
+     */
+    public void addMinistry(Ministry m) {
+        this.ministries.add(m);
+    }
+    
     /**
      * Adds a Revenue object to the list of revenues.
      * @param r The Revenue object to add.
@@ -38,15 +46,43 @@ public class BudgetSummary {
 
     /**
      * Adds an Expenditure object to the list of expenditures.
-     * @param e The Expenditure object to add.
      */
     public void addExpenditure(Expenditure e) {
         this.expenditures.add(e);
     }
 
+    // --- Getters για Frontend/Λειτουργίες ---
+    
+    public List<Ministry> getMinistries() {
+        return this.ministries;
+    }
+
+    public List<Revenue> getRevenues() {
+        return this.revenues;
+    }
+
+    public List<Expenditure> getExpenditures() {
+        return this.expenditures;
+    }
+
+    /**
+     * Returns the list of Revenue accounts for the 2024 budget. (ΑΠΟ ΤΗΝ DEVELOP)
+     */
+    public List<Revenue> getRevenues2024() {
+        return this.revenues2024;
+    }
+
+    /**
+     * Returns the list of Expenditure accounts for the 2024 budget. (ΑΠΟ ΤΗΝ DEVELOP)
+     */
+    public List<Expenditure> getExpenditures2024() {
+        return this.expenditures2024;
+    }
+    
+    // --- Υπολογισμοί & Αναζήτηση ---
+
     /**
      * Calculates and returns the total amount of all revenues in the list.
-     * @return The sum of all revenue amounts.
      */
     public double calculateTotalRevenues() {
         double total = 0;
@@ -58,7 +94,6 @@ public class BudgetSummary {
 
     /**
      * Calculates and returns the total amount of all expenditures in the list.
-     * @return The sum of all expenditure amounts.
      */
     public double calculateTotalExpenditures() {
         double total = 0;
@@ -70,7 +105,6 @@ public class BudgetSummary {
 
     /**
      * Calculates the difference between total revenues and total expenditures (the balance/ισοζύγιο).
-     * @return The budget balance (Revenues - Expenditures).
      */
     public double calculateBalance() {
         return calculateTotalRevenues() - calculateTotalExpenditures();
@@ -78,8 +112,6 @@ public class BudgetSummary {
 
     /**
      * Searches for an Account (Revenue or Expenditure) by name.
-     * @param name The name of the account to search for.
-     * @return The Account object (Revenue or Expenditure) or null if not found.
      */
     public Account searchAccount(String name) {
         // Search in Revenues
@@ -96,30 +128,16 @@ public class BudgetSummary {
         }
         return null; // Not found
     }
-    /**
-     * Adds a Ministry object to the list of ministries.
-     */
-    public void addMinistry(Ministry m) {
-        this.ministries.add(m);
-    }
-    
-    /**
-     * Returns the list of Ministry objects.
-     */
-    public List<Ministry> getMinistries() {
-        return this.ministries;
-    }
-    /**
-     * Returns the list of Revenue accounts for the 2024 budget.
-     */
-    public List<Revenue> getRevenues2024() {
-        return this.revenues2024;
-    }
 
     /**
-     * Returns the list of Expenditure accounts for the 2024 budget.
+     * Searches for a Ministry object by name. (ΑΠΟ ΤΗΝ FIX/ARCHITECTURE)
      */
-    public List<Expenditure> getExpenditures2024() {
-        return this.expenditures2024;
+    public Ministry searchMinistry(String name) {
+        for (Ministry m : ministries) {
+            if (m.getName().equalsIgnoreCase(name) || m.getName().contains(name)) {
+                return m;
+            }
+        }
+        return null;
     }
 }
