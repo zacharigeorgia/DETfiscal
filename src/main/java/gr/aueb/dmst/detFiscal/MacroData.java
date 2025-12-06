@@ -12,6 +12,9 @@ public class MacroData {
     private double incomeTaxRatePercent;
     private double baseRevenueForVat;
     private double baseRevenueForIncomeTax;
+    private double gdp;
+    private double inflation;
+    private double debtRatio;
 
 
     public MacroData() {
@@ -19,30 +22,79 @@ public class MacroData {
     }
 
     // Για τα Total Revenues
-    public double getTotalRevenues() { return totalRevenues; }
-    public void setTotalRevenues(double totalRevenues) { this.totalRevenues = totalRevenues; }
+    public double getTotalRevenues() {
+         return totalRevenues;
+          }
+    public void setTotalRevenues(double totalRevenues) {
+         this.totalRevenues = totalRevenues;
+         }
 
     // Για τα Total Expenditures
-    public double getTotalExpenditures() { return totalExpenditures; }
-    public void setTotalExpenditures(double totalExpenditures) { this.totalExpenditures = totalExpenditures; }
+    public double getTotalExpenditures() {
+         return totalExpenditures;
+         }
+    public void setTotalExpenditures(double totalExpenditures) {
+        this.totalExpenditures = totalExpenditures;
+        }
 
     // Για το Budget Result
-    public double getBudgetResult() { return budgetResult; }
-    public void setBudgetResult(double budgetResult) { this.budgetResult = budgetResult; }
+    public double getBudgetResult() {
+        return budgetResult;
+         }
+    public void setBudgetResult(double budgetResult) {
+         this.budgetResult = budgetResult;
+          }
 
     // Για το VAT Rate (ΦΠΑ)
-    public double getVatRatePercent() { return vatRatePercent; }
-    public void setVatRatePercent(double vatRatePercent) { this.vatRatePercent = vatRatePercent; }
+    public double getVatRatePercent() {
+         return vatRatePercent;
+          }
+    public void setVatRatePercent(double vatRatePercent) {
+         this.vatRatePercent = vatRatePercent;
+         }
 
     // Για το Income Tax Rate (Φόρος Εισοδήματος)
-    public double getIncomeTaxRatePercent() { return incomeTaxRatePercent; }
-    public void setIncomeTaxRatePercent(double incomeTaxRatePercent) { this.incomeTaxRatePercent = incomeTaxRatePercent; }
+    public double getIncomeTaxRatePercent() {
+        return incomeTaxRatePercent;
+        }
+    public void setIncomeTaxRatePercent(double incomeTaxRatePercent) {
+        this.incomeTaxRatePercent = incomeTaxRatePercent;
+        }
 
     // Για τη Βάση ΦΠΑ
-    public double getBaseRevenueForVat() { return baseRevenueForVat; }
-    public void setBaseRevenueForVat(double baseRevenueForVat) { this.baseRevenueForVat = baseRevenueForVat; }
+    public double getBaseRevenueForVat() {
+         return baseRevenueForVat;
+         }
+    public void setBaseRevenueForVat(double baseRevenueForVat) {
+        this.baseRevenueForVat = baseRevenueForVat;
+        }
 
     // Για τη Βάση Φόρου Εισοδήματος
-    public double getBaseRevenueForIncomeTax() { return baseRevenueForIncomeTax; }
-    public void setBaseRevenueForIncomeTax(double baseRevenueForIncomeTax) { this.baseRevenueForIncomeTax = baseRevenueForIncomeTax; }
+    public double getBaseRevenueForIncomeTax() {
+        return baseRevenueForIncomeTax;
+        }
+    public void setBaseRevenueForIncomeTax(double baseRevenueForIncomeTax) {
+         this.baseRevenueForIncomeTax = baseRevenueForIncomeTax;
+         }
+    public double getGdp() {
+        return gdp;
+         }
+    public void setGdp(double gdp) {
+         this.gdp = gdp;
+          }
+
+    public double getInflation() {
+         return inflation;
+         }
+    public void setInflation(double inflation) {
+         this.inflation = inflation;
+         }
+
+    public double getDebtRatio() {
+         return debtRatio;
+         }
+    public void setDebtRatio(double debtRatio) {
+        this.debtRatio = debtRatio;
+         }
+
 }

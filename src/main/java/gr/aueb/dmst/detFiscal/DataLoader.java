@@ -77,6 +77,9 @@ public class DataLoader implements IDataLoader {
                 macroData.setBaseRevenueForVat(params.path("baseRevenueForVat").asDouble());
                 macroData.setBaseRevenueForIncomeTax(params.path("baseRevenueForIncomeTax").asDouble());
                 macroData.setIncomeTaxRatePercent(params.path("incomeTaxRatePercent").asDouble());
+                macroData.setGdp(params.path("gdp").asDouble(0.0));
+                macroData.setInflation(params.path("inflation").asDouble(0.0));
+                macroData.setDebtRatio(params.path("debtRatio").asDouble(0.0));
             }
 
         } catch (IOException e) {

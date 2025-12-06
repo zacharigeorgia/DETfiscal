@@ -353,6 +353,9 @@
     "vatRatePercent": 24.0,
     "incomeTaxRatePercent": 22.0,
     "baseRevenueForVat": 150000000000,
-    "baseRevenueForIncomeTax": 90000000000
+    "baseRevenueForIncomeTax": 90000000000 ,
+    "gdp": 232000000000,
+    "inflation": 3.0,
+    "debtRatio": 153.6
   }
 }
