@@ -11,7 +11,7 @@ public  abstract class Account {
     public double getAmount() {
         return amount;
     }
-    public void setAmmount(double newAmount) {
+    public void setAmount(double newAmount) {
         amount = newAmount;
     }
 }
