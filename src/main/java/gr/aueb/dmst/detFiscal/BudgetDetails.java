@@ -1,24 +1,24 @@
-package gr.aueb.dmst.detFiscal;
+package gr.aueb.dmst.detfiscal;
 
 public class BudgetDetails {
-    // ΣΗΜΑΝΤΙΚΟ: Αφαιρούμε το 'final' για να επιτρέψουμε τη φόρτωση δεδομένων από το DataLoader
     private double inflation;
     private double gdp;
     private double deptRatio;
 
-    public double getInflation() {
-        return inflation;
-    }
-
-    // Προστίθεται ο Setter για τον Πληθωρισμό
     public void setInflation(double inflation) {
+        if (inflation < 0 || inflation > 1) {
+            throw new IllegalArgumentException("Άκυρη τιμή πληθωρισμού");
+        }
         this.inflation = inflation;
     }
 
-    // Προστίθεται ο Setter για το ΑΕΠ (με έλεγχο ορίων)
+
+    public double getInflation() {
+        return inflation;
+    }
+    
     public void setGdp(double gdp) {
         if (gdp < -1 || gdp > 1) {
-            // Ο έλεγχος ορίων είναι απαραίτητος, όπως τον έθεσε η συνάδελφός σας.
             throw new IllegalArgumentException("Άκυρη τιμή Α.Ε.Π.");
         }
         this.gdp = gdp;
@@ -28,9 +28,6 @@ public class BudgetDetails {
         return gdp;
     }
     
-    // Η getGdp() αντικαθιστά την getGDP() για εναρμόνιση ονομάτων (convention)
-
-    // Προστίθεται ο Setter για το Χρέος (με έλεγχο ορίων)
     public void setDebtRatio(double deptRatio) {
         if (deptRatio < 0 || deptRatio > 5) {
             throw new IllegalArgumentException("Άκυρη τιμή λόγου χρέους");
@@ -39,8 +36,6 @@ public class BudgetDetails {
     }
 
     public double getDeptRatio() {
-        // Κρατάμε το όνομα deptRatio (αντί debtRatio) για να μην προκαλέσουμε άλλες συγκρούσεις,
-        // παρόλο που το debtRatio είναι πιο σωστό ορθογραφικά.
         return deptRatio; 
     }
 
