@@ -2,7 +2,7 @@ package gr.aueb.dmst.detFiscal;
 
 import javax.swing.*;
 import java.awt.*;
-import gr.aueb.dmst.detFiscal.BudgetDetails;
+// import gr.aueb.dmst.detFiscal.FederalBudget;
 
 public class Menu {
     public static void main(String[] args) {
@@ -71,7 +71,7 @@ public class Menu {
 
         btnData.addActionListener(e -> {
             jf.setVisible(false);
-            new BudgetDetails();
+            // new BudgetDetails();
         });
 
         btnSearch.addActionListener(e -> {
