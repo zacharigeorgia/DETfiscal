@@ -36,7 +36,7 @@ public class Menu {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 10.0;
 
-        FederalBudget fedBudget = new FederalBudget();
+        // FederalBudget fedBudget = FederalBudget.getInstance();
 
         // panel gia koympia
         JPanel buttonPanel = new JPanel();
@@ -50,12 +50,14 @@ public class Menu {
         JButton btnData = new JButton("Display Data");
         JButton btnSearch = new JButton("Search Account");
         JButton btnSummary = new JButton("Display Summary");
+        JButton btnAlter = new JButton("Alter Data");
 
         styleButton(btnYear);
         styleButton(btnCountry);
         styleButton(btnData);
         styleButton(btnSearch);
         styleButton(btnSummary);
+        styleButton(btnAlter);
 
         // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
         btnYear.addActionListener(e -> {
@@ -73,7 +75,7 @@ public class Menu {
 
         btnData.addActionListener(e -> {
             // jf.setVisible(false);
-            fedBudget.initializeData();
+            // fedBudget.showBudgetOverview();
             // new BudgetDetails();
         });
 
@@ -85,12 +87,17 @@ public class Menu {
             JOptionPane.showMessageDialog(jf, "5ο κουμπί");
         });
 
+        btnAlter.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "6ο κουμπί");
+        });
+
         // Προσθήκη των κουμπιών
         buttonPanel.add(btnYear);
         buttonPanel.add(btnCountry);
         buttonPanel.add(btnData);
         buttonPanel.add(btnSearch);
         buttonPanel.add(btnSummary);
+        buttonPanel.add(btnAlter);
 
         // buttonPanel στο mainPanel
         gbc.gridy = 1; // Μπαίνει 1 grid κάτω από τον τίτλο
