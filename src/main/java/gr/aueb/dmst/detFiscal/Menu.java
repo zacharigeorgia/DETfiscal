@@ -2,7 +2,7 @@ package gr.aueb.dmst.detFiscal;
 
 import javax.swing.*;
 import java.awt.*;
-// import gr.aueb.dmst.detFiscal.FederalBudget;
+import gr.aueb.dmst.detFiscal.FederalBudget;
 
 public class Menu {
     public static void main(String[] args) {
@@ -35,6 +35,8 @@ public class Menu {
 
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 10.0;
+
+        FederalBudget fedBudget = new FederalBudget();
 
         // panel gia koympia
         JPanel buttonPanel = new JPanel();
@@ -70,7 +72,8 @@ public class Menu {
         });
 
         btnData.addActionListener(e -> {
-            jf.setVisible(false);
+            // jf.setVisible(false);
+            fedBudget.initializeData();
             // new BudgetDetails();
         });
 
