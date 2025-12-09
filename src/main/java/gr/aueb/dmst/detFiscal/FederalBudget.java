@@ -160,6 +160,7 @@ public class FederalBudget {
 
     /**
      * Returns the BudgetDetails object containing macroeconomic data.
+     * 
      * @return BudgetDetails
      */
     public BudgetDetails getDetails() {

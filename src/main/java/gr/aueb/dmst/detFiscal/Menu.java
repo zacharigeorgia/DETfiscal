@@ -2,6 +2,7 @@ package gr.aueb.dmst.detFiscal;
 
 import javax.swing.*;
 import java.awt.*;
+import gr.aueb.dmst.detFiscal.FederalBudget;
 
 public class Menu {
     public static void main(String[] args) {
@@ -35,6 +36,8 @@ public class Menu {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 10.0;
 
+        // FederalBudget fedBudget = FederalBudget.getInstance();
+
         // panel gia koympia
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2, 20, 20));
@@ -45,12 +48,16 @@ public class Menu {
         JButton btnYear = new JButton("Compare data | years");
         JButton btnCountry = new JButton("Compare data | Countries");
         JButton btnData = new JButton("Display Data");
-        JButton btn4 = new JButton("Button 4");
+        JButton btnSearch = new JButton("Search Account");
+        JButton btnSummary = new JButton("Display Summary");
+        JButton btnAlter = new JButton("Alter Data");
 
         styleButton(btnYear);
         styleButton(btnCountry);
         styleButton(btnData);
-        styleButton(btn4);
+        styleButton(btnSearch);
+        styleButton(btnSummary);
+        styleButton(btnAlter);
 
         // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
         btnYear.addActionListener(e -> {
@@ -67,18 +74,30 @@ public class Menu {
         });
 
         btnData.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "Προβολή Δεδομένων");
+            // jf.setVisible(false);
+            // fedBudget.showBudgetOverview();
+            // new BudgetDetails();
         });
 
-        btn4.addActionListener(e -> {
+        btnSearch.addActionListener(e -> {
             JOptionPane.showMessageDialog(jf, "4ο κουμπί");
+        });
+
+        btnSummary.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "5ο κουμπί");
+        });
+
+        btnAlter.addActionListener(e -> {
+            JOptionPane.showMessageDialog(jf, "6ο κουμπί");
         });
 
         // Προσθήκη των κουμπιών
         buttonPanel.add(btnYear);
         buttonPanel.add(btnCountry);
         buttonPanel.add(btnData);
-        buttonPanel.add(btn4);
+        buttonPanel.add(btnSearch);
+        buttonPanel.add(btnSummary);
+        buttonPanel.add(btnAlter);
 
         // buttonPanel στο mainPanel
         gbc.gridy = 1; // Μπαίνει 1 grid κάτω από τον τίτλο
@@ -120,5 +139,4 @@ public class Menu {
         // Αλλαγή κέρσορα σε χεράκι όταν πάει από πάνω
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
     };
-
 }

@@ -10,7 +10,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -21,7 +22,6 @@
         <version>5.10.2</version>
         <scope>test</scope>
     </dependency>
-
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
@@ -59,20 +59,21 @@
            <version>0.8.14</version>
            <executions>
             <execution>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
             </execution>
             <execution>
-                <id>report</id>
-                <phase>test</phase>
-                <goals>
-                    <goal>report</goal>
-                </goals>
+              <id>report</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
             </execution>
-        </executions>
-         </plugin>  
-       </plugins>
-     </pluginManagement>
-   </build>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
+ 
