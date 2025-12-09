@@ -54,11 +54,11 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.5.4</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.15</version>
+          <version>0.8.12</version>
           <executions>
             <execution>
               <goals>

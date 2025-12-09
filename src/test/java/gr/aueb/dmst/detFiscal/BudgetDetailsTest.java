@@ -1,6 +1,7 @@
-package gr.aueb.dmst.detfiscal;
+package gr.aueb.dmst.detFiscal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class BudgetDetailsTest {
@@ -41,7 +42,7 @@ public class BudgetDetailsTest {
    @Test
    public void testSetDeptRatio_highValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDeptRatio(5.1);
+         bdgtDetails.setDebtRatio(5.1);
       });
    }
 
@@ -86,54 +87,54 @@ public class BudgetDetailsTest {
 
    @Test
    public void setGDP_ValidValueInGet() {
-      bdgtDetails.setGDP(0.1);
-      assertEquals(0.1, bdgtDetails.getGDP());
+      bdgtDetails.setGdp(0.1);
+      assertEquals(0.1, bdgtDetails.getGdp());
    }
 
    @Test
    public void setGDP_invalidLowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGDP(-1.5);
+         bdgtDetails.setGdp(-1.5);
       });
    }
 
    @Test
    public void setGDP_invalidHighValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGDP(1.2);
+         bdgtDetails.setGdp(1.2);
       });
    }
 
    @Test
    public void setDeptRatio_ValidValueInGet() {
-      bdgtDetails.setDeptRatio(3.2);
+      bdgtDetails.setDebtRatio(3.2);
       assertEquals(3.2, bdgtDetails.getDeptRatio());
    }
 
    @Test
    public void setDeptRatio_invalidLowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDeptRatio(-1.1);
+         bdgtDetails.setDebtRatio(-1.1);
       });
    }
 
    @Test
    public void setDeptRatio_invalidHighValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDeptRatio(5.2);
+         bdgtDetails.setDebtRatio(5.2);
       });
    }
 
    // tests για τον προϋπολογισμό
 
    @Test
-   public void testCharacterizeTotal_Positive() {
+   public void testCharacterizeTotal_Positive2() {
       String value = bdgtDetails.characterizeTotal(200);
       assertEquals("Πλεόνασμα", value);
    }
 
    @Test
-   public void testCharacterizeTotal_Negative() {
+   public void testCharacterizeTotal_Negative2() {
       String value = bdgtDetails.characterizeTotal(-50);
       assertEquals("Έλλειμμα", value);
    }

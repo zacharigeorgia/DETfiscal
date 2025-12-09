@@ -1,4 +1,4 @@
-package gr.aueb.dmst.detfiscal;
+package gr.aueb.dmst.detFiscal;
 
 public class BudgetDetails {
     private double inflation;
@@ -16,7 +16,7 @@ public class BudgetDetails {
     public double getInflation() {
         return inflation;
     }
-    
+
     public void setGdp(double gdp) {
         if (gdp < -1 || gdp > 1) {
             throw new IllegalArgumentException("Άκυρη τιμή Α.Ε.Π.");
@@ -27,7 +27,7 @@ public class BudgetDetails {
     public double getGdp() {
         return gdp;
     }
-    
+
     public void setDebtRatio(double deptRatio) {
         if (deptRatio < 0 || deptRatio > 5) {
             throw new IllegalArgumentException("Άκυρη τιμή λόγου χρέους");
@@ -36,7 +36,7 @@ public class BudgetDetails {
     }
 
     public double getDeptRatio() {
-        return deptRatio; 
+        return deptRatio;
     }
 
     public String characterizeTotal(double balance) {
@@ -48,7 +48,7 @@ public class BudgetDetails {
             return "Ισοσκελισμένος Προϋπολογισμός";
         }
     }
-    
+
     // Προστίθεται η μέθοδος plotGraph() (απαραίτητη αν καλείται από την FederalBudget)
     public void plotGraph() {
         System.out.println("Εκτύπωση γραφήματος...");
