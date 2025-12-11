@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DataLoader implements IDataLoader{
+public class DataLoader implements IDataLoader {
     private ObjectMapper mapper;
 
     public DataLoader() {
@@ -48,14 +48,6 @@ public class DataLoader implements IDataLoader{
                     var e = new Expenditure();
                     e.setName(node.path("name").asText());
                     e.setAmount(node.path("amount").asDouble());
-
-                    // Διάβαζει τους κανόνες (αν υπάρχουν στο JSON)
-                    if (node.has("canDecrease")) {
-                        e.setCanDecrease(node.path("canDecrease").asBoolean());
-                    }
-                    if (node.has("maxIncreasePercent")) {
-                        e.setMaxIncreasePercent(node.path("maxIncreasePercent").asDouble());
-                    }
                     list.add(e);
                 }
             }
@@ -85,6 +77,9 @@ public class DataLoader implements IDataLoader{
                 macroData.setBaseRevenueForVat(params.path("baseRevenueForVat").asDouble());
                 macroData.setBaseRevenueForIncomeTax(params.path("baseRevenueForIncomeTax").asDouble());
                 macroData.setIncomeTaxRatePercent(params.path("incomeTaxRatePercent").asDouble());
+                macroData.setGdp(params.path("gdp").asDouble(0.0));
+                macroData.setInflation(params.path("inflation").asDouble(0.0));
+                macroData.setDebtRatio(params.path("debtRatio").asDouble(0.0));
             }
 
         } catch (IOException e) {
@@ -106,5 +101,28 @@ public class DataLoader implements IDataLoader{
         } catch (IOException e) {
             return false; // Δεν βρέθηκε αρχείο ή είναι χαλασμένο
         }
+    }
+   @Override
+    public List<Ministry> loadMinistries(String filePath) {
+    var list = new ArrayList<Ministry>();
+    try {
+        var root = getRoot(filePath);
+        var ministriesNode = root.path("ministries").path("list");
+
+        if (ministriesNode.isArray()) {
+            for (var node : ministriesNode) {
+                var m = new Ministry();
+                m.setCode(node.path("code").asText());
+                m.setName(node.path("name").asText());
+                m.setRegularBudget(node.path("regularBudget").asDouble());
+                m.setPublicInvestments(node.path("publicInvestments").asDouble());
+                m.setTotal(node.path("total").asDouble());
+                list.add(m);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return list;
     }
 }

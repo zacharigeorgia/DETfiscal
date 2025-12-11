@@ -9,5 +9,7 @@ public interface IDataLoader {
 
     MacroData loadMacroData(String filePath);
 
+    List<Ministry> loadMinistries(String filePath);
+
     boolean validateData(String filePath);
 }

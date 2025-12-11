@@ -1,4 +1,6 @@
+package gr.aueb.dmst.detFiscal;
 import java.util.List;
+
 
 public class FederalBudget {
 
@@ -8,7 +10,7 @@ public class FederalBudget {
     private int year;                       // Budget year
     private BudgetSummary summary;          // Object holding revenues and expenditures
     private BudgetDetails details;          // Object holding macroeconomic data
-    private DataLoader dataLoader;          // Object responsible for loading data
+    private IDataLoader dataLoader;          // Object responsible for loading data
 
     // Private constructor for Singleton
     private FederalBudget() {
@@ -16,8 +18,8 @@ public class FederalBudget {
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
         details = new BudgetDetails();
-        this.countryName = "Undefined"; 
-        this.year = 0; 
+        this.countryName = "Greece";
+        this.year = 2025;
     }
 
     /**
@@ -46,35 +48,46 @@ public class FederalBudget {
      * The loaded data is then stored in the BudgetSummary and BudgetDetails objects.
      * @param jsonPath The file path (String) to the JSON data source.
      */
-    public void initializeData(String jsonPath) {
+    public void initializeData(String pathMain, String path2024) {
         try {
-            // 1. Load Revenues and populate the BudgetSummary
-            List<Revenue> revenues = dataLoader.loadRevenues(jsonPath);
-            for (Revenue r : revenues) {
-                summary.addRevenue(r);
+
+            // 1. Load MAIN Budget Data (2025)
+            List<Revenue> revenuesMain = dataLoader.loadRevenues(pathMain);
+            for (Revenue r : revenuesMain) {
+                summary.addRevenue(r); // Adds to the main 'revenues' list
             }
-            
-            // 2. Load Expenditures and populate the BudgetSummary
-            List<Expenditure> expenditures = dataLoader.loadExpenditures(jsonPath);
-            for (Expenditure e : expenditures) {
-                summary.addExpenditure(e);
+
+            List<Expenditure> expendituresMain = dataLoader.loadExpenditures(pathMain);
+            for (Expenditure e : expendituresMain) {
+                summary.addExpenditure(e); // Adds to the main 'expenditures' list
             }
-            
-            // 3. Load MacroData (assuming MacroData class exists) and update BudgetDetails
-            MacroData macroData = dataLoader.loadMacroData(jsonPath);
-            details.setInflation(macroData.getInflation()); 
-            details.setGdp(macroData.getGdp()); 
-            details.setDebtRatio(macroData.getDebtRatio()); 
-            
-            // Simple validation check
-            assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative."; 
+
+            // Load Ministries (assumed to be based on the main path/budget)
+            List<Ministry> ministries = dataLoader.loadMinistries(pathMain);
+            for (Ministry m : ministries) {
+                summary.addMinistry(m);
+            }
+            // 2. Load COMPARISON Budget Data (2024)
+            List<Revenue> revenues24 = dataLoader.loadRevenues(path2024);
+            for (Revenue r : revenues24) {
+                summary.getRevenues2024().add(r);
+            }
+
+            List<Expenditure> expenditures24 = dataLoader.loadExpenditures(path2024);
+            for (Expenditure e : expenditures24) {
+                summary.getExpenditures2024().add(e);
+            }
+
+            // Simple validation check (using main budget data)
+            assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative.";
             System.out.println("Data loading successful (OK).");
-            
+        // ADD THIS BLOCK immediately after the closing '}' of the try block:
         } catch (Exception e) {
             System.err.println("ERROR! Could not load file: " + e.getMessage());
             e.printStackTrace();
         }
-    }
+    } // End of initializeData method
+
 
     /**
      * Displays a comprehensive overview of the budget, including totals and balance.
@@ -82,17 +95,18 @@ public class FederalBudget {
     public void showBudgetOverview() {
         // Calculate the balance (Revenues - Expenditures)
         double balance = this.calculateTotalBudget();
-        
+
         // Determine if the result is a Surplus or Deficit
-        String characterization = details.characterizeTotal(balance); 
+        String characterization = details.characterizeTotal(balance);
 
         System.out.println("\n--- Federal Budget Overview ---");
         System.out.printf("Country: %s, Year: %d\n", countryName, year);
-        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());       
-        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());   
-        System.out.println("Balance: " + balance);                              
+
+        System.out.println("Total Revenues: " + summary.calculateTotalRevenues());
+        System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());
+        System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
-        System.out.println("Inflation: " + details.getInflation() + "%");    
+        System.out.println("Inflation: " + details.getInflation() + "%");
 
         details.plotGraph(); // Assumes this method exists in BudgetDetails
     }
@@ -117,7 +131,7 @@ public class FederalBudget {
             System.out.println("The balances are identical.");
         }
     }
-    
+
     // --- Getters and Setters (From Specification) ---
 
     /**
@@ -130,6 +144,7 @@ public class FederalBudget {
 
     /**
      * Returns the BudgetDetails object containing macroeconomic data.
+     *
      * @return BudgetDetails
      */
     public BudgetDetails getDetails() {
