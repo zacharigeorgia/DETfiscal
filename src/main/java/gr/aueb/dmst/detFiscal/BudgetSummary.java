@@ -1,4 +1,4 @@
-package gr.aueb.dmst.detFiscal;
+package main.java.gr.aueb.dmst.detFiscal;
 import java.util.ArrayList;
 import java.util.List;
 

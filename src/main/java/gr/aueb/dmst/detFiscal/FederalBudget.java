@@ -1,4 +1,4 @@
-package gr.aueb.dmst.detFiscal;
+
 import java.util.List;
 
 
