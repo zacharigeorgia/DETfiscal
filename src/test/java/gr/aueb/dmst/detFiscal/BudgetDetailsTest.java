@@ -1,104 +1,117 @@
 package gr.aueb.dmst.detFiscal;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
 
 public class BudgetDetailsTest {
 
    // δημιουργώ αντικείμενο της BudgetDetails για να τρέξω τα tests
+   private MacroData dt;
+   private BudgetDetails bdgtDetails;
 
-   private MacroData bdgtDetails = new MacroData();
+  @BeforeEach
+   public void setup() {
+      this.dt = new MacroData();
+      this.bdgtDetails = new BudgetDetails(dt);
+   }
 
-   // test ελέγχου ότι η Inflation λαμβάνει την τιμή που ο χρήστης θέτει
    @Test
    public void testCheckInflation_highValue() {
+      dt.setInflation(-0.6);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkInflation(-0.6);
+         bdgtDetails.checkInflation();
       });
    }
 
    @Test
    public void testCheckInflation_lowValue() {
+      dt.setInflation(1.4);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkInflation(1.4);
+         bdgtDetails.checkInflation();
       });
    }
 
    @Test
    public void testCheckGdp_highValue() {
+      dt.setGdp(1.5);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkGdp(1.5);
+         bdgtDetails.checkGdp();
       });
    }
 
    @Test
    public void testCheckGdp_lowValue() {
+      dt.setGdp(-1.4);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkGdp(-1.4);
+         bdgtDetails.checkGdp();
       });
    }
 
    @Test
    public void testCheckDeptRatio_highValue() {
+      dt.setDebtRatio(5.1);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkDebtRatio(5.1);
+         bdgtDetails.checkDebtRatio();
       });
    }
 
    @Test
    public void testCheckDeptRatio_lowValue() {
+      dt.setDebtRatio(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkDebtRatio(-0.2);
+         bdgtDetails.checkDebtRatio();
       });
    }
 
    @Test
     public void testCheckVatRatePercent_highValue() {
+      dt.setVatRatePercent(1.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkVatRatePercent(1.2);
+         bdgtDetails.checkVatRatePercent();
       });
    }
 
 
    @Test
     public void testCheckVatRatePercent_lowValue() {
+      dt.setVatRatePercent(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkVatRatePercent(-0.2);
+         bdgtDetails.checkVatRatePercent();
       });
    }
 
    @Test
-    public void testCheckIncomeTaxRatPercent_lowValue() {
+    public void testCheckIncomeTaxRatePercent_lowValue() {
+      dt.setIncomeTaxRatePercent(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkIncomeTaxRatePercent(-0.2);
+         bdgtDetails.checkIncomeTaxRatePercent();
       });
    }
 
    @Test
-    public void testCheckIncomeTaxRatPercent_highValue() {
+    public void testCheckIncomeTaxRatePercent_highValue() {
+      dt.setIncomeTaxRatePercent(1.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkIncomeTaxRatePercent(1.2);
+         bdgtDetails.checkIncomeTaxRatePercent();
       });
    }
   
    @Test
-   public void testCheckIncomeTaxRatPercent_lowValue() {
+    public void testCheckBaseRevenueForVat_lowValue() {
+      dt.setBaseRevenueForVat(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkIncomeTaxRatePercent(-0.2);
-      });
-   }
-
-   @Test
-    public void testCheckBaseRevenueForVar_lowValue() {
-      assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkBaseRevenueForIncomeTax(-0.2);
+         bdgtDetails.checkBaseRevenueForVat();
       });
    }
 
     @Test
     public void testCheckBaseRevenueForIncomeTax_lowValue() {
+      dt.setBaseRevenueForIncomeTax(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.checkBaseRevenueForIncomeTax(-0.2);
+         bdgtDetails.checkBaseRevenueForIncomeTax();
       });
    }
 
