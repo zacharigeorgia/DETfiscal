@@ -12,116 +12,94 @@ public class BudgetDetailsTest {
 
    // test ελέγχου ότι η Inflation λαμβάνει την τιμή που ο χρήστης θέτει
    @Test
-   public void testSetInflation_highValue() {
+   public void testCheckInflation_highValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(-0.6);
+         bdgtDetails.checkInflation(-0.6);
       });
    }
 
    @Test
-   public void testSetInflation_lowValue() {
+   public void testCheckInflation_lowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(1.4);
+         bdgtDetails.checkInflation(1.4);
       });
    }
 
    @Test
-   public void testSetGdp_highValue() {
+   public void testCheckGdp_highValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(1.5);
+         bdgtDetails.checkGdp(1.5);
       });
    }
 
    @Test
-   public void testSetGdp_lowValue() {
+   public void testCheckGdp_lowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(-1.4);
+         bdgtDetails.checkGdp(-1.4);
       });
    }
 
    @Test
-   public void testSetDeptRatio_highValue() {
+   public void testCheckDeptRatio_highValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(5.1);
+         bdgtDetails.checkDebtRatio(5.1);
       });
    }
 
    @Test
-   public void testSetDeptRatio_lowValue() {
+   public void testCheckDeptRatio_lowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(-0.2);
+         bdgtDetails.checkDebtRatio(-0.2);
       });
    }
 
    @Test
-   public void testCharacterizeTotal_Positive() {
-      String value = bdgtDetails.characterizeTotal(200);
-      assertEquals("Πλεόνασμα", value);
-   }
-
-   @Test
-   public void testCharacterizeTotal_Negative() {
-      String value = bdgtDetails.characterizeTotal(-50);
-      assertEquals("Έλλειμμα", value);
-   }
-
-   @Test
-   public void setInflation_ValidValueInGet() {
-      bdgtDetails.setInflation(0.6);
-      assertEquals(0.6, bdgtDetails.getInflation());
-   }
-
-   @Test
-   public void setInflation_invalidLowValue() {
+    public void testCheckVatRatePercent_highValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(-0.1);
+         bdgtDetails.checkVatRatePercent(1.2);
+      });
+   }
+
+
+   @Test
+    public void testCheckVatRatePercent_lowValue() {
+      assertThrows(IllegalArgumentException.class, () -> {
+         bdgtDetails.checkVatRatePercent(-0.2);
       });
    }
 
    @Test
-   public void setInflation_invalidHighValue() {
+    public void testCheckIncomeTaxRatPercent_lowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(1.1);
+         bdgtDetails.checkIncomeTaxRatePercent(-0.2);
       });
    }
 
    @Test
-   public void setGDP_ValidValueInGet() {
-      bdgtDetails.setGdp(0.1);
-      assertEquals(0.1, bdgtDetails.getGdp());
-   }
-
-   @Test
-   public void setGDP_invalidLowValue() {
+    public void testCheckIncomeTaxRatPercent_highValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(-1.5);
+         bdgtDetails.checkIncomeTaxRatePercent(1.2);
+      });
+   }
+  
+   @Test
+   public void testCheckIncomeTaxRatPercent_lowValue() {
+      assertThrows(IllegalArgumentException.class, () -> {
+         bdgtDetails.checkIncomeTaxRatePercent(-0.2);
       });
    }
 
    @Test
-   public void setGDP_invalidHighValue() {
+    public void testCheckBaseRevenueForVar_lowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(1.2);
+         bdgtDetails.checkBaseRevenueForIncomeTax(-0.2);
       });
    }
 
-   @Test
-   public void setDeptRatio_ValidValueInGet() {
-      bdgtDetails.setDebtRatio(3.2);
-      assertEquals(3.2, bdgtDetails.getDeptRatio());
-   }
-
-   @Test
-   public void setDeptRatio_invalidLowValue() {
+    @Test
+    public void testCheckBaseRevenueForIncomeTax_lowValue() {
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(-1.1);
-      });
-   }
-
-   @Test
-   public void setDeptRatio_invalidHighValue() {
-      assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(5.2);
+         bdgtDetails.checkBaseRevenueForIncomeTax(-0.2);
       });
    }
 
