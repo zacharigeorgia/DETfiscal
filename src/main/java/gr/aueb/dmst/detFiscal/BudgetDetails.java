@@ -18,8 +18,8 @@ public class BudgetDetails {
     }
 
     public void setGdp(double gdp) {
-        if (gdp < -1 || gdp > 1) {
-            throw new IllegalArgumentException("Άκυρη τιμή Α.Ε.Π.");
+        if (gdp < 0) {
+            throw new IllegalArgumentException("Άκυρη τιμή G.D.P");
         }
         this.gdp = gdp;
     }

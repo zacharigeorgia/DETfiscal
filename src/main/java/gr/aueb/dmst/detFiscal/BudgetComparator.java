@@ -1,8 +1,10 @@
-package gr.aueb.dmst.detfiscal;
+package gr.aueb.dmst.detFiscal;
+import gr.aueb.dmst.detFiscal.BudgetSummary;
+import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Map;
 import java.util.HashMap;
 
-public class BudgetComparator {
+public class BudgetComparator extends DataLoader {
     
     public void compareYearsDetailed() {
         currentBudget.getSummary();
