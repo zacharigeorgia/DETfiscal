@@ -1,6 +1,5 @@
 package gr.aueb.dmst.detFiscal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,7 @@ public class BudgetDetailsTest {
 
    // δημιουργώ αντικείμενο της BudgetDetails για να τρέξω τα tests
 
-   private BudgetDetails bdgtDetails = new BudgetDetails();
+   private MacroData bdgtDetails = new MacroData();
 
    // test ελέγχου ότι η Inflation λαμβάνει την τιμή που ο χρήστης θέτει
    @Test

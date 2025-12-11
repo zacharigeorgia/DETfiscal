@@ -2,7 +2,6 @@ package gr.aueb.dmst.detFiscal;
 
 import javax.swing.*;
 import java.awt.*;
-import gr.aueb.dmst.detFiscal.FederalBudget;
 
 public class Menu {
     public static void main(String[] args) {
