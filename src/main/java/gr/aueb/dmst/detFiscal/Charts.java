@@ -6,12 +6,15 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.Map;
+import gr.aueb.dmst.detFiscal.BudgetSummary;
+import gr.aueb.dmst.detFiscal.FederalBudget;
 
 public class Charts {
-<<<<<<< HEAD
+
     private DefaultCategoryDataset createComparisonDataset(
-        FederalBudget budget1, FederalBudget budget2, String categoryName1, String categoryName2)
+        FederalBudget budget1, FederalBudget budget2, String categoryName1, String categoryName2) {
         /*Δέχεται τον 1ο προϋπολογισμό, μετά τον 2ο και μετά ονόματα κατηγορίας έτος ή χώρα */
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
@@ -27,12 +30,36 @@ public class Charts {
         dataset.addValue(budget2.getSummary().calculateTotalRevenues(),
                          "Σύνολο Εσόδων", categoryName2);
         dataset.addValue(budget2.getSummary().calculateTotalExpenditures(),
-                         "Σύνολο Εξόδων", categoryName2)
+                         "Σύνολο Εξόδων", categoryName2);
         dataset.addValue(budget2.getSummary().calculateTotalBudget(),
                          "Ισοζύγιο", categoryName2);
         
         return dataset;
-=======
+        }
+
+        private static void displayChart(String title, DefaultCategoryDataset dataset, String xAxisLabel) {
+            JFreeChart barChart = ChartFactory.createBarChart(
+                title,  // τίτλος του γραφήματος
+                xAxisLabel, // Τίτλος για άξονα Χ
+                "Ποσό", // Τίτλος για άξονα Ψ
+                dataset,    // τα δεδομενα
+                PlotOrientation.VERTICAL,
+                true,   // Έχει να κάνει με την εμφάνιση legend (υπόμνημα) με εξηγηση κάθε χρώματος
+                true,   // Tooltip(το κουτάκι με την τιμή οταν το βελάκι είναι πάνω στην μπάρα)
+                false   // URL δεν ανοίγει κάποιο λινκ
+            );
+
+            ChartPanel chartPanel = new ChartPanel(barChart);
+            chartPanel.setPreferredSize(new Dimension(800, 500));
+            
+            JFrame frame = new JFrame(title); // Δημιουργία παραθύρου με όνομα title
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //κλείνει το παράθυρο χωρίς να τερματίζει η εφαρμογή μόνο καθαρίζει την μνήμη
+            frame.setContentPane(chartPanel); //γεμίζει το παράθυρο και περιέχει το Bar Chart
+            frame.pack(); // χωράει ακριβώς στο παράθυρο το γράφημα
+            frame.setLocationRelativeTo(null); //το τοποθετεί στο κέντρο της οθόνης
+            frame.setVisible(true); // εμφανίζει το παράθυρο
+
+        }
     /*
  * ΟΔΗΓΙΕΣ ΕΡΓΑΣΙΑΣ ΓΙΑ ΤΗΝ ΥΛΟΠΟΙΗΣΗ ΤΟΥ MULTI-YEAR BAR CHART
  * --------------------------------------------------------------------------------
@@ -51,12 +78,10 @@ public class Charts {
  * --------------------------------------------------------------------------------
  */
 
-// *Προσοχή: Προσθέστε τα imports για Map και τις κλάσεις του project
+// *Προσοχή: Προσθέστε τα imports για Map και τις κλάσεις του project // DONE
 // import java.util.Map;
 // import gr.aueb.dmst.detFiscal.BudgetSummary;
 // import gr.aueb.dmst.detFiscal.FederalBudget;
-
-public class Charts {
 
     /**
      * Υλοποιεί το Bar Chart για τη σύγκριση των ισοζυγίων (Balance) 
@@ -77,6 +102,7 @@ public class Charts {
          * - Δημιουργείται JFreeChart (Bar Chart) με βάση το Dataset.
          * - Εμφανίζεται το γράφημα σε ένα νέο JFrame.
          */
+
     }
 
     /**
@@ -99,5 +125,4 @@ public class Charts {
          */
     }
 }
->>>>>>> a15ee47484d3d2d11d950677a0e241f0a336dd78
-}
+
