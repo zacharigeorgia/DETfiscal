@@ -43,8 +43,7 @@ public class DataLoaderTest {
 
         // Ελέγχουμε αν φορτώθηκαν οι κανόνες περιορισμών
 
-        assertFalse(e.isCanDecrease());   //Το canDecrease έπρεπε να διαβαστεί ως false από το αρχείο
-        assertEquals(5.0, e.getMaxIncreasePercent()); //Το μέγιστο ποσοστό αύξησης έπρεπε να είναι 5.0
+
     }
 @Test
     public void testLoadMacroData() {

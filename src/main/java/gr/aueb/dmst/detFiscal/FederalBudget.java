@@ -2,13 +2,6 @@ package gr.aueb.dmst.detFiscal;
 
 import java.util.List;
 
-import gr.aueb.dmst.detFiscal.Expenditure;
-import gr.aueb.dmst.detFiscal.Ministry;
-import gr.aueb.dmst.detFiscal.Revenue;
-import main.java.gr.aueb.dmst.detFiscal.BudgetDetails;
-import main.java.gr.aueb.dmst.detFiscal.BudgetSummary;
-import main.java.gr.aueb.dmst.detFiscal.DataLoader;
-
 public class FederalBudget {
 
     // Fields
@@ -82,13 +75,6 @@ public class FederalBudget {
             for (Ministry m : ministries) {
                 summary.addMinistry(m);
             }
-            List<Ministry> ministries = dataLoader.loadMinistries(jsonPath);
-            for (Ministry m : ministries) {
-                summary.addMinistry(m);
-            }
-
-            // ----------------------------------------------------------------------
-
             // 2. Load COMPARISON Budget Data (2024)
             List<Revenue> revenues24 = dataLoader.loadRevenues(path2024);
             for (Revenue r : revenues24) {
@@ -169,7 +155,7 @@ public class FederalBudget {
 
     /**
      * Returns the BudgetDetails object containing macroeconomic data.
-     * 
+     *
      * @return BudgetDetails
      */
     public BudgetDetails getDetails() {
