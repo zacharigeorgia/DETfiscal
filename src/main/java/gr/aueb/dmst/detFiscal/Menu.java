@@ -88,9 +88,15 @@ public class Menu {
         });
 
         btnSummary.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "5ο κουμπί");
+            double inflation = fedBudget.getDetails().getInflation();
+            double balance = fedBudget.calculateTotalBudget();
+            String status = fedBudget.getDetails().characterizeTotal(balance); // Π.χ. Surplus/Deficit
 
-            // BugdetSummary
+            String message = "Economic Indicators:\n" +
+                    "Inflation Rate: " + inflation + "%\n" +
+                    "Budget Status: " + status;
+
+            JOptionPane.showMessageDialog(jf, message, "Summary Details", JOptionPane.INFORMATION_MESSAGE);
         });
 
         btnAlter.addActionListener(e -> {
