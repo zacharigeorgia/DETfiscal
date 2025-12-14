@@ -7,6 +7,13 @@ public class BudgetDetails {
         this.data =data;
     }
 
+    private final FederalBudget fdBudget;
+
+    public BudgetDetails() {
+        this.fdBudget = FederalBudget.getInstance();
+    }
+
+
     public void checkInflation() {
         double inflation = data.getInflation();
         if (inflation < 0 || inflation > 1) {
@@ -23,13 +30,8 @@ public class BudgetDetails {
 
 
     public void checkDebtRatio() {
-<<<<<<< HEAD
         double debtRatio = data.getDebtRatio();
         if (debtRatio < 0 || debtRatio > 5) {
-=======
-        double deptRatio = data.getDebtRatio();
-        if (deptRatio < 0 || deptRatio > 5) {
->>>>>>> 20b50878928ecfeeb06615bb2d6b251164d84ef6
             throw new IllegalArgumentException("Άκυρη τιμή λόγου χρέους");
         }
     }
@@ -61,9 +63,6 @@ public class BudgetDetails {
             throw new IllegalArgumentException("Άκυρη τιμή βάσης εσόδων Φόρου Εισοδήματος");
         }
     }
-
-    FederalBudget fdBudget = new FederalBudget();
-
 
     public String characterizeTotal() {
         double balance = fdBudget.calculateTotalBudget();
