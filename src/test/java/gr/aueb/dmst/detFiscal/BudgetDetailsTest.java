@@ -1,127 +1,117 @@
 package gr.aueb.dmst.detFiscal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
 
 public class BudgetDetailsTest {
 
    // δημιουργώ αντικείμενο της BudgetDetails για να τρέξω τα tests
+   private MacroData dt;
+   private BudgetDetails bdgtDetails;
 
-   private BudgetDetails bdgtDetails = new BudgetDetails();
+  @BeforeEach
+   public void setup() {
+      this.dt = new MacroData();
+      this.bdgtDetails = new BudgetDetails(dt);
+   }
 
-   // test ελέγχου ότι η Inflation λαμβάνει την τιμή που ο χρήστης θέτει
    @Test
-   public void testSetInflation_highValue() {
+   public void testCheckInflation_highValue() {
+      dt.setInflation(-0.6);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(-0.6);
+         bdgtDetails.checkInflation();
       });
    }
 
    @Test
-   public void testSetInflation_lowValue() {
+   public void testCheckInflation_lowValue() {
+      dt.setInflation(1.4);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(1.4);
+         bdgtDetails.checkInflation();
       });
    }
 
    @Test
-   public void testSetGdp_highValue() {
+   public void testCheckGdp_highValue() {
+      dt.setGdp(1.5);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(1.5);
+         bdgtDetails.checkGdp();
       });
    }
 
    @Test
-   public void testSetGdp_lowValue() {
+   public void testCheckGdp_lowValue() {
+      dt.setGdp(-1.4);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(-1.4);
+         bdgtDetails.checkGdp();
       });
    }
 
    @Test
-   public void testSetDeptRatio_highValue() {
+   public void testCheckDebtRatio_highValue() {
+      dt.setDebtRatio(5.1);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(5.1);
+         bdgtDetails.checkDebtRatio();
       });
    }
 
    @Test
-   public void testSetDeptRatio_lowValue() {
+   public void testCheckDebtRatio_lowValue() {
+      dt.setDebtRatio(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(-0.2);
+         bdgtDetails.checkDebtRatio();
       });
    }
 
    @Test
-   public void testCharacterizeTotal_Positive() {
-      String value = bdgtDetails.characterizeTotal(200);
-      assertEquals("Πλεόνασμα", value);
-   }
-
-   @Test
-   public void testCharacterizeTotal_Negative() {
-      String value = bdgtDetails.characterizeTotal(-50);
-      assertEquals("Έλλειμμα", value);
-   }
-
-   @Test
-   public void setInflation_ValidValueInGet() {
-      bdgtDetails.setInflation(0.6);
-      assertEquals(0.6, bdgtDetails.getInflation());
-   }
-
-   @Test
-   public void setInflation_invalidLowValue() {
+    public void testCheckVatRatePercent_highValue() {
+      dt.setVatRatePercent(1.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(-0.1);
+         bdgtDetails.checkVatRatePercent();
+      });
+   }
+
+
+   @Test
+    public void testCheckVatRatePercent_lowValue() {
+      dt.setVatRatePercent(-0.2);
+      assertThrows(IllegalArgumentException.class, () -> {
+         bdgtDetails.checkVatRatePercent();
       });
    }
 
    @Test
-   public void setInflation_invalidHighValue() {
+    public void testCheckIncomeTaxRatePercent_lowValue() {
+      dt.setIncomeTaxRatePercent(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setInflation(1.1);
+         bdgtDetails.checkIncomeTaxRatePercent();
       });
    }
 
    @Test
-   public void setGDP_ValidValueInGet() {
-      bdgtDetails.setGdp(0.1);
-      assertEquals(0.1, bdgtDetails.getGdp());
-   }
-
-   @Test
-   public void setGDP_invalidLowValue() {
+    public void testCheckIncomeTaxRatePercent_highValue() {
+      dt.setIncomeTaxRatePercent(1.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(-1.5);
+         bdgtDetails.checkIncomeTaxRatePercent();
+      });
+   }
+  
+   @Test
+    public void testCheckBaseRevenueForVat_lowValue() {
+      dt.setBaseRevenueForVat(-0.2);
+      assertThrows(IllegalArgumentException.class, () -> {
+         bdgtDetails.checkBaseRevenueForVat();
       });
    }
 
-   @Test
-   public void setGDP_invalidHighValue() {
+    @Test
+    public void testCheckBaseRevenueForIncomeTax_lowValue() {
+      dt.setBaseRevenueForIncomeTax(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setGdp(1.2);
-      });
-   }
-
-   @Test
-   public void setDeptRatio_ValidValueInGet() {
-      bdgtDetails.setDebtRatio(3.2);
-      assertEquals(3.2, bdgtDetails.getDeptRatio());
-   }
-
-   @Test
-   public void setDeptRatio_invalidLowValue() {
-      assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(-1.1);
-      });
-   }
-
-   @Test
-   public void setDeptRatio_invalidHighValue() {
-      assertThrows(IllegalArgumentException.class, () -> {
-         bdgtDetails.setDebtRatio(5.2);
+         bdgtDetails.checkBaseRevenueForIncomeTax();
       });
    }
 
