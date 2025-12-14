@@ -23,8 +23,8 @@ public class BudgetDetails {
 
 
     public void checkDebtRatio() {
-        double deptRatio = data.getDeptRatio();
-        if (deptRatio < 0 || deptRatio > 5) {
+        double debtRatio = data.getDebtRatio();
+        if (debtRatio < 0 || debtRatio > 5) {
             throw new IllegalArgumentException("Άκυρη τιμή λόγου χρέους");
         }
     }
@@ -57,7 +57,11 @@ public class BudgetDetails {
         }
     }
 
-    public String characterizeTotal(double balance) {
+    FederalBudget fdBudget = new FederalBudget();
+
+
+    public String characterizeTotal() {
+        double balance = fdBudget.calculateTotalBudget();
         if (balance > 0) {
             return "Πλεόνασμα";
         } else if (balance < 0) {

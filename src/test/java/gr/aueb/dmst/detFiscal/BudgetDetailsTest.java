@@ -51,7 +51,7 @@ public class BudgetDetailsTest {
    }
 
    @Test
-   public void testCheckDeptRatio_highValue() {
+   public void testCheckDebtRatio_highValue() {
       dt.setDebtRatio(5.1);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkDebtRatio();
@@ -59,7 +59,7 @@ public class BudgetDetailsTest {
    }
 
    @Test
-   public void testCheckDeptRatio_lowValue() {
+   public void testCheckDebtRatio_lowValue() {
       dt.setDebtRatio(-0.2);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkDebtRatio();
