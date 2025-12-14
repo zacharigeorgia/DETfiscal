@@ -1,4 +1,4 @@
-package gr.aueb.dmst.detFiscal;
+package gr.aueb.dmst.detfiscal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +35,14 @@ public class Menu {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 10.0;
 
-        // FederalBudget fedBudget = FederalBudget.getInstance();
+        FederalBudget fedBudget = FederalBudget.getInstance();
+        /*
+         * @param jsonPath
+         */
+        String pathMain = "src/main/resources/data/budget_2025.json";
+        String path2024 = "src/main/resources/data/budget_2024.json";
+
+        fedBudget.initializeData(pathMain, path2024);
 
         // panel gia koympia
         JPanel buttonPanel = new JPanel();
@@ -60,12 +67,10 @@ public class Menu {
 
         // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
         btnYear.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "Μετάβαση στη Σύγκριση Ετών");
-            /*
-             * Αργότερα εδώ θα βάλουμε:
-             * jf.setVisible(false); // Κρύβει το μενού
-             * new YearPage(); // Ανοίγει τη νέα σελίδα
-             */
+            JOptionPane.showMessageDialog(jf,
+                    "Σύγκριση δεδομένων " + fedBudget.getYear() + " με προηγούμενο έτος.\n" +
+                            "(Η λειτουργία απαιτεί υλοποίηση της μεθόδου getRevenues2024() στο Summary)",
+                    "Comparison", JOptionPane.INFORMATION_MESSAGE);
         });
 
         btnCountry.addActionListener(e -> {
@@ -83,11 +88,20 @@ public class Menu {
         });
 
         btnSummary.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "5ο κουμπί");
+            double inflation = fedBudget.getDetails().getInflation();
+            double balance = fedBudget.calculateTotalBudget();
+            String status = fedBudget.getDetails().characterizeTotal(balance); // Π.χ. Surplus/Deficit
+
+            String message = "Economic Indicators:\n" +
+                    "Inflation Rate: " + inflation + "%\n" +
+                    "Budget Status: " + status;
+
+            JOptionPane.showMessageDialog(jf, message, "Summary Details", JOptionPane.INFORMATION_MESSAGE);
         });
 
         btnAlter.addActionListener(e -> {
             JOptionPane.showMessageDialog(jf, "6ο κουμπί");
+            // kainoyrgia elpidas
         });
 
         // Προσθήκη των κουμπιών

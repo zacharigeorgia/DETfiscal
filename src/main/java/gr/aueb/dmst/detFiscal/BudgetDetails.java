@@ -1,7 +1,7 @@
 package gr.aueb.dmst.detFiscal;
 
 public class BudgetDetails {
-    
+
     private final MacroData data;
     public BudgetDetails(MacroData data) {
         this.data =data;
@@ -23,8 +23,13 @@ public class BudgetDetails {
 
 
     public void checkDebtRatio() {
+<<<<<<< HEAD
         double debtRatio = data.getDebtRatio();
         if (debtRatio < 0 || debtRatio > 5) {
+=======
+        double deptRatio = data.getDebtRatio();
+        if (deptRatio < 0 || deptRatio > 5) {
+>>>>>>> 20b50878928ecfeeb06615bb2d6b251164d84ef6
             throw new IllegalArgumentException("Άκυρη τιμή λόγου χρέους");
         }
     }
@@ -37,7 +42,7 @@ public class BudgetDetails {
      }
 
     public void checkIncomeTaxRatePercent() {
-        double incomeTaxPerc = data.getIncomeTaxRatePercent(); 
+        double incomeTaxPerc = data.getIncomeTaxRatePercent();
         if (incomeTaxPerc < 0 || incomeTaxPerc > 1) {
                 throw new IllegalArgumentException("Άκυρη τιμή ποσοστού φόρου εισοδήματος");
         }

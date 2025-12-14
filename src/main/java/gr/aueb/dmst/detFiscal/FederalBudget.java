@@ -1,16 +1,16 @@
 package gr.aueb.dmst.detFiscal;
-import java.util.List;
 
+import java.util.List;
 
 public class FederalBudget {
 
     // Fields
-    private static FederalBudget instance;  // The single instance of the class (Singleton pattern)
-    private String countryName;             // Name of the country
-    private int year;                       // Budget year
-    private BudgetSummary summary;          // Object holding revenues and expenditures
-    private BudgetDetails details;          // Object holding macroeconomic data
-    private IDataLoader dataLoader;          // Object responsible for loading data
+    private static FederalBudget instance; // The single instance of the class (Singleton pattern)
+    private String countryName; // Name of the country
+    private int year; // Budget year
+    private BudgetSummary summary; // Object holding revenues and expenditures
+    private BudgetDetails details; // Object holding macroeconomic data
+    private IDataLoader dataLoader; // Object responsible for loading data
 
     // Private constructor for Singleton
     private FederalBudget() {
@@ -23,7 +23,9 @@ public class FederalBudget {
     }
 
     /**
-     * Returns the single instance of the FederalBudget class, creating it if necessary.
+     * Returns the single instance of the FederalBudget class, creating it if
+     * necessary.
+     * 
      * @return The FederalBudget singleton instance.
      */
     public static FederalBudget getInstance() {
@@ -35,6 +37,7 @@ public class FederalBudget {
 
     /**
      * Calculates the total budget balance (Total Revenues - Total Expenditures).
+     * 
      * @return The budget balance as a double.
      */
     public double calculateTotalBudget() {
@@ -44,12 +47,17 @@ public class FederalBudget {
     }
 
     /**
-     * Calls the DataLoader to load all data (Revenues, Expenditures, MacroData) from a JSON file.
-     * The loaded data is then stored in the BudgetSummary and BudgetDetails objects.
+     * Calls the DataLoader to load all data (Revenues, Expenditures, MacroData)
+     * from a JSON file.
+     * The loaded data is then stored in the BudgetSummary and BudgetDetails
+     * objects.
+     * 
      * @param jsonPath The file path (String) to the JSON data source.
      */
     public void initializeData(String pathMain, String path2024) {
         try {
+            // 1. Load Revenues and populate the BudgetSummary
+            // REPLACE THE ENTIRE BODY OF initializeData (inside the try block) with this:
 
             // 1. Load MAIN Budget Data (2025)
             List<Revenue> revenuesMain = dataLoader.loadRevenues(pathMain);
@@ -81,16 +89,16 @@ public class FederalBudget {
             // Simple validation check (using main budget data)
             assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative.";
             System.out.println("Data loading successful (OK).");
-        // ADD THIS BLOCK immediately after the closing '}' of the try block:
+            // ADD THIS BLOCK immediately after the closing '}' of the try block:
         } catch (Exception e) {
             System.err.println("ERROR! Could not load file: " + e.getMessage());
             e.printStackTrace();
         }
     } // End of initializeData method
 
-
     /**
-     * Displays a comprehensive overview of the budget, including totals and balance.
+     * Displays a comprehensive overview of the budget, including totals and
+     * balance.
      */
     public void showBudgetOverview() {
         // Calculate the balance (Revenues - Expenditures)
@@ -112,7 +120,9 @@ public class FederalBudget {
     }
 
     /**
-     * Compares the current budget balance with the balance of another FederalBudget object.
+     * Compares the current budget balance with the balance of another FederalBudget
+     * object.
+     * 
      * @param other The other budget to compare against.
      */
     public void compareWith(FederalBudget other) {
@@ -136,6 +146,7 @@ public class FederalBudget {
 
     /**
      * Returns the BudgetSummary object containing revenues and expenditures.
+     * 
      * @return BudgetSummary
      */
     public BudgetSummary getSummary() {
