@@ -11,6 +11,7 @@ public class FederalBudget {
     private BudgetSummary summary; // Object holding revenues and expenditures
     private BudgetDetails details; // Object holding macroeconomic data
     private IDataLoader dataLoader; // Object responsible for loading data
+    private MacroData infl;
 
     // Private constructor for Singleton
     private FederalBudget() {
@@ -20,6 +21,7 @@ public class FederalBudget {
         details = new BudgetDetails();
         this.countryName = "Greece";
         this.year = 2025;
+        infl = new MacroData();
     }
 
     /**
@@ -105,7 +107,7 @@ public class FederalBudget {
         double balance = this.calculateTotalBudget();
 
         // Determine if the result is a Surplus or Deficit
-        String characterization = details.characterizeTotal(balance);
+        String characterization = details.characterizeTotal();
 
         System.out.println("\n--- Federal Budget Overview ---");
         System.out.printf("Country: %s, Year: %d\n", countryName, year);
@@ -114,7 +116,7 @@ public class FederalBudget {
         System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());
         System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
-        System.out.println("Inflation: " + details.getInflation() + "%");
+        System.out.println("Inflation: " + infl.getInflation() + "%");
 
         details.plotGraph(); // Assumes this method exists in BudgetDetails
     }
