@@ -114,4 +114,54 @@ public class BudgetDisplayWindow extends JFrame {
 
         return panel;
     }
+
+    private JPanel createMinistriesPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnNames = { "#", "Κωδικός", "Όνομα", "Κανονικός Προϋπολογισμός (€)", "Δημόσιες Επενδύσεις (€)",
+                "Σύνολο (€)" };
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(tableModel);
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        table.setRowHeight(25);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        table.getTableHeader().setBackground(new Color(7, 25, 82));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        List<Ministry> ministries = budget.getSummary().getMinistries();
+        double totalMinistries = 0;
+
+        for (int i = 0; i < ministries.size(); i++) {
+            Ministry ministry = ministries.get(i);
+            Object[] row = {
+                    i + 1,
+                    ministry.getCode(),
+                    ministry.getName(),
+                    String.format("%,.2f", ministry.getRegularBudget()),
+                    String.format("%,.2f", ministry.getPublicInvestments()),
+                    String.format("%,.2f", ministry.getTotal())
+            };
+            tableModel.addRow(row);
+            totalMinistries += ministry.getTotal();
+        }
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Σύνολο
+        JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        totalPanel.setBackground(Color.WHITE);
+        JLabel totalLabel = new JLabel(String.format("Σύνολο Υπουργείων: %,.2f €", totalMinistries));
+        totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        totalPanel.add(totalLabel);
+        panel.add(totalPanel, BorderLayout.SOUTH);
+
+        return panel;
+    }
 }
