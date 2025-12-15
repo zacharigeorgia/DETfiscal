@@ -53,8 +53,21 @@ public class BudgetDisplayWindow extends JFrame {
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
+        // Tab Έσοδα
+        JPanel revenuesPanel = createTablePanel("Έσοδα",
+                budget.getSummary().getRevenues(),
+                budget.getSummary().calculateTotalRevenues());
+        tabbedPane.addTab("Έσοδα", revenuesPanel);
+
+        // Tab Έξοδα
+        JPanel expendituresPanel = createTablePanel("Έξοδα",
+                budget.getSummary().getExpenditures(),
+                budget.getSummary().calculateTotalExpenditures());
+        tabbedPane.addTab("Έξοδα", expendituresPanel);
+
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
         add(mainPanel);
+
     }
 
     private JPanel createTablePanel(String type, List<? extends Account> accounts, double total) {
