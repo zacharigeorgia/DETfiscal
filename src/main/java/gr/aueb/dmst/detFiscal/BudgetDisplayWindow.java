@@ -68,6 +68,14 @@ public class BudgetDisplayWindow extends JFrame {
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
         add(mainPanel);
 
+        // Tab Υπουργεία (μετά τα έξοδα)
+        JPanel ministriesPanel = createMinistriesPanel();
+        tabbedPane.addTab("Υπουργεία", ministriesPanel);
+
+        // Footer με σύνολα (εκτός tabbed pane, στο SOUTH του mainPanel)
+        JPanel footerPanel = createFooterPanel();
+        mainPanel.add(footerPanel, BorderLayout.SOUTH);
+
     }
 
     private JPanel createTablePanel(String type, List<? extends Account> accounts, double total) {
@@ -176,7 +184,7 @@ public class BudgetDisplayWindow extends JFrame {
         double totalRevenues = budget.getSummary().calculateTotalRevenues();
         double totalExpenditures = budget.getSummary().calculateTotalExpenditures();
         double balance = budget.calculateTotalBudget();
-        String status = budget.getDetails().characterizeTotal(balance);
+        String status = budget.getDetails().characterizeTotal();
 
         footerPanel.add(createFooterLabel("Συνολικά Έσοδα", totalRevenues));
         footerPanel.add(createFooterLabel("Συνολικά Έξοδα", totalExpenditures));
