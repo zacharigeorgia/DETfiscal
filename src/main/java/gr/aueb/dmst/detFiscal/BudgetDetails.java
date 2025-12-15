@@ -3,16 +3,12 @@ package gr.aueb.dmst.detFiscal;
 public class BudgetDetails {
 
     private final MacroData data;
-    public BudgetDetails(MacroData data) {
-        this.data =data;
-    }
-
     private final FederalBudget fdBudget;
 
-    public BudgetDetails() {
+    public BudgetDetails(MacroData data) {
+        this.data =data;
         this.fdBudget = FederalBudget.getInstance();
     }
-
 
     public void checkInflation() {
         double inflation = data.getInflation();

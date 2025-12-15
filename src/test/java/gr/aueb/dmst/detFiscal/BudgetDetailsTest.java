@@ -118,20 +118,23 @@ public class BudgetDetailsTest {
    // tests για τον προϋπολογισμό
 
    @Test
-   public void testCharacterizeTotal_Positive2() {
-      String value = bdgtDetails.characterizeTotal(200);
+   public void testCharacterizeTotal_Positive() {
+      String value = bdgtDetails.characterizeTotal();
+      double balance = 200;
       assertEquals("Πλεόνασμα", value);
    }
 
    @Test
-   public void testCharacterizeTotal_Negative2() {
-      String value = bdgtDetails.characterizeTotal(-50);
+   public void testCharacterizeTotal_Negative() {
+      String value = bdgtDetails.characterizeTotal();
+      double balance = -50;
       assertEquals("Έλλειμμα", value);
    }
 
    @Test
    public void testCharacterizeTotal_Zero() {
-      String value = bdgtDetails.characterizeTotal(0);
+      String value = bdgtDetails.characterizeTotal();
+      double balance = 0;
       assertEquals("Ισοσκελισμένος Προϋπολογισμός", value);
    }
 }
