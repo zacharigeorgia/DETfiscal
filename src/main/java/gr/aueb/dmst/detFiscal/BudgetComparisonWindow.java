@@ -34,4 +34,25 @@ public class BudgetComparisonWindow extends JFrame {
     private void createUI() {
     }
 
+    /**
+     * Προσθέτει μια γραμμή σύγκρισης στον πίνακα
+     */
+    private void addComparisonRow(DefaultTableModel model, String category, double value2024, double value2025) {
+        double difference = value2025 - value2024;
+        double percentageChange = value2024 != 0 ? (difference / value2024) * 100 : 0;
+
+        String diffStr = difference >= 0 ? String.format("+%,.2f", difference) : String.format("%,.2f", difference);
+        String percentStr = percentageChange >= 0 ? String.format("+%.2f%%", percentageChange)
+                : String.format("%.2f%%", percentageChange);
+
+        Object[] row = {
+                category,
+                String.format("%,.2f", value2024),
+                String.format("%,.2f", value2025),
+                diffStr,
+                percentStr
+        };
+        model.addRow(row);
+    }
+
 }
