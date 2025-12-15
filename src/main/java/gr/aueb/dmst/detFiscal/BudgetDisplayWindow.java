@@ -56,4 +56,49 @@ public class BudgetDisplayWindow extends JFrame {
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
         add(mainPanel);
     }
+
+    private JPanel createTablePanel(String type, List<? extends Account> accounts, double total) {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        // Δημιουργία πίνακα
+        String[] columnNames = { "#", "Όνομα", "Ποσό (€)" };
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(tableModel);
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        table.setRowHeight(25);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        table.getTableHeader().setBackground(new Color(7, 25, 82));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        // Προσθήκη δεδομένων
+        for (int i = 0; i < accounts.size(); i++) {
+            Account account = accounts.get(i);
+            Object[] row = {
+                    i + 1,
+                    account.getName(),
+                    String.format("%,.2f", account.getAmount())
+            };
+            tableModel.addRow(row);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Συνολικό ποσό στο κάτω μέρος του tab
+        JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        totalPanel.setBackground(Color.WHITE);
+        JLabel totalLabel = new JLabel(String.format("Σύνολο %s: %,.2f €", type, total));
+        totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        totalPanel.add(totalLabel);
+        panel.add(totalPanel, BorderLayout.SOUTH);
+
+        return panel;
+    }
 }
