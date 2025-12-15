@@ -164,4 +164,40 @@ public class BudgetDisplayWindow extends JFrame {
 
         return panel;
     }
+
+    /**
+     * Δημιουργεί το footer panel με τα συνολικά στοιχεία
+     */
+    private JPanel createFooterPanel() {
+        JPanel footerPanel = new JPanel(new GridLayout(1, 4, 10, 10));
+        footerPanel.setBackground(new Color(7, 25, 82));
+        footerPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        double totalRevenues = budget.getSummary().calculateTotalRevenues();
+        double totalExpenditures = budget.getSummary().calculateTotalExpenditures();
+        double balance = budget.calculateTotalBudget();
+        String status = budget.getDetails().characterizeTotal(balance);
+
+        footerPanel.add(createFooterLabel("Συνολικά Έσοδα", totalRevenues));
+        footerPanel.add(createFooterLabel("Συνολικά Έξοδα", totalExpenditures));
+        footerPanel.add(createFooterLabel("Ισοζύγιο", balance));
+
+        JLabel statusLabel = new JLabel(
+                "<html><div style='text-align: center;'><b>Κατάσταση:</b><br>" + status + "</div></html>");
+        statusLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        statusLabel.setForeground(Color.WHITE);
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        footerPanel.add(statusLabel);
+
+        return footerPanel;
+    }
+
+    private JLabel createFooterLabel(String title, double value) {
+        JLabel label = new JLabel("<html><div style='text-align: center;'><b>" + title + ":</b><br>"
+                + String.format("%,.2f €", value) + "</div></html>");
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setForeground(Color.WHITE);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        return label;
+    }
 }
