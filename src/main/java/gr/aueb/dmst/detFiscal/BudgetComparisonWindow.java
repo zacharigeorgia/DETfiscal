@@ -47,7 +47,20 @@ public class BudgetComparisonWindow extends JFrame {
 
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
-        // ... (Συνέχεια στα επόμενα commits)
+        String[] columnNames = { "Κατηγορία", "2024 (€)", "2025 (€)", "Διαφορά (€)", "Μεταβολή (%)" };
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(tableModel);
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        table.setRowHeight(30);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        table.getTableHeader().setBackground(new Color(7, 25, 82));
+        table.getTableHeader().setForeground(Color.WHITE);
         add(mainPanel);
     }
 
