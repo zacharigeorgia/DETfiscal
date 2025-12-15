@@ -89,10 +89,29 @@ public class Charts {
      * Καλούμε αυτή τη μέθοδο από το Menu (GUI).
      */
     public static void plotMultiYearComparison() {
+        FederalBudget budget = FederalBudget.getInstance();
+        BudgetSummary summary = budget.getSummary();
+
+        //υπολογισμος ισοζηυγίου 2025, χρήση revenues/expendures
+        double balance2025 = summary.calculateBalance();
+
+        //υπολογισμός για το 2024 που το συγκρίνουμε
+        double balance2024 = summary.calculateTotalRevenues2024() - summary.calculateTotalExpenditures2024();
+     
+        //Δημιουργία Dataset
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        dataset.addValue(balance2025, "Ισοζύγιο", "2025");
+        dataset.addValue(balance2024, "Ισοζύγιο", "2024")΄
+
+        //Εμφάνιση και JFreeChart
+        String title = String.format("Σύγκριση Ισοζυγίου: %s (2025 vs 2024)", budget.getCountryName());
+
+        displayChart(title, dataset, "Έτος Σύκρισης");
         
         /*
          * 1. Λογική Υπολογισμού Δεδομένων:
-         * - Καλείται το FederalBudget.getInstance().getSummary().
+         * - Καλείται το FederalBudget.getInstance().getSummary(). tik
          * - Υπολογίζεται το balance 2025 (summary.calculateBalance()).
          * - Υπολογίζεται το balance 2024 (Καλείται: summary.calculateTotalRevenues2024() - summary.calculateTotalExpenditures2024()).
          * * 2. Δημιουργία Dataset:
