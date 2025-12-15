@@ -104,7 +104,7 @@ public class BudgetComparator extends DataLoader {
                 } else {
                     System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της" + country + "και ισούται με" + cur_value);
                 }
-                cur_value = GreecesData.getDeptRatio();
+                cur_value = GreecesData.getDebtRatio();
                 if (cur_value > DEBTRATIO_VALUES.get(country)) {
                     System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
                     System.out.println(cur_value +  "ο λόγος χρέους της Ελλάδας" + DEBTRATIO_VALUES.get(country) + "ο λόγος χρέους της" + country);
@@ -136,23 +136,23 @@ public class BudgetComparator extends DataLoader {
                 }
                 cur_value = GreecesData.getBaseRevenueForVat(); 
                 if (cur_value > BASEREVENUEVAT_VALUES.get(country)) {
-                    System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
-                    System.out.println(cur_value +  "ο λόγος χρέους της Ελλάδας" + BASEREVENUEVAT_VALUES.get(country) + "ο λόγος χρέους της" + country);
+                    System.out.println("η βάση εσόδων ΦΠΑ της Ελλάδας ήταν μεγαλύτερη για το 2025");
+                    System.out.println(cur_value +  "η βάση εσόδων ΦΠΑ της Ελλάδας" + BASEREVENUEVAT_VALUES.get(country) + "η βάση εσόδων ΦΠΑ της" + country);
                 } else if(cur_value <BASEREVENUEVAT_VALUES.get(country)) {   
-                    System.out.println( "Ο λόγος χρέους της" + country + "είναι μεγαλύτερος της Ελλάδας");
-                    System.out.println(cur_value + "ο λόγος χρέους της Ελλάδας" + BASEREVENUEVAT_VALUES.get(country) + "ο λόγος χρέους της" + country);
+                    System.out.println( "η βάση εσόδων ΦΠΑ της" + country + "είναι μεγαλύτερη της Ελλάδας");
+                    System.out.println(cur_value + "η βάση εσόδων ΦΠΑ της Ελλάδας" + BASEREVENUEVAT_VALUES.get(country) + "η βάση εσόδων ΦΠΑ της" + country);
                 } else {
-                    System.out.println("ο λόγος χρέους της Ελλάδας είναι ίσος με της" + country + "και ισούται με" + cur_value);
+                    System.out.println("η βάση εσόδων ΦΠΑ της Ελλάδας είναι ίση με της" + country + "και ισούται με" + cur_value);
                 }
                 cur_value = GreecesData.getBaseRevenueForIncomeTax();
                 if (cur_value > BASEREVENUEINCOME_VALUES.get(country)) {
-                    System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
-                    System.out.println(cur_value +  "ο λόγος χρέους της Ελλάδας" + BASEREVENUEINCOME_VALUES.get(country) + "ο λόγος χρέους της" + country);
+                    System.out.println("η βάση εσόδων φόρου εισοδήματος της Ελλάδας ήταν μεγαλύτερη για το 2025");
+                    System.out.println(cur_value +  "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get(country) + "η βάση εσόδων φόρου εισοδήματος της" + country);
                 } else if(cur_value <BASEREVENUEINCOME_VALUES.get(country)) {   
-                    System.out.println( "Ο λόγος χρέους της" + country + "είναι μεγαλύτερος της Ελλάδας");
-                    System.out.println(cur_value + "ο λόγος χρέους της Ελλάδας" + BASEREVENUEINCOME_VALUES.get(country) + "ο λόγος χρέους της" + country);
+                    System.out.println( "Η βάση εσόδων φόρου εισοδήματος της" + country + "είναι μεγαλύτερη της Ελλάδας");
+                    System.out.println(cur_value + "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get(country) + "η βάση εσόδων φόρου εισοδήματος της" + country);
                 } else {
-                    System.out.println("ο λόγος χρέους της Ελλάδας είναι ίσος με της" + country +  "και ισούται με" + cur_value);
+                    System.out.println("η βάση εσόδων φόρου εισοδήματος της Ελλάδας είναι ίση με της" + country +  "και ισούται με" + cur_value);
                 }
             }  
         } while (i != 0);  
