@@ -1,4 +1,4 @@
-package main.java.gr.aueb.dmst.detFiscal;
+package gr.aueb.dmst.detFiscal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class BudgetSummary {
     public void addMinistry(Ministry m) {
         this.ministries.add(m);
     }
-    
+
     /**
      * Adds a Revenue object to the list of revenues.
      * @param r The Revenue object to add.
@@ -47,7 +47,7 @@ public class BudgetSummary {
     }
 
     // --- Getters για Frontend/Λειτουργίες ---
-    
+
     public List<Ministry> getMinistries() {
         return this.ministries;
     }
@@ -73,7 +73,7 @@ public class BudgetSummary {
     public List<Expenditure> getExpenditures2024() {
         return this.expenditures2024;
     }
-    
+
     // --- Υπολογισμοί & Αναζήτηση ---
 
     /**

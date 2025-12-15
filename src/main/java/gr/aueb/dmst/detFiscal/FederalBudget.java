@@ -2,8 +2,6 @@ package gr.aueb.dmst.detFiscal;
 
 import java.util.List;
 
-import java.util.List;
-
 public class FederalBudget {
 
     // Fields
@@ -29,7 +27,7 @@ public class FederalBudget {
     /**
      * Returns the single instance of the FederalBudget class, creating it if
      * necessary.
-     * 
+     *
      * @return The FederalBudget singleton instance.
      */
     public static FederalBudget getInstance() {
@@ -41,7 +39,7 @@ public class FederalBudget {
 
     /**
      * Calculates the total budget balance (Total Revenues - Total Expenditures).
-     * 
+     *
      * @return The budget balance as a double.
      */
     public double calculateTotalBudget() {
@@ -55,7 +53,7 @@ public class FederalBudget {
      * from a JSON file.
      * The loaded data is then stored in the BudgetSummary and BudgetDetails
      * objects.
-     * 
+     *
      * @param jsonPath The file path (String) to the JSON data source.
      */
     public void initializeData(String pathMain, String path2024) {
@@ -126,7 +124,7 @@ public class FederalBudget {
     /**
      * Compares the current budget balance with the balance of another FederalBudget
      * object.
-     * 
+     *
      * @param other The other budget to compare against.
      */
     public void compareWith(FederalBudget other) {
@@ -150,7 +148,7 @@ public class FederalBudget {
 
     /**
      * Returns the BudgetSummary object containing revenues and expenditures.
-     * 
+     *
      * @return BudgetSummary
      */
     public BudgetSummary getSummary() {
