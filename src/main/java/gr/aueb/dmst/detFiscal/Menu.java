@@ -44,7 +44,7 @@ public class Menu {
 
         fedBudget.initializeData(pathMain, path2024);
 
-         // Δημιουργία ChangeLog για καταγραφή αλλαγών στη συνεδρία
+        // Δημιουργία ChangeLog για καταγραφή αλλαγών στη συνεδρία
         ChangeLog changeLog = new ChangeLog();
 
         // panel gia koympia
@@ -68,11 +68,8 @@ public class Menu {
         styleButton(btnAlter);
         styleButton(btnChangeLog);
 
-
         // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
         btnYear.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf,
-                     // Άνοιγμα παραθύρου σύγκρισης ετών
             BudgetComparisonWindow comparisonWindow = new BudgetComparisonWindow(fedBudget);
             comparisonWindow.setVisible(true);
         });
@@ -83,14 +80,14 @@ public class Menu {
         });
 
         btnData.addActionListener(e -> {
-             BudgetDisplayWindow displayWindow = new BudgetDisplayWindow(fedBudget);
+            BudgetDisplayWindow displayWindow = new BudgetDisplayWindow(fedBudget);
             displayWindow.setVisible(true);
         });
 
         btnSummary.addActionListener(e -> {
             double inflation = fedBudget.getDetails().getInflation();
             double balance = fedBudget.calculateTotalBudget();
-            String status = fedBudget.getDetails().characterizeTotal(balance); // Π.χ. Surplus/Deficit
+            String status = fedBudget.getDetails().characterizeTotal(); // Π.χ. Surplus/Deficit
 
             String message = "Economic Indicators:\n" +
                     "Inflation Rate: " + inflation + "%\n" +
@@ -100,35 +97,35 @@ public class Menu {
         });
 
         btnAlter.addActionListener(e -> {
-           BudgetEditWindow editWindow = new BudgetEditWindow(fedBudget, changeLog);
-            editWindow.setVisible(true);
+            // BudgetEditWindow editWindow = new BudgetEditWindow(fedBudget, changeLog);
+            // editWindow.setVisible(true);
         });
-        
+
         btnChangeLog.addActionListener(e -> {
             // Εμφάνιση του log αλλαγών
             JDialog logDialog = new JDialog(jf, "Ιστορικό Αλλαγών", true);
             logDialog.setSize(800, 500);
             logDialog.setLocationRelativeTo(jf);
-            
+
             JPanel logPanel = new JPanel(new BorderLayout());
             logPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-            
+
             JTextArea logTextArea = new JTextArea(changeLog.getFormattedLog());
             logTextArea.setFont(new Font("Courier New", Font.PLAIN, 11));
             logTextArea.setEditable(false);
             logTextArea.setBackground(Color.WHITE);
-            
+
             JScrollPane scrollPane = new JScrollPane(logTextArea);
             logPanel.add(scrollPane, BorderLayout.CENTER);
-            
+
             JButton closeButton = new JButton("Κλείσιμο");
             styleButton(closeButton);
             closeButton.addActionListener(ev -> logDialog.dispose());
-            
+
             JPanel buttonPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
             buttonPanel2.add(closeButton);
             logPanel.add(buttonPanel2, BorderLayout.SOUTH);
-            
+
             logDialog.add(logPanel);
             logDialog.setVisible(true);
         });
@@ -140,7 +137,6 @@ public class Menu {
         buttonPanel.add(btnSummary);
         buttonPanel.add(btnAlter);
         buttonPanel.add(btnChangeLog);
-       
 
         // buttonPanel στο mainPanel
         gbc.gridy = 1; // Μπαίνει 1 grid κάτω από τον τίτλο
