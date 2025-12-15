@@ -28,6 +28,10 @@ public class BudgetDisplayWindow extends JFrame {
 
     // Placeholder μέθοδοι
     private void initializeWindow() {
+        setTitle("Εμφάνιση Προϋπολογισμού - DETfiscal");
+        setSize(1000, 700);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private void createUI() {
