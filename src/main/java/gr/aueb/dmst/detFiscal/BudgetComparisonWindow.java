@@ -32,6 +32,23 @@ public class BudgetComparisonWindow extends JFrame {
     }
 
     private void createUI() {
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(240, 240, 240));
+
+        // Header
+        JPanel headerPanel = new JPanel();
+        headerPanel.setBackground(new Color(7, 25, 82));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        JLabel headerLabel = new JLabel("Σύγκριση Προϋπολογισμού 2024 vs 2025");
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        headerLabel.setForeground(Color.WHITE);
+        headerPanel.add(headerLabel);
+
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
+
+        // ... (Συνέχεια στα επόμενα commits)
+        add(mainPanel);
     }
 
     /**
