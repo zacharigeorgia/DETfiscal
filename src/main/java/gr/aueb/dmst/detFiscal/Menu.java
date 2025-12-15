@@ -1,4 +1,4 @@
-package gr.aueb.dmst.detfiscal;
+package gr.aueb.dmst.detFiscal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,9 +44,12 @@ public class Menu {
 
         fedBudget.initializeData(pathMain, path2024);
 
+         // Δημιουργία ChangeLog για καταγραφή αλλαγών στη συνεδρία
+        ChangeLog changeLog = new ChangeLog();
+
         // panel gia koympia
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 2, 20, 20));
+        buttonPanel.setLayout(new GridLayout(3, 3, 20, 20));
         // background xroma gia buttonPanel = diafano
         buttonPanel.setOpaque(false);
 
@@ -54,37 +57,34 @@ public class Menu {
         JButton btnYear = new JButton("Compare data | years");
         JButton btnCountry = new JButton("Compare data | Countries");
         JButton btnData = new JButton("Display Data");
-        JButton btnSearch = new JButton("Search Account");
         JButton btnSummary = new JButton("Display Summary");
         JButton btnAlter = new JButton("Alter Data");
+        JButton btnChangeLog = new JButton("View Change Log");
 
         styleButton(btnYear);
         styleButton(btnCountry);
         styleButton(btnData);
-        styleButton(btnSearch);
         styleButton(btnSummary);
         styleButton(btnAlter);
+        styleButton(btnChangeLog);
+
 
         // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
         btnYear.addActionListener(e -> {
             JOptionPane.showMessageDialog(jf,
-                    "Σύγκριση δεδομένων " + fedBudget.getYear() + " με προηγούμενο έτος.\n" +
-                            "(Η λειτουργία απαιτεί υλοποίηση της μεθόδου getRevenues2024() στο Summary)",
-                    "Comparison", JOptionPane.INFORMATION_MESSAGE);
+                     // Άνοιγμα παραθύρου σύγκρισης ετών
+            BudgetComparisonWindow comparisonWindow = new BudgetComparisonWindow(fedBudget);
+            comparisonWindow.setVisible(true);
         });
 
         btnCountry.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "Μετάβαση στη Σύγκριση Χωρών");
+            CountryComparisonWindow countryWindow = new CountryComparisonWindow(fedBudget);
+            countryWindow.setVisible(true);
         });
 
         btnData.addActionListener(e -> {
-            // jf.setVisible(false);
-            // fedBudget.showBudgetOverview();
-            // new BudgetDetails();
-        });
-
-        btnSearch.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "4ο κουμπί");
+             BudgetDisplayWindow displayWindow = new BudgetDisplayWindow(fedBudget);
+            displayWindow.setVisible(true);
         });
 
         btnSummary.addActionListener(e -> {
@@ -100,17 +100,47 @@ public class Menu {
         });
 
         btnAlter.addActionListener(e -> {
-            JOptionPane.showMessageDialog(jf, "6ο κουμπί");
-            // kainoyrgia elpidas
+           BudgetEditWindow editWindow = new BudgetEditWindow(fedBudget, changeLog);
+            editWindow.setVisible(true);
+        });
+        
+        btnChangeLog.addActionListener(e -> {
+            // Εμφάνιση του log αλλαγών
+            JDialog logDialog = new JDialog(jf, "Ιστορικό Αλλαγών", true);
+            logDialog.setSize(800, 500);
+            logDialog.setLocationRelativeTo(jf);
+            
+            JPanel logPanel = new JPanel(new BorderLayout());
+            logPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+            
+            JTextArea logTextArea = new JTextArea(changeLog.getFormattedLog());
+            logTextArea.setFont(new Font("Courier New", Font.PLAIN, 11));
+            logTextArea.setEditable(false);
+            logTextArea.setBackground(Color.WHITE);
+            
+            JScrollPane scrollPane = new JScrollPane(logTextArea);
+            logPanel.add(scrollPane, BorderLayout.CENTER);
+            
+            JButton closeButton = new JButton("Κλείσιμο");
+            styleButton(closeButton);
+            closeButton.addActionListener(ev -> logDialog.dispose());
+            
+            JPanel buttonPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            buttonPanel2.add(closeButton);
+            logPanel.add(buttonPanel2, BorderLayout.SOUTH);
+            
+            logDialog.add(logPanel);
+            logDialog.setVisible(true);
         });
 
         // Προσθήκη των κουμπιών
         buttonPanel.add(btnYear);
         buttonPanel.add(btnCountry);
         buttonPanel.add(btnData);
-        buttonPanel.add(btnSearch);
         buttonPanel.add(btnSummary);
         buttonPanel.add(btnAlter);
+        buttonPanel.add(btnChangeLog);
+       
 
         // buttonPanel στο mainPanel
         gbc.gridy = 1; // Μπαίνει 1 grid κάτω από τον τίτλο
