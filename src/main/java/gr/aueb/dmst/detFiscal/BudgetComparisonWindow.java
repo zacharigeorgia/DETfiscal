@@ -62,6 +62,36 @@ public class BudgetComparisonWindow extends JFrame {
         table.getTableHeader().setBackground(new Color(7, 25, 82));
         table.getTableHeader().setForeground(Color.WHITE);
         add(mainPanel);
+
+        double revenues2024 = budget.getSummary().calculateTotalRevenues2024();
+        double revenues2025 = budget.getSummary().calculateTotalRevenues();
+        double expenditures2024 = budget.getSummary().calculateTotalExpenditures2024();
+        double expenditures2025 = budget.getSummary().calculateTotalExpenditures();
+        double balance2024 = budget.getSummary().calculateBalance2024();
+        double balance2025 = budget.calculateTotalBudget();
+
+        addComparisonRow(tableModel, "Συνολικά Έσοδα", revenues2024, revenues2025);
+        addComparisonRow(tableModel, "Συνολικά Έξοδα", expenditures2024, expenditures2025);
+        addComparisonRow(tableModel, "Ισοζύγιο", balance2024, balance2025);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
+
+        // Summary Panel (Κάτω μέρος)
+        JPanel summaryPanel = new JPanel(new GridLayout(1, 2, 10, 10));
+        summaryPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        summaryPanel.setBackground(new Color(240, 240, 240));
+
+        // 2024 Summary
+        JPanel summary2024 = createYearSummaryPanel("2024", revenues2024, expenditures2024, balance2024);
+        summaryPanel.add(summary2024);
+
+        // 2025 Summary
+        JPanel summary2025 = createYearSummaryPanel("2025", revenues2025, expenditures2025, balance2025);
+        summaryPanel.add(summary2025);
+
+        mainPanel.add(summaryPanel, BorderLayout.SOUTH);
     }
 
     /**
