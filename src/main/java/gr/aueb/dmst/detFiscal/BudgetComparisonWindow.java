@@ -55,4 +55,42 @@ public class BudgetComparisonWindow extends JFrame {
         model.addRow(row);
     }
 
+    /**
+     * Δημιουργεί ένα panel με σύνοψη για ένα έτος
+     */
+    private JPanel createYearSummaryPanel(String year, double revenues, double expenditures, double balance) {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(7, 25, 82), 2),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+
+        JLabel yearLabel = new JLabel("Έτος " + year, SwingConstants.CENTER);
+        yearLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        yearLabel.setForeground(new Color(7, 25, 82));
+        panel.add(yearLabel, BorderLayout.NORTH);
+
+        JPanel dataPanel = new JPanel(new GridLayout(3, 1, 5, 5));
+        dataPanel.setBackground(Color.WHITE);
+
+        JLabel revLabel = new JLabel(String.format("Έσοδα: %,.2f €", revenues));
+        revLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        dataPanel.add(revLabel);
+
+        JLabel expLabel = new JLabel(String.format("Έξοδα: %,.2f €", expenditures));
+        expLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        dataPanel.add(expLabel);
+
+        String balanceStatus = balance >= 0 ? "Πλεόνασμα" : "Έλλειμμα";
+        Color balanceColor = balance >= 0 ? new Color(0, 128, 0) : new Color(200, 0, 0);
+        JLabel balLabel = new JLabel(String.format("Ισοζύγιο: %,.2f € (%s)", balance, balanceStatus));
+        balLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        balLabel.setForeground(balanceColor);
+        dataPanel.add(balLabel);
+
+        panel.add(dataPanel, BorderLayout.CENTER);
+
+        return panel;
+    }
+
 }
