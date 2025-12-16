@@ -20,7 +20,7 @@ public class BudgetDetailsTest {
 
    @Test
    public void testCheckInflation_highValue() {
-      dt.setInflation(-0.6);
+      dt.setInflation(104);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkInflation();
       });
@@ -28,7 +28,7 @@ public class BudgetDetailsTest {
 
    @Test
    public void testCheckInflation_lowValue() {
-      dt.setInflation(1.4);
+      dt.setInflation(-0.6);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkInflation();
       });
@@ -36,7 +36,7 @@ public class BudgetDetailsTest {
 
    @Test
    public void testCheckGdp_highValue() {
-      dt.setGdp(1.5);
+      dt.setGdp(105);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkGdp();
       });
@@ -44,7 +44,7 @@ public class BudgetDetailsTest {
 
    @Test
    public void testCheckGdp_lowValue() {
-      dt.setGdp(-1.4);
+      dt.setGdp(-104);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkGdp();
       });
@@ -52,7 +52,7 @@ public class BudgetDetailsTest {
 
    @Test
    public void testCheckDebtRatio_highValue() {
-      dt.setDebtRatio(5.1);
+      dt.setDebtRatio(105);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkDebtRatio();
       });
@@ -68,7 +68,7 @@ public class BudgetDetailsTest {
 
    @Test
     public void testCheckVatRatePercent_highValue() {
-      dt.setVatRatePercent(1.2);
+      dt.setVatRatePercent(102);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkVatRatePercent();
       });
@@ -93,7 +93,7 @@ public class BudgetDetailsTest {
 
    @Test
     public void testCheckIncomeTaxRatePercent_highValue() {
-      dt.setIncomeTaxRatePercent(1.2);
+      dt.setIncomeTaxRatePercent(102);
       assertThrows(IllegalArgumentException.class, () -> {
          bdgtDetails.checkIncomeTaxRatePercent();
       });

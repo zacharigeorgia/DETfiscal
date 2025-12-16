@@ -1,5 +1,4 @@
 package gr.aueb.dmst.detFiscal;
-import gr.aueb.dmst.detFiscal.BudgetSummary;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Map;
 import java.nio.file.attribute.GroupPrincipal;
@@ -70,91 +69,80 @@ public class BudgetComparator extends DataLoader {
 
     public void compareCountriesMacro() {
 
-        double cur_value;
-        int i;
-        String country; 
-        do {
-            if (i == 1) {
-                country = "Germany";
-            } else if(i == 2) {
-                country = "Bulgaria"; 
-            } else if(i == 3) {
-                country = "Italy";
-            } else if (i == 4) {
-                country = "Serbia";
-            }
-            if (i == 1 || i == 2 || i == 3 || i ==4) {
-                cur_value = GreecesData.getInflation();
-                if (cur_value > INFLATION_VALUES.get(country)) {
-                    System.out.println("Ο πληθωρισμός της Ελλάδας ήταν μεγαλύτερος για το 2025");
-                    System.out.println(cur_value +  "ο πληθωρισμός της Ελλάδας" + INFLATION_VALUES.get(country) + "ο πληθωρισμός της" + country);
-                } else if (cur_value < INFLATION_VALUES.get(country)) {
-                    System.out.println( "Ο πληθωρισμός της" + country + "είναι μεγαλύτερος της Ελλάδας");
-                    System.out.println(cur_value + "ο πληθωρισμός της Ελλάδας" + INFLATION_VALUES.get(country) + "ο πληθωρισμός της" + country);
-                } else {
-                    System.out.println("ο πληθωρισμός της Ελλάδας είναι ίσος με της" + country + "και ισούται με" + cur_value);
-                }
-                cur_value = GreecesData.getGdp();
-                if (cur_value > GDP_VALUES.get(country)) {
-                    System.out.println("Το ΑΕΠ της Ελλάδας ήταν μεγαλύτερο για το 2025");
-                    System.out.println(cur_value +  "ο πληθωρισμός της Ελλάδας" + GDP_VALUES.get(country) + "το ΑΕΠ της" + country);
-                } else if(cur_value <GDP_VALUES.get(country)) {   
-                    System.out.println( "Το ΑΕΠ της" + country + "είναι μεγαλύτερο της Ελλάδας");
-                    System.out.println(cur_value + "το ΑΕΠ της Ελλάδας" + GDP_VALUES.get(country) + "το ΑΕΠ της" + country);
-                } else {
-                    System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της" + country + "και ισούται με" + cur_value);
-                }
-                cur_value = GreecesData.getDebtRatio();
-                if (cur_value > DEBTRATIO_VALUES.get(country)) {
-                    System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
-                    System.out.println(cur_value +  "ο λόγος χρέους της Ελλάδας" + DEBTRATIO_VALUES.get(country) + "ο λόγος χρέους της" + country);
-                } else if(cur_value <DEBTRATIO_VALUES.get(country)) {   
-                    System.out.println( "Ο λόγος χρέους της" + country + "είναι μεγαλύτερος της Ελλάδας");
-                    System.out.println(cur_value + "ο λόγος χρέους της Ελλάδας" + DEBTRATIO_VALUES.get(country) + "ο λόγος χρέους της" + country);
-                } else {
-                    System.out.println("ο λόγος χρέους της Ελλάδας είναι ίσος με της" + country + "και ισούται με" + cur_value);
-                }
-                cur_value = GreecesData.getVatRatePercent();
-                if (cur_value > VATRATEPERCENT_VALUES.get(country)) {
-                    System.out.println("Ο ΦΠΑ της Ελλάδας ήταν μεγαλύτερος για το 2025");
-                    System.out.println("Ο ΦΠΑ  της Ελλάδας" + VATRATEPERCENT_VALUES.get(country) + "ο λόγος χρέους της" + country);
-                } else if(cur_value <VATRATEPERCENT_VALUES.get(country)) {   
-                    System.out.println( "Ο ΦΠΑ της" + country + "είναι μεγαλύτερος της Ελλάδας");
-                    System.out.println(cur_value + "ο ΦΠΑ της Ελλάδας" + VATRATEPERCENT_VALUES.get(country) + "ο ΦΠΑ της" + country);
-                } else {
-                    System.out.println("ο ΦΠΑ της Ελλάδας είναι ίσος με της" + country + "και ισούται με" + cur_value);
-                }
-                cur_value = GreecesData.getIncomeTaxRatePercent();
-                if (cur_value > INCOMETAXRATEPERCENT_VALUES.get(country)) {
-                    System.out.println("Ο φορολογικός συντελεστής εισοδήματος της Ελλάδας ήταν μεγαλύτερος για το 2025");
-                    System.out.println(cur_value +  "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get(country) + "ο φορολογικός συντελεστής εισοδήματος της" + country);
-                } else if(cur_value <INCOMETAXRATEPERCENT_VALUES.get(country)) {   
-                    System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της" + country + "είναι μεγαλύτερος της Ελλάδας");
-                    System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get(country) + "ο φορολογικός συντελεστής εισοδήματος της" + country);
-                } else {
-                    System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της" + country + "και ισούται με" + cur_value);
-                }
-                cur_value = GreecesData.getBaseRevenueForVat(); 
-                if (cur_value > BASEREVENUEVAT_VALUES.get(country)) {
-                    System.out.println("η βάση εσόδων ΦΠΑ της Ελλάδας ήταν μεγαλύτερη για το 2025");
-                    System.out.println(cur_value +  "η βάση εσόδων ΦΠΑ της Ελλάδας" + BASEREVENUEVAT_VALUES.get(country) + "η βάση εσόδων ΦΠΑ της" + country);
-                } else if(cur_value <BASEREVENUEVAT_VALUES.get(country)) {   
-                    System.out.println( "η βάση εσόδων ΦΠΑ της" + country + "είναι μεγαλύτερη της Ελλάδας");
-                    System.out.println(cur_value + "η βάση εσόδων ΦΠΑ της Ελλάδας" + BASEREVENUEVAT_VALUES.get(country) + "η βάση εσόδων ΦΠΑ της" + country);
-                } else {
-                    System.out.println("η βάση εσόδων ΦΠΑ της Ελλάδας είναι ίση με της" + country + "και ισούται με" + cur_value);
-                }
-                cur_value = GreecesData.getBaseRevenueForIncomeTax();
-                if (cur_value > BASEREVENUEINCOME_VALUES.get(country)) {
-                    System.out.println("η βάση εσόδων φόρου εισοδήματος της Ελλάδας ήταν μεγαλύτερη για το 2025");
-                    System.out.println(cur_value +  "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get(country) + "η βάση εσόδων φόρου εισοδήματος της" + country);
-                } else if(cur_value <BASEREVENUEINCOME_VALUES.get(country)) {   
-                    System.out.println( "Η βάση εσόδων φόρου εισοδήματος της" + country + "είναι μεγαλύτερη της Ελλάδας");
-                    System.out.println(cur_value + "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get(country) + "η βάση εσόδων φόρου εισοδήματος της" + country);
-                } else {
-                    System.out.println("η βάση εσόδων φόρου εισοδήματος της Ελλάδας είναι ίση με της" + country +  "και ισούται με" + cur_value);
-                }
-            }  
-        } while (i != 0);  
-    }
+    double cur_value;
+    cur_value = GreecesData.getInflation();
+        if (cur_value > INFLATION_VALUES.get("Germany")) {
+            System.out.println("Ο πληθωρισμός της Ελλάδας ήταν μεγαλύτερος για το 2025");
+            System.out.println(cur_value +  "ο πληθωρισμός της Ελλάδας" + INFLATION_VALUES.get("Germany") + "ο πληθωρισμός της Γερμανίας");
+        } else if (cur_value < INFLATION_VALUES.get("Germany")) {
+            System.out.println( "Ο πληθωρισμός της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
+            System.out.println(cur_value + "ο πληθωρισμός της Ελλάδας" + INFLATION_VALUES.get("Germany") + "ο πληθωρισμός της Γερμανίας");
+        } else {
+            System.out.println("ο πληθωρισμός της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+        }
+
+        cur_value = GreecesData.getGdp();
+        if (cur_value > GDP_VALUES.get("Germany")) {
+            System.out.println("Το ΑΕΠ της Ελλάδας ήταν μεγαλύτερο για το 2025");
+            System.out.println(cur_value +  "ο πληθωρισμός της Ελλάδας" + GDP_VALUES.get("Germany") + "το ΑΕΠ της Γερμανίας");
+        } else if(cur_value <GDP_VALUES.get(country)) {   
+            System.out.println( "Το ΑΕΠ της" + country + "είναι μεγαλύτερο της Ελλάδας");
+            System.out.println(cur_value + "το ΑΕΠ της Ελλάδας" + GDP_VALUES.get("Germany") + "το ΑΕΠ της Γερμανίας");
+        } else {
+            System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της Γερμανίας και ισούται με" + cur_value);
+        }
+        
+        cur_value = GreecesData.getDebtRatio();
+        if (cur_value > DEBTRATIO_VALUES.get("Germany")) {
+            System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
+            System.out.println(cur_value +  "ο λόγος χρέους της Ελλάδας" + DEBTRATIO_VALUES.get("Germany") + "ο λόγος χρέους της Γερμανίας");
+        } else if(cur_value <DEBTRATIO_VALUES.get("Germany")) {   
+            System.out.println( "Ο λόγος χρέους της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
+            System.out.println(cur_value + "ο λόγος χρέους της Ελλάδας" + DEBTRATIO_VALUES.get("Germany") + "ο λόγος χρέους της Γερμανίας");
+        } else {
+            System.out.println("ο λόγος χρέους της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+        }
+        cur_value = GreecesData.getVatRatePercent();
+        if (cur_value > VATRATEPERCENT_VALUES.get("Germany")) {
+            System.out.println("Ο ΦΠΑ της Ελλάδας ήταν μεγαλύτερος για το 2025");
+            System.out.println("Ο ΦΠΑ  της Ελλάδας" + VATRATEPERCENT_VALUES.get("Germany") + "ο ΦΠΑ της Γερμανίας");
+        } else if(cur_value <VATRATEPERCENT_VALUES.get("Germany")) {   
+            System.out.println( "Ο ΦΠΑ της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
+            System.out.println(cur_value + "ο ΦΠΑ της Ελλάδας" + VATRATEPERCENT_VALUES.get("Germany") + "ο ΦΠΑ της Γερμανίας");
+        } else {
+            System.out.println("ο ΦΠΑ της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+        }
+        cur_value = GreecesData.getIncomeTaxRatePercent();
+        if (cur_value > INCOMETAXRATEPERCENT_VALUES.get("Germany")) {
+            System.out.println("Ο φορολογικός συντελεστής εισοδήματος της Ελλάδας ήταν μεγαλύτερος για το 2025");
+            System.out.println("Ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Germany") + "ο φορολογικός συντελεστής εισοδήματος της Γερμανίας");
+        } else if(cur_value <INCOMETAXRATEPERCENT_VALUES.get("Germany")) {   
+            System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
+            System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Germany") + "ο φορολογικός συντελεστής εισοδήματος της Γερμανίας");
+        } else {
+            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+        }
+    
+        cur_value = GreecesData.getBaseRevenueForVat(); 
+        if (cur_value > BASEREVENUEVAT_VALUES.get("Germany")) {
+            System.out.println("η βάση εσόδων ΦΠΑ της Ελλάδας ήταν μεγαλύτερη για το 2025");
+            System.out.println(cur_value +  "η βάση εσόδων ΦΠΑ της Ελλάδας" + BASEREVENUEVAT_VALUES.get("Germany") + "η βάση εσόδων ΦΠΑ της Γερμανίας");
+        } else if(cur_value <BASEREVENUEVAT_VALUES.get("Germany")) {   
+            System.out.println( "η βάση εσόδων ΦΠΑ της Γερμανίας είναι μεγαλύτερη της Ελλάδας");
+            System.out.println(cur_value + "η βάση εσόδων ΦΠΑ της Ελλάδας" + BASEREVENUEVAT_VALUES.get("Germany") + "η βάση εσόδων ΦΠΑ της Γερμανίας");
+        } else {
+            System.out.println("η βάση εσόδων ΦΠΑ της Ελλάδας είναι ίση με της Γεμανίας και ισούται με" + cur_value);
+        }
+
+        cur_value = GreecesData.getBaseRevenueForIncomeTax();
+        if (cur_value > BASEREVENUEINCOME_VALUES.get("Germany")) {
+            System.out.println("η βάση εσόδων φόρου εισοδήματος της Ελλάδας ήταν μεγαλύτερη για το 2025");
+            System.out.println(cur_value +  "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get("Germany") + "η βάση εσόδων φόρου εισοδήματος της Γερμανίας");
+        } else if(cur_value <BASEREVENUEINCOME_VALUES.get("Germany")) {   
+            System.out.println( "Η βάση εσόδων φόρου εισοδήματος της Γερμανίας είναι μεγαλύτερη της Ελλάδας");
+            System.out.println(cur_value + "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get("Germany") + "η βάση εσόδων φόρου εισοδήματος της Γερμανίας");
+        } else { 
+            System.out.println("η βάση φόρου εισοδήματος της Ελλάδας είναι ίση με της Γεμανίας και ισούται με" + cur_value);
+        }
+    }   
 }
