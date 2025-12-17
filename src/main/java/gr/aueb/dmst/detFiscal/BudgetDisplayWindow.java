@@ -1,0 +1,211 @@
+package gr.aueb.dmst.detFiscal;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+
+/**
+ * Κλάση για την εμφάνιση των στοιχείων του προϋπολογισμού (Έσοδα/Έξοδα)
+ * σε ένα παράθυρο με πίνακα.
+ */
+public class BudgetDisplayWindow extends JFrame {
+
+    private FederalBudget budget;
+
+    /**
+     * Κατασκευαστής - δημιουργεί το παράθυρο εμφάνισης
+     * 
+     * @param budget Το FederalBudget αντικείμενο
+     */
+    public BudgetDisplayWindow(FederalBudget budget) {
+        this.budget = budget;
+        initializeWindow();
+        createUI();
+    }
+
+    // Placeholder μέθοδοι
+    private void initializeWindow() {
+        setTitle("Εμφάνιση Προϋπολογισμού - DETfiscal");
+        setSize(1000, 700);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    private void createUI() {
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(240, 240, 240));
+
+        // Header
+        JPanel headerPanel = new JPanel();
+        headerPanel.setBackground(new Color(7, 25, 82));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        JLabel titleLabel = new JLabel("Προϋπολογισμός " + budget.getYear());
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(Color.WHITE);
+        headerPanel.add(titleLabel);
+
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+        // Tab Έσοδα
+        JPanel revenuesPanel = createTablePanel("Έσοδα",
+                budget.getSummary().getRevenues(),
+                budget.getSummary().calculateTotalRevenues());
+        tabbedPane.addTab("Έσοδα", revenuesPanel);
+
+        // Tab Έξοδα
+        JPanel expendituresPanel = createTablePanel("Έξοδα",
+                budget.getSummary().getExpenditures(),
+                budget.getSummary().calculateTotalExpenditures());
+        tabbedPane.addTab("Έξοδα", expendituresPanel);
+
+        mainPanel.add(tabbedPane, BorderLayout.CENTER);
+        add(mainPanel);
+
+        // Tab Υπουργεία (μετά τα έξοδα)
+        JPanel ministriesPanel = createMinistriesPanel();
+        tabbedPane.addTab("Υπουργεία", ministriesPanel);
+
+        // Footer με σύνολα (εκτός tabbed pane, στο SOUTH του mainPanel)
+        JPanel footerPanel = createFooterPanel();
+        mainPanel.add(footerPanel, BorderLayout.SOUTH);
+
+    }
+
+    private JPanel createTablePanel(String type, List<? extends Account> accounts, double total) {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        // Δημιουργία πίνακα
+        String[] columnNames = { "#", "Όνομα", "Ποσό (€)" };
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(tableModel);
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        table.setRowHeight(25);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        table.getTableHeader().setBackground(new Color(7, 25, 82));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        // Προσθήκη δεδομένων
+        for (int i = 0; i < accounts.size(); i++) {
+            Account account = accounts.get(i);
+            Object[] row = {
+                    i + 1,
+                    account.getName(),
+                    String.format("%,.2f", account.getAmount())
+            };
+            tableModel.addRow(row);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Συνολικό ποσό στο κάτω μέρος του tab
+        JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        totalPanel.setBackground(Color.WHITE);
+        JLabel totalLabel = new JLabel(String.format("Σύνολο %s: %,.2f €", type, total));
+        totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        totalPanel.add(totalLabel);
+        panel.add(totalPanel, BorderLayout.SOUTH);
+
+        return panel;
+    }
+
+    private JPanel createMinistriesPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnNames = { "#", "Κωδικός", "Όνομα", "Κανονικός Προϋπολογισμός (€)", "Δημόσιες Επενδύσεις (€)",
+                "Σύνολο (€)" };
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(tableModel);
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        table.setRowHeight(25);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        table.getTableHeader().setBackground(new Color(7, 25, 82));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        List<Ministry> ministries = budget.getSummary().getMinistries();
+        double totalMinistries = 0;
+
+        for (int i = 0; i < ministries.size(); i++) {
+            Ministry ministry = ministries.get(i);
+            Object[] row = {
+                    i + 1,
+                    ministry.getCode(),
+                    ministry.getName(),
+                    String.format("%,.2f", ministry.getRegularBudget()),
+                    String.format("%,.2f", ministry.getPublicInvestments()),
+                    String.format("%,.2f", ministry.getTotal())
+            };
+            tableModel.addRow(row);
+            totalMinistries += ministry.getTotal();
+        }
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Σύνολο
+        JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        totalPanel.setBackground(Color.WHITE);
+        JLabel totalLabel = new JLabel(String.format("Σύνολο Υπουργείων: %,.2f €", totalMinistries));
+        totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        totalPanel.add(totalLabel);
+        panel.add(totalPanel, BorderLayout.SOUTH);
+
+        return panel;
+    }
+
+    /**
+     * Δημιουργεί το footer panel με τα συνολικά στοιχεία
+     */
+    private JPanel createFooterPanel() {
+        JPanel footerPanel = new JPanel(new GridLayout(1, 4, 10, 10));
+        footerPanel.setBackground(new Color(7, 25, 82));
+        footerPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        double totalRevenues = budget.getSummary().calculateTotalRevenues();
+        double totalExpenditures = budget.getSummary().calculateTotalExpenditures();
+        double balance = budget.calculateTotalBudget();
+        String status = budget.getDetails().characterizeTotal();
+
+        footerPanel.add(createFooterLabel("Συνολικά Έσοδα", totalRevenues));
+        footerPanel.add(createFooterLabel("Συνολικά Έξοδα", totalExpenditures));
+        footerPanel.add(createFooterLabel("Ισοζύγιο", balance));
+
+        JLabel statusLabel = new JLabel(
+                "<html><div style='text-align: center;'><b>Κατάσταση:</b><br>" + status + "</div></html>");
+        statusLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        statusLabel.setForeground(Color.WHITE);
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        footerPanel.add(statusLabel);
+
+        return footerPanel;
+    }
+
+    private JLabel createFooterLabel(String title, double value) {
+        JLabel label = new JLabel("<html><div style='text-align: center;'><b>" + title + ":</b><br>"
+                + String.format("%,.2f €", value) + "</div></html>");
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setForeground(Color.WHITE);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        return label;
+    }
+}
