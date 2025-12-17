@@ -2,6 +2,10 @@ package main.java.gr.aueb.dmst.detFiscal;
 import java.util.ArrayList;
 import java.util.List;
 
+import gr.aueb.dmst.detFiscal.Expenditure;
+import gr.aueb.dmst.detFiscal.Ministry;
+import gr.aueb.dmst.detFiscal.Revenue;
+
 public class BudgetSummary {
 
     // ΔΙΟΡΘΩΣΗ: Κρατάμε μόνο έναν ορισμό για κάθε λίστα
@@ -13,35 +17,36 @@ public class BudgetSummary {
     // Fields for Comparative Budget (2024)
     private List<Revenue> revenues2024;
     private List<Expenditure> expenditures2024;
+    private List<Ministry> ministries2024; // Λίστα υπουργείων για το 2024
 
-    public BudgetSummary() {
+   public BudgetSummary() {
+        // Αρχικοποίηση δεδομένων 2025
         this.revenues = new ArrayList<>();
         this.expenditures = new ArrayList<>();
         this.ministries = new ArrayList<>();
         this.surplus = 0.0;
         this.deficit = 0.0;
+        // Αρχικοποίηση δεδομένων 2024
         this.revenues2024 = new ArrayList<>();
         this.expenditures2024 = new ArrayList<>();
+        this.ministries2024 = new ArrayList<>(); // Προσθήκη αυτής της γραμμής
     }
-
-    /**
-     * Adds a Ministry object to the list of ministries.
-     */
+    
+     //Adds a Ministry object to the list of ministries.
     public void addMinistry(Ministry m) {
         this.ministries.add(m);
     }
     
-    /**
-     * Adds a Revenue object to the list of revenues.
-     * @param r The Revenue object to add.
-     */
+
+     //Adds a Revenue object to the list of revenues.
+     //* @param r The Revenue object to add.
+    
     public void addRevenue(Revenue r) {
         this.revenues.add(r);
     }
 
-    /**
-     * Adds an Expenditure object to the list of expenditures.
-     */
+
+     //Adds an Expenditure object to the list of expenditures.
     public void addExpenditure(Expenditure e) {
         this.expenditures.add(e);
     }
@@ -60,9 +65,8 @@ public class BudgetSummary {
         return this.expenditures;
     }
 
-    /**
-     * Returns the list of Revenue accounts for the 2024 budget. (ΑΠΟ ΤΗΝ DEVELOP)
-     */
+    
+     //Returns the list of Revenue accounts for the 2024 budget. (ΑΠΟ ΤΗΝ DEVELOP)
     public List<Revenue> getRevenues2024() {
         return this.revenues2024;
     }
@@ -87,9 +91,8 @@ public class BudgetSummary {
         return total;
     }
 
-    /**
-     * Calculates and returns the total amount of all expenditures in the list.
-     */
+
+     //Calculates and returns the total amount of all expenditures in the list.
     public double calculateTotalExpenditures() {
         double total = 0;
         for (Expenditure e : expenditures) {
@@ -98,16 +101,14 @@ public class BudgetSummary {
         return total;
     }
 
-    /**
-     * Calculates the difference between total revenues and total expenditures (the balance/ισοζύγιο).
-     */
+    
+     //Calculates the difference between total revenues and total expenditures (the balance/ισοζύγιο).
     public double calculateBalance() {
         return calculateTotalRevenues() - calculateTotalExpenditures();
     }
 
-    /**
-     * Searches for an Account (Revenue or Expenditure) by name.
-     */
+    // Searches for an Account (Revenue or Expenditure) by name.
+
     public Account searchAccount(String name) {
         // Search in Revenues
         for (Revenue r : revenues) {
@@ -124,9 +125,8 @@ public class BudgetSummary {
         return null; // Not found
     }
 
-    /**
-     * Searches for a Ministry object by name. (ΑΠΟ ΤΗΝ FIX/ARCHITECTURE)
-     */
+
+      //Searches for a Ministry object by name. (ΑΠΟ ΤΗΝ FIX/ARCHITECTURE)
     public Ministry searchMinistry(String name) {
         for (Ministry m : ministries) {
             if (m.getName().equalsIgnoreCase(name) || m.getName().contains(name)) {
@@ -134,5 +134,30 @@ public class BudgetSummary {
             }
         }
         return null;
+    }
+    // Προσθήκη Getters και Μεθόδων Υπολογισμού
+    public List<Ministry> getMinistries2024() {
+        return this.ministries2024; // Επιστρέφει τη λίστα υπουργείων 2024
+    }
+
+    public double calculateTotalRevenues2024() {
+        double total = 0;
+        for (Revenue r : revenues2024) {
+            total += r.getAmount(); // Άθροισμα εσόδων 2024
+        }
+        return total;
+    }
+
+    public double calculateTotalExpenditures2024() {
+        double total = 0;
+        for (Expenditure e : expenditures2024) {
+            total += e.getAmount(); // Άθροισμα εξόδων 2024
+        }
+        return total;
+    }
+
+    public double calculateBalance2024() {
+        // Υπολογισμός ισοζυγίου 2024 (Έσοδα - Έξοδα)
+        return calculateTotalRevenues2024() - calculateTotalExpenditures2024();
     }
 }

@@ -1,6 +1,11 @@
-package gr.aueb.dmst.detFiscal;
-
-import java.util.List;
+import gr.aueb.dmst.detFiscal.Expenditure;
+import gr.aueb.dmst.detFiscal.IDataLoader;
+import gr.aueb.dmst.detFiscal.MacroData;
+import gr.aueb.dmst.detFiscal.Ministry;
+import gr.aueb.dmst.detFiscal.Revenue;
+import main.java.gr.aueb.dmst.detFiscal.BudgetDetails;
+import main.java.gr.aueb.dmst.detFiscal.BudgetSummary;
+import main.java.gr.aueb.dmst.detFiscal.DataLoader;
 
 import java.util.List;
 
@@ -16,22 +21,20 @@ public class FederalBudget {
     private MacroData infl;
 
     // Private constructor for Singleton
-    private FederalBudget() {
-        // Initialize essential components
+   private FederalBudget() {
+        // Αρχικοποίηση βασικών στοιχείων
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
-        details = new BudgetDetails();
         this.countryName = "Greece";
         this.year = 2025;
-        infl = new MacroData();
+        // Σύνδεση των details με το αντικείμενο infl (MacroData)
+        this.infl = new MacroData();
+        this.details = new BudgetDetails(this.infl); 
     }
 
-    /**
-     * Returns the single instance of the FederalBudget class, creating it if
-     * necessary.
-     * 
-     * @return The FederalBudget singleton instance.
-     */
+    
+      //Returns the single instance of the FederalBudget class, creating it if necessary.
+     //@return The FederalBudget singleton instance.
     public static FederalBudget getInstance() {
         if (instance == null) {
             instance = new FederalBudget();
@@ -84,12 +87,22 @@ public class FederalBudget {
             for (Revenue r : revenues24) {
                 summary.getRevenues2024().add(r);
             }
+            // Φόρτωση υπουργείων 2024 στη νέα λίστα του summary
+            List<Ministry> ministries24 = dataLoader.loadMinistries(path2024);
+            for (Ministry m : ministries24) {
+                summary.getMinistries2024().add(m);
+            }
 
             List<Expenditure> expenditures24 = dataLoader.loadExpenditures(path2024);
             for (Expenditure e : expenditures24) {
                 summary.getExpenditures2024().add(e);
             }
-
+            // Φόρτωση MacroData και ενημέρωση των αντικειμένων infl και details
+            MacroData mData = dataLoader.loadMacroData(pathMain);
+            this.infl.setInflation(mData.getInflation());
+            this.infl.setGdp(mData.getGdp());
+            // Αν ο BudgetDetails χρειάζεται ολόκληρο το αντικείμενο:
+            this.details = new BudgetDetails(mData);
             // Simple validation check (using main budget data)
             assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative.";
             System.out.println("Data loading successful (OK).");

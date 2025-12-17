@@ -1,5 +1,4 @@
 package gr.aueb.dmst.detFiscal;
-
 public class BudgetDetails {
 
     private final MacroData data;
