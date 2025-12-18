@@ -4,7 +4,7 @@ import java.util.Map;
 import java.nio.file.attribute.GroupPrincipal;
 import java.util.HashMap;
 
-public class BudgetComparator extends DataLoader {
+public class BudgetCountriesComparator {
    
     public static final Map<String, Double> INFLATION_VALUES = new HashMap<> ();
     static {

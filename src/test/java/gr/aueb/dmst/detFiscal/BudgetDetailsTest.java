@@ -11,11 +11,14 @@ public class BudgetDetailsTest {
    // δημιουργώ αντικείμενο της BudgetDetails για να τρέξω τα tests
    private MacroData dt;
    private BudgetDetails bdgtDetails;
+   private BudgetSummary bdgtSummary;
 
   @BeforeEach
    public void setup() {
       this.dt = new MacroData();
-      this.bdgtDetails = new BudgetDetails(dt);
+      this.bdgtSummary = new BudgetSummary();
+      this.bdgtDetails = new BudgetDetails(dt, bdgtSummary);
+      
    }
 
    @Test
@@ -119,22 +122,40 @@ public class BudgetDetailsTest {
 
    @Test
    public void testCharacterizeTotal_Positive() {
-      String value = bdgtDetails.characterizeTotal();
-      double balance = 200;
-      assertEquals("Πλεόνασμα", value);
+      BudgetSummary summaryStub = new BudgetSummary() {
+         @Override
+         public double calculateBalance() {
+            return 200;
+         }
+      };
+      BudgetDetails bdgtd = new BudgetDetails(dt, summaryStub);
+      bdgtd.valueForBalance();
+      assertEquals("Πλεόνασμα", bdgtd.characterizeTotal());
    }
 
    @Test
    public void testCharacterizeTotal_Negative() {
-      String value = bdgtDetails.characterizeTotal();
-      double balance = -50;
-      assertEquals("Έλλειμμα", value);
+      BudgetSummary summaryStub = new BudgetSummary() {
+         @Override
+         public double calculateBalance() {
+            return -50;
+         }
+      };
+      BudgetDetails bdgtd = new BudgetDetails(dt, summaryStub);
+      bdgtd.valueForBalance();
+      assertEquals("Έλλειμμα", bdgtd.characterizeTotal());
    }
 
    @Test
    public void testCharacterizeTotal_Zero() {
-      String value = bdgtDetails.characterizeTotal();
-      double balance = 0;
-      assertEquals("Ισοσκελισμένος Προϋπολογισμός", value);
+      BudgetSummary summaryStub = new BudgetSummary() {
+         @Override
+         public double calculateBalance() {
+            return 0;
+         }
+      };
+      BudgetDetails bdgtd = new BudgetDetails(dt, summaryStub);
+      bdgtd.valueForBalance();
+      assertEquals("Ισοσκελισμένος Προϋπολογισμός", bdgtd.characterizeTotal());
    }
 }
