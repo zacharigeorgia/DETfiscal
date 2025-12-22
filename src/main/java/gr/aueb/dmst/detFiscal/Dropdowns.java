@@ -1,4 +1,4 @@
-/* package gr.aueb.dmst.detFiscal;
+ package gr.aueb.dmst.detFiscal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,5 +21,6 @@ public class Dropdowns {
         for (int i = 1; i < years.length; i++) {
             years[i] = String.valueOf(startYear + i - 1);
         }
-        JComboBox<String> yearBox = new JComboBox<>(years);
-/* 
+        JComboBox<String> yearBox = new JComboBox<>(years); 
+    }
+}

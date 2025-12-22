@@ -1,10 +1,6 @@
-package main.java.gr.aueb.dmst.detFiscal;
+package gr.aueb.dmst.detFiscal;
 import java.util.ArrayList;
 import java.util.List;
-
-import gr.aueb.dmst.detFiscal.Expenditure;
-import gr.aueb.dmst.detFiscal.Ministry;
-import gr.aueb.dmst.detFiscal.Revenue;
 
 public class BudgetSummary {
 

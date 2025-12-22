@@ -1,11 +1,15 @@
+package gr.aueb.dmst.detFiscal;
 import gr.aueb.dmst.detFiscal.Expenditure;
 import gr.aueb.dmst.detFiscal.IDataLoader;
 import gr.aueb.dmst.detFiscal.MacroData;
 import gr.aueb.dmst.detFiscal.Ministry;
 import gr.aueb.dmst.detFiscal.Revenue;
-import main.java.gr.aueb.dmst.detFiscal.BudgetDetails;
-import main.java.gr.aueb.dmst.detFiscal.BudgetSummary;
-import main.java.gr.aueb.dmst.detFiscal.DataLoader;
+
+import java.awt.List;
+
+import gr.aueb.dmst.detFiscal.BudgetDetails;
+import gr.aueb.dmst.detFiscal.BudgetSummary;
+import gr.aueb.dmst.detFiscal.DataLoader;
 
 public class FederalBudget {
 

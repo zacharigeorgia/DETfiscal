@@ -1,10 +1,4 @@
 package gr.aueb.dmst.detFiscal;
-<<<<<<< HEAD
-=======
-
-import main.java.gr.aueb.dmst.detFiscal.BudgetSummary;
-
->>>>>>> 722febb791850e392e86098976aa05c07380be0d
 public class BudgetDetails {
 
     private final MacroData data;
