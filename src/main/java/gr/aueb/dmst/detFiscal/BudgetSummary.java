@@ -8,8 +8,6 @@ public class BudgetSummary {
     private List<Ministry> ministries;
     private List<Revenue> revenues;
     private List<Expenditure> expenditures;
-    private double surplus;
-    private double deficit;
     // Fields for Comparative Budget (2024)
     private List<Revenue> revenues2024;
     private List<Expenditure> expenditures2024;
@@ -20,14 +18,12 @@ public class BudgetSummary {
         this.revenues = new ArrayList<>();
         this.expenditures = new ArrayList<>();
         this.ministries = new ArrayList<>();
-        this.surplus = 0.0;
-        this.deficit = 0.0;
         // Αρχικοποίηση δεδομένων 2024
         this.revenues2024 = new ArrayList<>();
         this.expenditures2024 = new ArrayList<>();
         this.ministries2024 = new ArrayList<>(); // Προσθήκη αυτής της γραμμής
     }
-    
+
      //Adds a Ministry object to the list of ministries.
     public void addMinistry(Ministry m) {
         this.ministries.add(m);
@@ -61,7 +57,7 @@ public class BudgetSummary {
         return this.expenditures;
     }
 
-    
+
      //Returns the list of Revenue accounts for the 2024 budget. (ΑΠΟ ΤΗΝ DEVELOP)
     public List<Revenue> getRevenues2024() {
         return this.revenues2024;
@@ -97,7 +93,7 @@ public class BudgetSummary {
         return total;
     }
 
-    
+
      //Calculates the difference between total revenues and total expenditures (the balance/ισοζύγιο).
     public double calculateBalance() {
         return calculateTotalRevenues() - calculateTotalExpenditures();
