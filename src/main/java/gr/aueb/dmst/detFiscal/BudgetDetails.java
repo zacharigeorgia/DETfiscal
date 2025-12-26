@@ -107,4 +107,7 @@ public class BudgetDetails {
     public void plotGraph() {
         System.out.println("Εκτύπωση γραφήματος...");
     }
+    public MacroData getMacroData() {
+    return data;
+}
 }
