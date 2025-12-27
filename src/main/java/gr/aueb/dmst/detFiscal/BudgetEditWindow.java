@@ -76,6 +76,50 @@ public class BudgetEditWindow extends JFrame {
         add(mainPanel);
 
         cancelButton.addActionListener(e -> dispose());
+        saveButton.addActionListener(e -> saveChanges());
 
+    }
+
+    // αποθήκευση αλλαγών λειτουργικό
+    private void saveChanges() {
+        String newCountry = countryField.getText().trim();
+        String newYearStr = yearField.getText().trim();
+        boolean changed = false;
+
+        // Validation (Έλεγχος)
+        if (newCountry.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Το όνομα δεν μπορεί να είναι κενό!");
+            return;
+        }
+
+        try {
+            int newYear = Integer.parseInt(newYearStr);
+
+            // Έλεγχος αλλαγής χώρας
+            if (!newCountry.equals(fedBudget.getCountryName())) {
+                String old = fedBudget.getCountryName();
+                fedBudget.setCountryName(newCountry);
+                changeLog.log("Changed Country: " + old + " -> " + newCountry);
+                changed = true;
+            }
+
+            // Έλεγχος αλλαγής έτους
+            if (newYear != fedBudget.getYear()) {
+                int oldYear = fedBudget.getYear();
+                fedBudget.setYear(newYear);
+                changeLog.log("Changed Year: " + oldYear + " -> " + newYear);
+                changed = true;
+            }
+
+            if (changed) {
+                JOptionPane.showMessageDialog(this, "Οι αλλαγές αποθηκεύτηκαν!");
+                dispose(); // Κλείσιμο
+            } else {
+                JOptionPane.showMessageDialog(this, "Δεν βρέθηκαν αλλαγές.");
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Το έτος πρέπει να είναι αριθμός!");
+        }
     }
 }
