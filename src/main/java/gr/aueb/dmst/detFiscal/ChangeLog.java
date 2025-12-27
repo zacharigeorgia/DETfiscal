@@ -12,6 +12,10 @@ public class ChangeLog {
         this.entries = new ArrayList<>();
         // έναρξη εφαρμογής
         log("Application started.");
+    }
 
+    public void log(String message) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        entries.add("[" + timestamp + "] " + message);
     }
 }
