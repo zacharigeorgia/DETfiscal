@@ -36,9 +36,7 @@ public class Menu {
         gbc.weightx = 10.0;
 
         FederalBudget fedBudget = FederalBudget.getInstance();
-        /*
-         * @param jsonPath
-         */
+
         String pathMain = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2025.json";
         String path2024 = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2024.json";
 
