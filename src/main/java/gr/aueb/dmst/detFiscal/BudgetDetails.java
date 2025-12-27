@@ -109,5 +109,5 @@ public class BudgetDetails {
     }
     public MacroData getMacroData() {
     return data;
-}
+    }
 }

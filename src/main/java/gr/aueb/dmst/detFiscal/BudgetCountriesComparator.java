@@ -361,7 +361,7 @@ public class BudgetCountriesComparator {
         cur_value = GreecesData.getBaseRevenueForIncomeTax();
         if (cur_value > BASEREVENUEINCOME_VALUES.get("Serbia")) {
             System.out.println("η βάση εσόδων φόρου εισοδήματος της Ελλάδας ήταν μεγαλύτερη για το 2025");
-            System.out.println(cur_value +  "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get("Serbia") + "η βάση εσόδων φόρου εισοδήματος της Σερβίας");
+            System.out.println(cur_value +  " η βάση εσόδων φόρου εισοδήματος της Ελλάδας και " + BASEREVENUEINCOME_VALUES.get("Serbia") + " η βάση εσόδων φόρου εισοδήματος της Σερβίας");
         } else if(cur_value <BASEREVENUEINCOME_VALUES.get("Serbia")) {   
             System.out.println( "Η βάση εσόδων φόρου εισοδήματος της Σερβίας είναι μεγαλύτερη της Ελλάδας");
             System.out.println(cur_value + "η βάση εσόδων φόρου εισοδήματος της Ελλάδας" + BASEREVENUEINCOME_VALUES.get("Serbia") + "η βάση εσόδων φόρου εισοδήματος της Σερβίας");
