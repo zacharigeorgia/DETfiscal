@@ -47,18 +47,18 @@ public class BudgetCountriesComparator {
 
     public static final Map<String, Double> BASEREVENUEVAT_VALUES = new HashMap<>();
     static {
-        BASEREVENUEVAT_VALUES.put("Germany", 20.0);
-        BASEREVENUEVAT_VALUES.put("Bulgaria", 30.0);
-        BASEREVENUEVAT_VALUES.put("Italy", 22.0);
-        BASEREVENUEVAT_VALUES.put("Serbia", 20.0);
+        BASEREVENUEVAT_VALUES.put("Germany", 200000000000.0);
+        BASEREVENUEVAT_VALUES.put("Bulgaria", 300000000000.0);
+        BASEREVENUEVAT_VALUES.put("Italy", 220000000000.0);
+        BASEREVENUEVAT_VALUES.put("Serbia", 200000000000.0);
     }
 
     public static final Map<String, Double> BASEREVENUEINCOME_VALUES = new HashMap<>();
     static {
-        BASEREVENUEINCOME_VALUES.put("Germany", 45.0);
-        BASEREVENUEINCOME_VALUES.put("Bulgaria", 30.0);
-        BASEREVENUEINCOME_VALUES.put("Italy", 35.0);
-        BASEREVENUEINCOME_VALUES.put("Serbia", 10.0);
+        BASEREVENUEINCOME_VALUES.put("Germany", 450000000000.0);
+        BASEREVENUEINCOME_VALUES.put("Bulgaria", 300000000000.0);
+        BASEREVENUEINCOME_VALUES.put("Italy", 350000000000.0);
+        BASEREVENUEINCOME_VALUES.put("Serbia", 100000000000.0);
     }
 
     private final MacroData GreecesData;
