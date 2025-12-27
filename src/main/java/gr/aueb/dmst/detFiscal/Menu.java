@@ -36,9 +36,7 @@ public class Menu {
         gbc.weightx = 10.0;
 
         FederalBudget fedBudget = FederalBudget.getInstance();
-        /*
-         * @param jsonPath
-         */
+
         String pathMain = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2025.json";
         String path2024 = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2024.json";
 
@@ -59,14 +57,12 @@ public class Menu {
         JButton btnData = new JButton("Display Data");
         JButton btnSummary = new JButton("Display Summary");
         JButton btnAlter = new JButton("Alter Data");
-        JButton btnChangeLog = new JButton("View Change Log");
 
         styleButton(btnYear);
         styleButton(btnCountry);
         styleButton(btnData);
         styleButton(btnSummary);
         styleButton(btnAlter);
-        styleButton(btnChangeLog);
 
         // ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ
         btnYear.addActionListener(e -> {
@@ -101,42 +97,12 @@ public class Menu {
             editWindow.setVisible(true);
         });
 
-        btnChangeLog.addActionListener(e -> {
-            // Εμφάνιση του log αλλαγών
-            JDialog logDialog = new JDialog(jf, "Ιστορικό Αλλαγών", true);
-            logDialog.setSize(800, 500);
-            logDialog.setLocationRelativeTo(jf);
-
-            JPanel logPanel = new JPanel(new BorderLayout());
-            logPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-
-            JTextArea logTextArea = new JTextArea(changeLog.getFormattedLog());
-            logTextArea.setFont(new Font("Courier New", Font.PLAIN, 11));
-            logTextArea.setEditable(false);
-            logTextArea.setBackground(Color.WHITE);
-
-            JScrollPane scrollPane = new JScrollPane(logTextArea);
-            logPanel.add(scrollPane, BorderLayout.CENTER);
-
-            JButton closeButton = new JButton("Κλείσιμο");
-            styleButton(closeButton);
-            closeButton.addActionListener(ev -> logDialog.dispose());
-
-            JPanel buttonPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            buttonPanel2.add(closeButton);
-            logPanel.add(buttonPanel2, BorderLayout.SOUTH);
-
-            logDialog.add(logPanel);
-            logDialog.setVisible(true);
-        });
-
         // Προσθήκη των κουμπιών
         buttonPanel.add(btnYear);
         buttonPanel.add(btnCountry);
         buttonPanel.add(btnData);
         buttonPanel.add(btnSummary);
         buttonPanel.add(btnAlter);
-        buttonPanel.add(btnChangeLog);
 
         // buttonPanel στο mainPanel
         gbc.gridy = 1; // Μπαίνει 1 grid κάτω από τον τίτλο

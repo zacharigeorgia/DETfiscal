@@ -31,4 +31,8 @@ public class ChangeLog {
         }
         return sb.toString();
     }
+
+    public void addChange(String ministryName, String string, double oldTotal, double newTotal) {
+        throw new UnsupportedOperationException("Unimplemented method 'addChange'");
+    }
 }
