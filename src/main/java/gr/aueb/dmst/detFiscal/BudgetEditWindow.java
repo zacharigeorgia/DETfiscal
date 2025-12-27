@@ -15,6 +15,8 @@ public class BudgetEditWindow extends JFrame {
 
     public BudgetEditWindow(FederalBudget fedBudget, ChangeLog changeLog) {
 
+        this.fedBudget = FederalBudget.getInstance();
+        this.changeLog = new ChangeLog();
         // Βασικές ρυθμίσεις παραθύρου
         setTitle("Επεξεργασία Δεδομένων");
         setSize(400, 300);
