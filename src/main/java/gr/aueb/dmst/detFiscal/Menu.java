@@ -97,8 +97,8 @@ public class Menu {
         });
 
         btnAlter.addActionListener(e -> {
-            // BudgetEditWindow editWindow = new BudgetEditWindow(fedBudget, changeLog);
-            // editWindow.setVisible(true);
+            BudgetEditWindow editWindow = new BudgetEditWindow(fedBudget, changeLog);
+            editWindow.setVisible(true);
         });
 
         btnChangeLog.addActionListener(e -> {
