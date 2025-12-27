@@ -10,6 +10,8 @@ public class BudgetEditWindow extends JFrame {
 
     private JTextField countryField;
     private JTextField yearField;
+    private JButton saveButton;
+    private JButton cancelButton;
 
     public BudgetEditWindow(FederalBudget fedBudget, ChangeLog changeLog) {
 
@@ -52,6 +54,23 @@ public class BudgetEditWindow extends JFrame {
         gbc.gridy = 1;
         gbc.weightx = 1.0;
         mainPanel.add(yearField, gbc);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
+
+        saveButton = new JButton("Αποθήκευση");
+        saveButton.setBackground(Color.WHITE); // Προαιρετικό στυλ
+
+        cancelButton = new JButton("Ακύρωση");
+        cancelButton.setBackground(Color.WHITE); // Προαιρετικό στυλ
+
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2; // Να πιάσει όλο το πλάτος
+        mainPanel.add(buttonPanel, gbc);
 
         // Προσθήκη του panel στο παράθυρο
         add(mainPanel);
