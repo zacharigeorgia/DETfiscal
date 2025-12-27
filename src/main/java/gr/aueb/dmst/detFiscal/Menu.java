@@ -39,8 +39,8 @@ public class Menu {
         /*
          * @param jsonPath
          */
-        String pathMain = "src/main/resources/data/budget_2025.json";
-        String path2024 = "src/main/resources/data/budget_2024.json";
+        String pathMain = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2025.json";
+        String path2024 = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2024.json";
 
         fedBudget.initializeData(pathMain, path2024);
 
