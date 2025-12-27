@@ -20,7 +20,15 @@ public class ChangeLog {
         entries.add("[" + timestamp + "] " + message);
     }
 
+    // epistrefei όλο το ιστορικό σε κείμενο
     public String getFormattedLog() {
         StringBuilder sb = new StringBuilder();
+        if (entries.isEmpty()) {
+            return "No changes recorded yet.";
+        }
+        for (String entry : entries) {
+            sb.append(entry).append("\n");
+        }
+        return sb.toString();
     }
 }
