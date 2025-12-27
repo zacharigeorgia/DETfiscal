@@ -125,7 +125,7 @@ public class FederalBudget {
         System.out.println("Result: " + characterization);
         System.out.println("Inflation: " + details.getInflation() + "%");
 
-        details.plotGraph(); // Assumes this method exists in BudgetDetails
+
     }
 
     /**
@@ -176,7 +176,6 @@ public class FederalBudget {
     public String getCountryName() {
         return countryName;
     }
-
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
