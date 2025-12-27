@@ -10,7 +10,7 @@ public class Scenario {
         this.impactMap = new HashMap<>();
         initializeImpacts();
     }
-    public String analyzeScenario(String categoryName, double oldAmount, double newAmount, boolean isRevenue, BudgetDetails details) {
+public String analyzeScenario(String categoryName, double oldAmount, double newAmount, boolean isRevenue, BudgetDetails details) {
    StringBuilder report = new StringBuilder();
    double difference = newAmount - oldAmount;
 
@@ -33,6 +33,8 @@ public class Scenario {
    report.append("   ").append(message).append("\n\n");
 
    // Υπολογισμός επιπτώσεων στο δημόσιο χρέος
+   // Αν είναι έσοδο: αύξηση εσόδων = θετικό impact (μειώνει χρέος)
+   // Αν είναι έξοδο: αύξηση εξόδων = αρνητικό impact (αυξάνει χρέος)
    double impactOnBalance = isRevenue ? difference : -difference;
    double currentDebtRatio = details.getDebtRatio();
    double gdp = details.getGdp();
@@ -67,4 +69,19 @@ public class Scenario {
 
    return report.toString();
     }
+private String getSocialImpactMessage(String name, double diff) {
+    String[] messages = impactMap.get(name);
+    if (messages != null) {
+        return diff > 0 ? messages[1] : messages[0]; // [0] = μείωση, [1] = αύξηση
+    }
+
+    String lowerName = name.toLowerCase();
+    if (lowerName.contains("υπουργείο")) {
+        return diff > 0
+            ? "Ενίσχυση των αρμοδιοτήτων και των υπηρεσιών του Υπουργείου."
+            : "Περικοπή πόρων λειτουργίας του Υπουργείου.";
+    }
+    return diff > 0 ? "Αύξηση του κονδυλίου." : "Μείωση του κονδυλίου.";
+}
+
 }
