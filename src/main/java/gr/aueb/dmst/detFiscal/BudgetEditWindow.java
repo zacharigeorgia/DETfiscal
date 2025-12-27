@@ -75,5 +75,7 @@ public class BudgetEditWindow extends JFrame {
         // Προσθήκη του panel στο παράθυρο
         add(mainPanel);
 
+        cancelButton.addActionListener(e -> dispose());
+
     }
 }
