@@ -14,8 +14,13 @@ public class ChangeLog {
         log("Application started.");
     }
 
+    // προσθήκη νέας εγγραφής
     public void log(String message) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         entries.add("[" + timestamp + "] " + message);
+    }
+
+    public String getFormattedLog() {
+        StringBuilder sb = new StringBuilder();
     }
 }
