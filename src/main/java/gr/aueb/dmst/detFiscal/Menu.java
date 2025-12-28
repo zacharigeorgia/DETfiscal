@@ -82,7 +82,6 @@ public class Menu {
 
         btnSummary.addActionListener(e -> {
             double inflation = fedBudget.getDetails().getInflation();
-            double balance = fedBudget.calculateTotalBudget();
             String status = fedBudget.getDetails().characterizeTotal(); // Π.χ. Surplus/Deficit
 
             String message = "Economic Indicators:\n" +
