@@ -10,15 +10,19 @@ public class BudgetEditWindow extends JFrame {
 
     private FederalBudget budget;
     private ChangeLog changeLog;
+    private Scenario scenarioAnalyzer;
+
     private JTable table;
     private DefaultTableModel tableModel;
     private JComboBox<String> typeComboBox;
+    private JPanel footerPanel;
+
     private JButton editButton;
     private JButton viewLogButton;
+
     private List<? extends Account> currentAccounts;
     private List<Ministry> currentMinistries;
     private String currentType;
-    private JPanel footerPanel; // Αναφορά στο footer panel για ενημέρωση
     private boolean isMinistryMode; // Flag για να ξέρουμε αν είμαστε σε λειτουργία υπουργείων
 
     public BudgetEditWindow(FederalBudget budget, ChangeLog changeLog) {
