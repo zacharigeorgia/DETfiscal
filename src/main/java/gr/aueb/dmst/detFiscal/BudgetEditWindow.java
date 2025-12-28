@@ -27,9 +27,8 @@ public class BudgetEditWindow extends JFrame {
 
     public BudgetEditWindow(FederalBudget budget, ChangeLog changeLog) {
         this.budget = budget;
-
-        this.budget = FederalBudget.getInstance();
         this.changeLog = changeLog;
+        this.scenarioAnalyzer = new Scenario();
         initializeWindow();
         createUI();
         loadAccounts("Έσοδα"); // Προεπιλογή
@@ -82,7 +81,7 @@ public class BudgetEditWindow extends JFrame {
 
         editButton = new JButton("Επεξεργασία Επιλεγμένου");
         styleButton(editButton);
-        editButton.addActionListener(e -> editSelectedAccount());
+        editButton.addActionListener(e -> editSelectedRow());
         controlPanel.add(editButton);
 
         viewLogButton = new JButton("Προβολή Log Αλλαγών");
@@ -118,25 +117,22 @@ public class BudgetEditWindow extends JFrame {
         mainPanel.add(tablePanel, BorderLayout.CENTER);
 
         // Footer
-        JPanel footerPanel = createFooterPanel();
+        footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        footerPanel.setBackground(new Color(7, 25, 82));
+        footerPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        updateFooter(); // Αρχική ενημέρωση
         mainPanel.add(footerPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
     }
 
-    /**
-     * Φορτώνει τους λογαριασμούς στον πίνακα
-     * 
-     * @param type Ο τύπος ("Έσοδα" ή "Έξοδα")
-     */
+    // Φορτώνει τους λογαριασμούς στον πίνακα
+
     private void loadAccounts(String type) {
         isMinistryMode = false;
         currentType = type;
+        tableModel.setColumnIdentifiers(new String[] { "#", "Όνομα Λογαριασμού", "Ποσό (€)" });
         tableModel.setRowCount(0); // Καθαρίζουμε τον πίνακα
-
-        // Αλλάζουμε τις στήλες για λογαριασμούς
-        String[] columnNames = { "#", "Όνομα", "Τρέχον Ποσό (€)" };
-        tableModel.setColumnIdentifiers(columnNames);
 
         if ("Έσοδα".equals(type)) {
             currentAccounts = budget.getSummary().getRevenues();
@@ -155,18 +151,13 @@ public class BudgetEditWindow extends JFrame {
         }
     }
 
-    /**
-     * Φορτώνει τα υπουργεία στον πίνακα
-     */
+    // Φορτώνει τα υπουργεία στον πίνακα
+
     private void loadMinistries() {
         isMinistryMode = true;
         currentType = "Υπουργεία";
-        tableModel.setRowCount(0); // Καθαρίζουμε τον πίνακα
-
-        // Αλλάζουμε τις στήλες για υπουργεία
-        String[] columnNames = { "#", "Κωδικός", "Όνομα", "Κανονικός Προϋπολογισμός (€)", "Δημόσιες Επενδύσεις (€)",
-                "Σύνολο (€)" };
-        tableModel.setColumnIdentifiers(columnNames);
+        tableModel.setColumnIdentifiers(new String[] { "#", "Κωδικός", "Όνομα", "Σύνολο (€)" });
+        tableModel.setRowCount(0);
 
         currentMinistries = budget.getSummary().getMinistries();
 
@@ -182,363 +173,159 @@ public class BudgetEditWindow extends JFrame {
             };
             tableModel.addRow(row);
         }
+        updateFooter();
     }
 
     /**
      * Επεξεργάζεται τον επιλεγμένο λογαριασμό ή υπουργείο
      */
-    private void editSelectedAccount() {
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this,
-                    "Παρακαλώ επιλέξτε ένα στοιχείο από τον πίνακα.",
-                    "Ειδοποίηση",
+    private void editSelectedRow() {
+        int row = table.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ επιλέξτε μια γραμμή πρώτα!", "Προσοχή",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
 
+        // Ανάλογα με το τι βλέπουμε, καλούμε την κατάλληλη μέθοδο
         if (isMinistryMode) {
-            editMinistry(selectedRow);
+            editMinistry(row);
         } else {
-            editAccount(selectedRow);
+            editAccount(row);
         }
     }
 
     /**
      * Επεξεργάζεται έναν λογαριασμό (Έσοδο ή Έξοδο)
      */
-    private void editAccount(int selectedRow) {
-        Account account = currentAccounts.get(selectedRow);
-        String accountName = account.getName();
-        double currentAmount = account.getAmount();
+    private void editAccount(int row) {
+        Account acc = currentAccounts.get(row);
+        String oldAmountStr = String.valueOf(acc.getAmount());
 
-        // Δημιουργία dialog για επεξεργασία
-        JDialog editDialog = new JDialog(this, "Επεξεργασία Λογαριασμού", true);
-        editDialog.setSize(500, 250);
-        editDialog.setLocationRelativeTo(this);
+        // Ζητάμε τη νέα τιμή
+        String input = JOptionPane.showInputDialog(this,
+                "Επεξεργασία: " + acc.getName() + "\nΤρέχον Ποσό: " + String.format("%,.2f", acc.getAmount()),
+                oldAmountStr);
 
-        JPanel dialogPanel = new JPanel(new BorderLayout());
-        dialogPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        // Πληροφορίες λογαριασμού
-        JPanel infoPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        infoPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
-
-        JLabel nameLabel = new JLabel("Όνομα:");
-        nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoPanel.add(nameLabel);
-
-        JLabel nameValue = new JLabel(accountName);
-        nameValue.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        infoPanel.add(nameValue);
-
-        JLabel typeLabel = new JLabel("Τύπος:");
-        typeLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoPanel.add(typeLabel);
-
-        JLabel typeValue = new JLabel(currentType);
-        typeValue.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        infoPanel.add(typeValue);
-
-        JLabel currentLabel = new JLabel("Τρέχον Ποσό:");
-        currentLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoPanel.add(currentLabel);
-
-        JLabel currentValue = new JLabel(String.format("%,.2f €", currentAmount));
-        currentValue.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        infoPanel.add(currentValue);
-
-        dialogPanel.add(infoPanel, BorderLayout.NORTH);
-
-        // Input panel
-        JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel newAmountLabel = new JLabel("Νέο Ποσό (€):");
-        newAmountLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        inputPanel.add(newAmountLabel);
-
-        JTextField amountField = new JTextField(15);
-        amountField.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        amountField.setText(String.format("%.2f", currentAmount));
-        inputPanel.add(amountField);
-
-        dialogPanel.add(inputPanel, BorderLayout.CENTER);
-
-        // Buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton saveButton = new JButton("Αποθήκευση");
-        styleButton(saveButton);
-        saveButton.addActionListener(e -> {
+        if (input != null && !input.trim().isEmpty()) {
             try {
-                String amountText = amountField.getText().trim().replace(",", ".");
-                double newAmount = Double.parseDouble(amountText);
+                // Μετατροπή και Validation
+                double newAmount = Double.parseDouble(input.replace(",", ".")); // Διορθώνει τυχόν κόμματα
+                if (newAmount < 0)
+                    throw new NumberFormatException();
 
-                // Validation
+                double oldAmount = acc.getAmount();
 
-                // Ενημέρωση του λογαριασμού
-                double oldAmount = account.getAmount();
-                account.setAmount(newAmount);
+                // 1. ΕΝΗΜΕΡΩΣΗ ΔΕΔΟΜΕΝΩΝ
+                acc.setAmount(newAmount);
 
-                // Καταγραφή αλλαγής
-                changeLog.addChange(accountName, currentType, oldAmount, newAmount);
+                // 2. ΕΝΗΜΕΡΩΣΗ ΠΙΝΑΚΑ (Οπτικά)
+                tableModel.setValueAt(String.format("%,.2f", newAmount), row, 2);
 
-                // Ενημέρωση footer
+                // 3. ΚΑΤΑΓΡΑΦΗ ΣΤΟ LOG
+                changeLog.addChange(acc.getName(), currentType, oldAmount, newAmount);
 
-                // Εμφάνιση μηνύματος επιτυχίας με impact analysis
+                // 4. ΕΝΗΜΕΡΩΣΗ FOOTER
+                updateFooter();
 
-                editDialog.dispose();
+                // 5. ΑΝΑΛΥΣΗ ΕΠΙΠΤΩΣΕΩΝ (Scenario)
+                // Ελέγχουμε αν είναι έσοδο για την παράμετρο του Scenario
+                boolean isRevenue = currentType.equals("Έσοδα");
+                String analysis = scenarioAnalyzer.analyzeScenario(acc.getName(), oldAmount, newAmount, isRevenue,
+                        budget.getDetails());
+
+                JOptionPane.showMessageDialog(this, "Η αλλαγή αποθηκεύτηκε!\n\n" + analysis, "Επιτυχία",
+                        JOptionPane.INFORMATION_MESSAGE);
+
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(editDialog,
-                        "Παρακαλώ εισάγετε ένα έγκυρο αριθμό.",
-                        "Σφάλμα",
-                        JOptionPane.ERROR_MESSAGE);
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(editDialog,
-                        ex.getMessage(),
-                        "Σφάλμα Επικύρωσης",
+                JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο θετικό αριθμό.", "Σφάλμα",
                         JOptionPane.ERROR_MESSAGE);
             }
-        });
-
-        JButton cancelButton = new JButton("Ακύρωση");
-        styleButton(cancelButton);
-        cancelButton.addActionListener(e -> editDialog.dispose());
-
-        buttonPanel.add(cancelButton);
-        buttonPanel.add(saveButton);
-        dialogPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        editDialog.add(dialogPanel);
-        editDialog.setVisible(true);
+        }
     }
 
     /**
      * Επεξεργάζεται ένα υπουργείο
      */
-    private void editMinistry(int selectedRow) {
-        Ministry ministry = currentMinistries.get(selectedRow);
-        String ministryName = ministry.getName();
-        String ministryCode = ministry.getCode();
-        double currentRegular = ministry.getRegularBudget();
-        double currentInvestments = ministry.getPublicInvestments();
-        double currentTotal = ministry.getTotal();
+    private void editMinistry(int row) {
+        Ministry min = currentMinistries.get(row);
+        // Για τα υπουργεία, ας υποθέσουμε ότι αλλάζουμε το Σύνολο για απλότητα
+        // (ή θα μπορούσαμε να ζητάμε Regular/Investment χωριστά)
 
-        // Δημιουργία dialog για επεξεργασία
-        JDialog editDialog = new JDialog(this, "Επεξεργασία Υπουργείου", true);
-        editDialog.setSize(550, 350);
-        editDialog.setLocationRelativeTo(this);
+        String input = JOptionPane.showInputDialog(this,
+                "Επεξεργασία: " + min.getName() + "\nΤρέχον Σύνολο: " + String.format("%,.2f", min.getTotal()),
+                String.valueOf(min.getTotal()));
 
-        JPanel dialogPanel = new JPanel(new BorderLayout());
-        dialogPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        // Πληροφορίες υπουργείου
-        JPanel infoPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        infoPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
-
-        JLabel codeLabel = new JLabel("Κωδικός:");
-        codeLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoPanel.add(codeLabel);
-
-        JLabel codeValue = new JLabel(ministryCode);
-        codeValue.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        infoPanel.add(codeValue);
-
-        JLabel nameLabel = new JLabel("Όνομα:");
-        nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoPanel.add(nameLabel);
-
-        JLabel nameValue = new JLabel(ministryName);
-        nameValue.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        infoPanel.add(nameValue);
-
-        JLabel totalLabel = new JLabel("Τρέχον Σύνολο:");
-        totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoPanel.add(totalLabel);
-
-        JLabel totalValue = new JLabel(String.format("%,.2f €", currentTotal));
-        totalValue.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        infoPanel.add(totalValue);
-
-        dialogPanel.add(infoPanel, BorderLayout.NORTH);
-
-        // Input panel
-        JPanel inputPanel = new JPanel(new GridLayout(2, 2, 10, 10));
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-
-        JLabel regularLabel = new JLabel("Κανονικός Προϋπολογισμός (€):");
-        regularLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        inputPanel.add(regularLabel);
-
-        JTextField regularField = new JTextField(15);
-        regularField.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        regularField.setText(String.format("%.2f", currentRegular));
-        inputPanel.add(regularField);
-
-        JLabel investmentsLabel = new JLabel("Δημόσιες Επενδύσεις (€):");
-        investmentsLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        inputPanel.add(investmentsLabel);
-
-        JTextField investmentsField = new JTextField(15);
-        investmentsField.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        investmentsField.setText(String.format("%.2f", currentInvestments));
-        inputPanel.add(investmentsField);
-
-        dialogPanel.add(inputPanel, BorderLayout.CENTER);
-
-        // Buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton saveButton = new JButton("Αποθήκευση");
-        styleButton(saveButton);
-        saveButton.addActionListener(e -> {
+        if (input != null) {
             try {
-                String regularText = regularField.getText().trim().replace(",", ".");
-                String investmentsText = investmentsField.getText().trim().replace(",", ".");
-                double newRegular = Double.parseDouble(regularText);
-                double newInvestments = Double.parseDouble(investmentsText);
+                double newTotal = Double.parseDouble(input.replace(",", "."));
+                if (newTotal < 0)
+                    throw new NumberFormatException();
 
-                // Validation
-                if (newRegular < 0 || newInvestments < 0) {
-                    throw new IllegalArgumentException("Τα ποσά δεν μπορούν να είναι αρνητικά!");
-                }
+                double oldTotal = min.getTotal();
 
-                // Ενημέρωση του υπουργείου
-                double oldTotal = ministry.getTotal();
-                ministry.setRegularBudget(newRegular);
-                ministry.setPublicInvestments(newInvestments);
-                double newTotal = newRegular + newInvestments;
-                ministry.setTotal(newTotal);
+                // Ενημέρωση (εδώ απλοϊκά βάζουμε όλο το ποσό στο Regular Budget για να
+                // ταιριάζει το σύνολο)
+                min.setRegularBudget(newTotal);
+                min.setPublicInvestments(0); // Μηδενίζουμε το άλλο για να βγει το σύνολο σωστό (ή φτιάξε πιο σύνθετο
+                                             // dialog)
+                min.setTotal(newTotal);
 
-                // Καταγραφή αλλαγής (χρησιμοποιούμε το total για το changeLog)
-                changeLog.addChange(ministryName, "Υπουργείο", oldTotal, newTotal);
+                // Ενημέρωση Πίνακα
+                tableModel.setValueAt(String.format("%,.2f", newTotal), row, 3);
 
-                // Ενημέρωση πίνακα
-                tableModel.setValueAt(String.format("%,.2f", newRegular), selectedRow, 3);
-                tableModel.setValueAt(String.format("%,.2f", newInvestments), selectedRow, 4);
-                tableModel.setValueAt(String.format("%,.2f", newTotal), selectedRow, 5);
+                // Καταγραφή
+                changeLog.addChange(min.getName(), "Υπουργείο", oldTotal, newTotal);
 
-                // Ενημέρωση footer
+                updateFooter();
 
-                // Μήνυμα ότι η ανάλυση επιπτώσεων δεν είναι διαθέσιμη ακόμα για υπουργεία
-                String ministryMessage = "Η αλλαγή αποθηκεύτηκε επιτυχώς!\n\n" +
-                        "Σημείωση: Η ανάλυση επιπτώσεων και η επιρροή στο δημόσιο χρέος\n" +
-                        "για αλλαγές προϋπολογισμού υπουργείων δεν είναι διαθέσιμη ακόμα.\n" +
-                        "Αυτή η λειτουργία είναι διαθέσιμη μόνο για αλλαγές εσόδων και εξόδων.";
-
-                JOptionPane.showMessageDialog(editDialog,
-                        ministryMessage,
-                        "Επιτυχία",
+                JOptionPane.showMessageDialog(this, "Το προϋπολογισμός του Υπουργείου ενημερώθηκε.", "Επιτυχία",
                         JOptionPane.INFORMATION_MESSAGE);
 
-                editDialog.dispose();
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(editDialog,
-                        "Παρακαλώ εισάγετε έγκυρους αριθμούς.",
-                        "Σφάλμα",
-                        JOptionPane.ERROR_MESSAGE);
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(editDialog,
-                        ex.getMessage(),
-                        "Σφάλμα Επικύρωσης",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Μη έγκυρος αριθμός.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
             }
-        });
-
-        JButton cancelButton = new JButton("Ακύρωση");
-        styleButton(cancelButton);
-        cancelButton.addActionListener(ev -> editDialog.dispose());
-
-        buttonPanel.add(cancelButton);
-        buttonPanel.add(saveButton);
-        dialogPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        editDialog.add(dialogPanel);
-        editDialog.setVisible(true);
+        }
     }
 
-    /**
-     * Εμφανίζει μήνυμα επιτυχίας με ανάλυση επιπτώσεων
-     * 
-     * @param parentDialog   Το parent dialog
-     * @param impactAnalysis Η ανάλυση επιπτώσεων
-     */
-    private void showSuccessWithImpact(JDialog parentDialog, String impactAnalysis) {
-        JDialog impactDialog = new JDialog(parentDialog, "Ανάλυση Επιπτώσεων", true);
-        impactDialog.setSize(600, 400);
-        impactDialog.setLocationRelativeTo(parentDialog);
+    private void updateFooter() {
+        footerPanel.removeAll();
 
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        // Υπολογισμός συνόλων από το Singleton
+        double totalRev = budget.getSummary().calculateTotalRevenues();
+        double totalExp = budget.getSummary().calculateTotalExpenditures();
+        double balance = totalRev - totalExp;
 
-        // Header
-        JLabel headerLabel = new JLabel("Η αλλαγή αποθηκεύτηκε επιτυχώς!");
-        headerLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        headerLabel.setForeground(new Color(0, 128, 0));
-        headerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        mainPanel.add(headerLabel, BorderLayout.NORTH);
+        JLabel statsLabel = new JLabel(String.format(
+                "<html><b>Σύνολα:</b> Έσοδα: <font color='green'>%,.2f €</font> | Έξοδα: <font color='red'>%,.2f €</font> | Ισοζύγιο: <b>%,.2f €</b></html>",
+                totalRev, totalExp, balance));
 
-        // Impact Analysis
-        JTextArea impactTextArea = new JTextArea(impactAnalysis);
-        impactTextArea.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        impactTextArea.setEditable(false);
-        impactTextArea.setBackground(Color.WHITE);
-        impactTextArea.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(Color.GRAY),
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        statsLabel.setForeground(Color.WHITE);
+        statsLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        footerPanel.add(statsLabel);
 
-        JScrollPane scrollPane = new JScrollPane(impactTextArea);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-
-        // Close button
-        JButton closeButton = new JButton("Κατάλαβα");
-        styleButton(closeButton);
-        closeButton.addActionListener(e -> impactDialog.dispose());
-
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.add(closeButton);
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        impactDialog.add(mainPanel);
-        impactDialog.setVisible(true);
+        footerPanel.revalidate();
+        footerPanel.repaint();
     }
 
-    /**
-     * Εμφανίζει το log των αλλαγών
-     */
     private void showChangeLog() {
+        // Δημιουργία διαλόγου (popup παράθυρο)
         JDialog logDialog = new JDialog(this, "Ιστορικό Αλλαγών", true);
-        logDialog.setSize(800, 500);
+        logDialog.setSize(600, 400);
         logDialog.setLocationRelativeTo(this);
 
-        JPanel logPanel = new JPanel(new BorderLayout());
-        logPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        // Περιοχή κειμένου για να δείξουμε το log
+        JTextArea logArea = new JTextArea(changeLog.getFormattedLog());
+        logArea.setEditable(false); // Μόνο για ανάγνωση
+        logArea.setFont(new Font("Monospaced", Font.PLAIN, 12)); // Γραμματοσειρά "μηχανής"
+        logArea.setMargin(new Insets(10, 10, 10, 10));
 
-        JTextArea logTextArea = new JTextArea(changeLog.getFormattedLog());
-        logTextArea.setFont(new Font("Courier New", Font.PLAIN, 11));
-        logTextArea.setEditable(false);
-        logTextArea.setBackground(Color.WHITE);
+        // Προσθήκη scrollbar αν είναι μεγάλο το κείμενο
+        JScrollPane scrollPane = new JScrollPane(logArea);
+        logDialog.add(scrollPane);
 
-        JScrollPane scrollPane = new JScrollPane(logTextArea);
-        logPanel.add(scrollPane, BorderLayout.CENTER);
-
-        logDialog.add(logPanel);
+        // Εμφάνιση
         logDialog.setVisible(true);
-    }
-
-    // footer
-    private JPanel createFooterPanel() {
-        footerPanel = new JPanel(new GridLayout(1, 4, 10, 10));
-        footerPanel.setBackground(new Color(7, 25, 82));
-        footerPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-
-        return footerPanel;
-    }
-
-    private JLabel createFooterLabel(String title, double value) {
-        JLabel label = new JLabel("<html><div style='text-align: center;'>" +
-                "<b>" + title + ":</b><br>" + String.format("%,.2f €", value) + "</div></html>");
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        label.setForeground(Color.WHITE);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        return label;
     }
 
     private void styleButton(JButton btn) {
@@ -546,7 +333,5 @@ public class BudgetEditWindow extends JFrame {
         btn.setForeground(new Color(7, 25, 82));
         btn.setFont(new Font("Segoe UI", Font.BOLD, 12));
         btn.setFocusPainted(false);
-        btn.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 }
