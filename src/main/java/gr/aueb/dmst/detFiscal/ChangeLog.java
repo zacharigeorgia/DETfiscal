@@ -32,7 +32,9 @@ public class ChangeLog {
         return sb.toString();
     }
 
-    public void addChange(String ministryName, String string, double oldTotal, double newTotal) {
-        throw new UnsupportedOperationException("Unimplemented method 'addChange'");
+    public void addChange(String name, String type, double oldVal, double newVal) {
+        // Διαμόρφωση του μηνύματος
+        String message = String.format("Changed %s '%s': %.2f -> %.2f", type, name, oldVal, newVal);
+        log(message);
     }
 }
