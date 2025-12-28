@@ -1,4 +1,5 @@
 package gr.aueb.dmst.detFiscal;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -49,6 +50,7 @@ public class BudgetCountriesComparator {
     }
 
     private final MacroData GreecesData;
+
     public BudgetCountriesComparator(MacroData data) {
         GreecesData = data;
     }
@@ -78,7 +80,7 @@ public class BudgetCountriesComparator {
         } else {
             System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της Γερμανίας και ισούται με" + cur_value);
         }
-        
+
         cur_value = GreecesData.getDebtRatio();
         if (cur_value > GERMANYS_VALUES.get("DebtRatio")) {
             System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
@@ -107,7 +109,9 @@ public class BudgetCountriesComparator {
             System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
             System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + GERMANYS_VALUES.get("IncomeTaxRatePercent") + "ο φορολογικός συντελεστής εισοδήματος της Γερμανίας");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+            System.out.println(
+                    "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με"
+                            + cur_value);
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
@@ -153,7 +157,7 @@ public class BudgetCountriesComparator {
         } else {
             System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της Βουλγαρίας και ισούται με" + cur_value);
         }
-        
+
         cur_value = GreecesData.getDebtRatio();
         if (cur_value > BULGARIAS_VALUES.get("DebtRatio")) {
             System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
@@ -182,7 +186,9 @@ public class BudgetCountriesComparator {
             System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Βουλγαρίας είναι μεγαλύτερος της Ελλάδας");
             System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + BULGARIAS_VALUES.get("IncomeTaxRatePercent") + "ο φορολογικός συντελεστής εισοδήματος της Βουλγαρίας");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Βουλγαρίας και ισούται με" + cur_value);
+            System.out.println(
+                    "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Βουλγαρίας και ισούται με"
+                            + cur_value);
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
@@ -228,7 +234,7 @@ public class BudgetCountriesComparator {
         } else {
             System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της Ιταλίας και ισούται με" + cur_value);
         }
-        
+
         cur_value = GreecesData.getDebtRatio();
         if (cur_value > ITALYS_VALUES.get("DebtRatio")) {
             System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
@@ -257,7 +263,9 @@ public class BudgetCountriesComparator {
             System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Ιταλίας είναι μεγαλύτερος της Ελλάδας");
             System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + ITALYS_VALUES.get("IncomeTaxRatePercent") + "ο φορολογικός συντελεστής εισοδήματος της Ιταλίας");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Ιταλίας και ισούται με" + cur_value);
+            System.out.println(
+                    "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Ιταλίας και ισούται με"
+                            + cur_value);
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
@@ -281,7 +289,7 @@ public class BudgetCountriesComparator {
         } else { 
             System.out.println("η βάση φόρου εισοδήματος της Ελλάδας είναι ίση με της Ιταλίας και ισούται με" + cur_value);
         }
-        //κώδικας για τη Σερβία
+        // κώδικας για τη Σερβία
         cur_value = GreecesData.getInflation();
         if (cur_value > SERBIAS_VALUES.get("Inflation")) {
             System.out.println("Ο πληθωρισμός της Ελλάδας ήταν μεγαλύτερος για το 2025");
@@ -303,7 +311,7 @@ public class BudgetCountriesComparator {
         } else {
             System.out.println("το ΑΕΠ της Ελλάδας είναι ίσο με της Σερβίας και ισούται με" + cur_value);
         }
-        
+
         cur_value = GreecesData.getDebtRatio();
         if (cur_value > SERBIAS_VALUES.get("DebtRatio")) {
             System.out.println("Ο λόγος χρέους της Ελλάδας ήταν μεγαλύτερος για το 2025");
@@ -332,7 +340,9 @@ public class BudgetCountriesComparator {
             System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Σερβίας είναι μεγαλύτερος της Ελλάδας");
             System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + SERBIAS_VALUES.get("IncomeTaxRatePercent") + "ο φορολογικός συντελεστής εισοδήματος της Σερβίας");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Σερβίας και ισούται με" + cur_value);
+            System.out.println(
+                    "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Σερβίας και ισούται με"
+                            + cur_value);
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
@@ -356,5 +366,5 @@ public class BudgetCountriesComparator {
         } else { 
             System.out.println("η βάση φόρου εισοδήματος της Ελλάδας είναι ίση με της Σερβίας και ισούται με" + cur_value);
         }
-    }   
+    }
 }
