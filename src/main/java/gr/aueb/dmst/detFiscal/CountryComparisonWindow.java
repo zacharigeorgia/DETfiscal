@@ -65,9 +65,6 @@ public class CountryComparisonWindow extends JFrame {
                 table.getTableHeader().setBackground(new Color(7, 25, 82));
                 table.getTableHeader().setForeground(Color.WHITE);
 
-                // Στοίχιση στο κέντρο για τα νούμερα (προαιρετικό)
-                // ((DefaultTableCellRenderer)table.getDefaultRenderer(Object.class)).setHorizontalAlignment(JLabel.CENTER);
-
                 JScrollPane scrollPane = new JScrollPane(table);
                 scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
                 mainPanel.add(scrollPane, BorderLayout.CENTER);
@@ -78,10 +75,6 @@ public class CountryComparisonWindow extends JFrame {
                 add(mainPanel);
         }
 
-        /**
-         * Γεμίζει τον πίνακα παίρνοντας δεδομένα από το BudgetDetails (Ελλάδα)
-         * και από την BudgetCountriesComparator (Άλλες χώρες).
-         */
         private void fillTableData() {
                 BudgetDetails grDetails = budget.getDetails();
 
