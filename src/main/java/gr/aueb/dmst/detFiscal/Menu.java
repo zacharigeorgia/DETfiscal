@@ -37,8 +37,8 @@ public class Menu {
 
         FederalBudget fedBudget = FederalBudget.getInstance();
 
-        String pathMain = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2025.json";
-        String path2024 = "C:\\Users\\saraf\\Desktop\\spinel\\DETfiscal\\src\\main\\resources\\data\\sample_budget_2024.json";
+        String pathMain = "DETfiscal/src/main/resources/data/sample_budget_2025.json";
+        String path2024 = "DETfiscal/src/main/resources/data/sample_budget_2024.json";
 
         fedBudget.initializeData(pathMain, path2024);
 
