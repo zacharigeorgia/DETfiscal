@@ -84,7 +84,7 @@ public class BudgetCountriesComparator {
         if (cur_value > GDP_VALUES.get("Germany")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value +  " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Germany") + " το ΑΕΠ της Γερμανίας.");
-        } else if(cur_value <GDP_VALUES.get("Germany")) {   
+        } else if(cur_value < GDP_VALUES.get("Germany")) {   
             System.out.println( "Η Γερμανία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Germany") + " το ΑΕΠ της Γερμανίας.");
         } else {
@@ -95,7 +95,7 @@ public class BudgetCountriesComparator {
         if (cur_value > DEBTRATIO_VALUES.get("Germany")) {
             System.out.println("H Γερμανία είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
             System.out.println(cur_value +  " ο λόγος χρέους της Ελλάδας " + DEBTRATIO_VALUES.get("Germany") + " ο λόγος χρέους της Γερμανίας.");
-        } else if(cur_value <DEBTRATIO_VALUES.get("Germany")) {   
+        } else if(cur_value < DEBTRATIO_VALUES.get("Germany")) {   
             System.out.println( "H Ελλάδα είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
             System.out.println(cur_value + " ο λόγος χρέους της Ελλάδας " + DEBTRATIO_VALUES.get("Germany") + " ο λόγος χρέους της Γερμανίας.");
         } else {
@@ -103,30 +103,30 @@ public class BudgetCountriesComparator {
         }
         cur_value = GreecesData.getVatRatePercent();
         if (cur_value > VATRATEPERCENT_VALUES.get("Germany")) {
-            System.out.println("Ο ΦΠΑ της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο ΦΠΑ  της Ελλάδας" + VATRATEPERCENT_VALUES.get("Germany") + "ο ΦΠΑ της Γερμανίας");
-        } else if(cur_value <VATRATEPERCENT_VALUES.get("Germany")) {   
-            System.out.println( "Ο ΦΠΑ της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
-            System.out.println(cur_value + "ο ΦΠΑ της Ελλάδας" + VATRATEPERCENT_VALUES.get("Germany") + "ο ΦΠΑ της Γερμανίας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Γερμανία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ  της Ελλάδας " + VATRATEPERCENT_VALUES.get("Germany") + " ο ΦΠΑ της Γερμανίας.");
+        } else if(cur_value < VATRATEPERCENT_VALUES.get("Germany")) {   
+            System.out.println( "Η Γερμανία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ της Ελλάδας " + VATRATEPERCENT_VALUES.get("Germany") + " ο ΦΠΑ της Γερμανίας.");
         } else {
-            System.out.println("ο ΦΠΑ της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Γερμανία.");
         }
         cur_value = GreecesData.getIncomeTaxRatePercent();
         if (cur_value > INCOMETAXRATEPERCENT_VALUES.get("Germany")) {
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Germany") + "ο φορολογικός συντελεστής εισοδήματος της Γερμανίας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Γερμανία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Germany") + " ο φορολογικός συντελεστής εισοδήματος της Γερμανίας.");
         } else if(cur_value <INCOMETAXRATEPERCENT_VALUES.get("Germany")) {   
-            System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Γερμανίας είναι μεγαλύτερος της Ελλάδας");
-            System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Germany") + "ο φορολογικός συντελεστής εισοδήματος της Γερμανίας");
+            System.out.println( "Η Γερμανία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο φορολογικός συντελεστής εισοδήματος της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Germany") + " ο φορολογικός συντελεστής εισοδήματος της Γερμανίας.");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Γερμανίας και ισούται με" + cur_value);
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Γερμανία.");
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
         if (cur_value > BASEREVENUEVAT_VALUES.get("Germany")) {
             System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value +  " η βάση εσόδων ΦΠΑ της Ελλάδας " + BASEREVENUEVAT_VALUES.get("Germany") + " η βάση εσόδων ΦΠΑ της Γερμανίας.");
-        } else if(cur_value <BASEREVENUEVAT_VALUES.get("Germany")) {   
+        } else if(cur_value < BASEREVENUEVAT_VALUES.get("Germany")) {   
             System.out.println( "Η Γερμανία έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value + " η βάση εσόδων ΦΠΑ της Ελλάδας " + BASEREVENUEVAT_VALUES.get("Germany") + " η βάση εσόδων ΦΠΑ της Γερμανίας.");
         } else {
@@ -137,7 +137,7 @@ public class BudgetCountriesComparator {
         if (cur_value > BASEREVENUEINCOME_VALUES.get("Germany")) {
             System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value +  " η βάση εσόδων φόρου εισοδήματος της Ελλάδας " + BASEREVENUEINCOME_VALUES.get("Germany") + " η βάση εσόδων φόρου εισοδήματος της Γερμανίας.");
-        } else if(cur_value <BASEREVENUEINCOME_VALUES.get("Germany")) {   
+        } else if(cur_value < BASEREVENUEINCOME_VALUES.get("Germany")) {   
             System.out.println( "Η Γερμανία έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value + " η βάση εσόδων φόρου εισοδήματος της Ελλάδας " + BASEREVENUEINCOME_VALUES.get("Germany") + " η βάση εσόδων φόρου εισοδήματος της Γερμανίας.");
         } else { 
@@ -159,7 +159,7 @@ public class BudgetCountriesComparator {
         if (cur_value > GDP_VALUES.get("Bulgaria")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value +  " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Bulgaria") + " το ΑΕΠ της Βουλγαρίας.");
-        } else if(cur_value <GDP_VALUES.get("Bulgaria")) {   
+        } else if(cur_value < GDP_VALUES.get("Bulgaria")) {   
             System.out.println( "Η Βουλγαρία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Bulgaria") + " το ΑΕΠ της Βουλγαρίας.");
         } else {
@@ -170,7 +170,7 @@ public class BudgetCountriesComparator {
         if (cur_value > DEBTRATIO_VALUES.get("Bulgaria")) {
             System.out.println("H Βουλγαρία είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
             System.out.println(cur_value +  " ο λόγος χρέους της Ελλάδας " + DEBTRATIO_VALUES.get("Bulgaria") + " ο λόγος χρέους της Βουλγαρίας.");
-        } else if(cur_value <DEBTRATIO_VALUES.get("Bulgaria")) {   
+        } else if(cur_value < DEBTRATIO_VALUES.get("Bulgaria")) {   
             System.out.println( "Η Ελλάδα είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
             System.out.println(cur_value + " ο λόγος χρέους της Ελλάδας " + DEBTRATIO_VALUES.get("Bulgaria") + " ο λόγος χρέους της Βουλγαρίας.");
         } else {
@@ -178,30 +178,30 @@ public class BudgetCountriesComparator {
         }
         cur_value = GreecesData.getVatRatePercent();
         if (cur_value > VATRATEPERCENT_VALUES.get("Bulgaria")) {
-            System.out.println("Ο ΦΠΑ της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο ΦΠΑ  της Ελλάδας" + VATRATEPERCENT_VALUES.get("Bulgaria") + "ο ΦΠΑ της Βουλγαρίας");
-        } else if(cur_value <VATRATEPERCENT_VALUES.get("Bulgaria")) {   
-            System.out.println( "Ο ΦΠΑ της Βουλγαρίας είναι μεγαλύτερος της Ελλάδας");
-            System.out.println(cur_value + "ο ΦΠΑ της Ελλάδας" + VATRATEPERCENT_VALUES.get("Bulgaria") + "ο ΦΠΑ της Βουλγαρίας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Βουλγαρία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ  της Ελλάδας " + VATRATEPERCENT_VALUES.get("Bulgaria") + " ο ΦΠΑ της Βουλγαρίας.");
+        } else if(cur_value < VATRATEPERCENT_VALUES.get("Bulgaria")) {   
+            System.out.println( "Η Βουλγαρία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ της Ελλάδας " + VATRATEPERCENT_VALUES.get("Bulgaria") + " ο ΦΠΑ της Βουλγαρίας.");
         } else {
-            System.out.println("ο ΦΠΑ της Ελλάδας είναι ίσος με της Βουλγαρίας και ισούται με" + cur_value);
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Βουλγαρία.");
         }
         cur_value = GreecesData.getIncomeTaxRatePercent();
         if (cur_value > INCOMETAXRATEPERCENT_VALUES.get("Bulgaria")) {
-            System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Bulgaria") + " ο φορολογικός συντελεστής εισοδήματος της Βουλγαρίας.");
-        } else if(cur_value <INCOMETAXRATEPERCENT_VALUES.get("Bulgaria")) {   
-            System.out.println( "Η Βουλγαρία έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
+            System.out.println("Η Γερμανία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Bulgaria") + " ο φορολογικός συντελεστής εισοδήματος της Βουλγαρίας.");
+        } else if(cur_value < INCOMETAXRATEPERCENT_VALUES.get("Bulgaria")) {   
+            System.out.println( "Η Γερμανία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
             System.out.println(cur_value + " ο φορολογικός συντελεστής εισοδήματος της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Bulgaria") + " ο φορολογικός συντελεστής εισοδήματος της Βουλγαρίας.");
         } else {
-            System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει το ίδιο ποσό απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές με τη Βουλγαρία.");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Βουλγαρία.");
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
         if (cur_value > BASEREVENUEVAT_VALUES.get("Bulgaria")) {
             System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value +  " η βάση εσόδων ΦΠΑ της Ελλάδας " + BASEREVENUEVAT_VALUES.get("Bulgaria") + " η βάση εσόδων ΦΠΑ της Βουλγαρίας.");
-        } else if(cur_value <BASEREVENUEVAT_VALUES.get("Bulgaria")) {   
+        } else if(cur_value < BASEREVENUEVAT_VALUES.get("Bulgaria")) {   
             System.out.println( "Η Βουλγαρία έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value + " η βάση εσόδων ΦΠΑ της Ελλάδας " + BASEREVENUEVAT_VALUES.get("Bulgaria") + " η βάση εσόδων ΦΠΑ της Βουλγαρίας.");
         } else {
@@ -253,30 +253,30 @@ public class BudgetCountriesComparator {
         }
         cur_value = GreecesData.getVatRatePercent();
         if (cur_value > VATRATEPERCENT_VALUES.get("Italy")) {
-            System.out.println("Ο ΦΠΑ της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο ΦΠΑ  της Ελλάδας" + VATRATEPERCENT_VALUES.get("Italy") + "ο ΦΠΑ της Ιταλίας");
-        } else if(cur_value <VATRATEPERCENT_VALUES.get("Italy")) {   
-            System.out.println( "Ο ΦΠΑ της Ιταλίας είναι μεγαλύτερος της Ελλάδας");
-            System.out.println(cur_value + "ο ΦΠΑ της Ελλάδας" + VATRATEPERCENT_VALUES.get("Italy") + "ο ΦΠΑ της Ιταλίας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ιταλία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ  της Ελλάδας " + VATRATEPERCENT_VALUES.get("Italy") + " ο ΦΠΑ της Ιταλίας.");
+        } else if(cur_value < VATRATEPERCENT_VALUES.get("Italy")) {   
+            System.out.println( "Η Ιταλία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ της Ελλάδας " + VATRATEPERCENT_VALUES.get("Italy") + " ο ΦΠΑ της Ιταλίας.");
         } else {
-            System.out.println("ο ΦΠΑ της Ελλάδας είναι ίσος με της Ιταλίας και ισούται με" + cur_value);
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Ιταλία.");
         }
         cur_value = GreecesData.getIncomeTaxRatePercent();
         if (cur_value > INCOMETAXRATEPERCENT_VALUES.get("Italy")) {
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Italy") + "ο φορολογικός συντελεστής εισοδήματος της Ιταλίας");
-        } else if(cur_value <INCOMETAXRATEPERCENT_VALUES.get("Italy")) {   
-            System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Ιταλίας είναι μεγαλύτερος της Ελλάδας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ιταλία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Italy") + "ο φορολογικός συντελεστής εισοδήματος της Ιταλίας");
+        } else if(cur_value < INCOMETAXRATEPERCENT_VALUES.get("Italy")) {   
+            System.out.println( "Η Ιταλία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
             System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Italy") + "ο φορολογικός συντελεστής εισοδήματος της Ιταλίας");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Ιταλίας και ισούται με" + cur_value);
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Ιταλία.");
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
         if (cur_value > BASEREVENUEVAT_VALUES.get("Italy")) {
             System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value +  " η βάση εσόδων ΦΠΑ της Ελλάδας " + BASEREVENUEVAT_VALUES.get("Italy") + " η βάση εσόδων ΦΠΑ της Ιταλίας.");
-        } else if(cur_value <BASEREVENUEVAT_VALUES.get("Italy")) {   
+        } else if(cur_value < BASEREVENUEVAT_VALUES.get("Italy")) {   
             System.out.println( "Η Ιταλία έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value + " η βάση εσόδων ΦΠΑ της Ελλάδας " + BASEREVENUEVAT_VALUES.get("Italy") + " η βάση εσόδων ΦΠΑ της Ιταλίας.");
         } else {
@@ -287,7 +287,7 @@ public class BudgetCountriesComparator {
         if (cur_value > BASEREVENUEINCOME_VALUES.get("Italy")) {
             System.out.println("Η Ελλάδα έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value +  " η βάση εσόδων φόρου εισοδήματος της Ελλάδας " + BASEREVENUEINCOME_VALUES.get("Italy") + " η βάση εσόδων φόρου εισοδήματος της Ιταλίας.");
-        } else if(cur_value <BASEREVENUEINCOME_VALUES.get("Italy")) {   
+        } else if(cur_value < BASEREVENUEINCOME_VALUES.get("Italy")) {   
             System.out.println( "Η Ιταλία έχει τη δυνατότητα να εισπράξει περισσότερα απ' τους φόρους εφαρμόζοντας τις ίδιες πολιτικές.");
             System.out.println(cur_value + " η βάση εσόδων φόρου εισοδήματος της Ελλάδας " + BASEREVENUEINCOME_VALUES.get("Italy") + " η βάση εσόδων φόρου εισοδήματος της Ιταλίας.");
         } else { 
@@ -309,7 +309,7 @@ public class BudgetCountriesComparator {
         if (cur_value > GDP_VALUES.get("Serbia")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value +  " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Serbia") + " το ΑΕΠ της Σερβίας.");
-        } else if(cur_value <GDP_VALUES.get("Serbia")) {   
+        } else if(cur_value < GDP_VALUES.get("Serbia")) {   
             System.out.println( "Η Σερβία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Serbia") + " το ΑΕΠ της Σερβίας.");
         } else {
@@ -318,7 +318,7 @@ public class BudgetCountriesComparator {
         
         cur_value = GreecesData.getDebtRatio();
         if (cur_value > DEBTRATIO_VALUES.get("Serbia")) {
-            System.out.println("H Ιταλία είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
+            System.out.println("H Σερβία είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
             System.out.println(cur_value +  " ο λόγος χρέους της Ελλάδας " + DEBTRATIO_VALUES.get("Serbia") + " ο λόγος χρέους της Σερβίας.");
         } else if(cur_value <DEBTRATIO_VALUES.get("Serbia")) {   
             System.out.println( "H Σερβία είχε μεγαλύτερη ευελιξία σε επενδύσεις και κρίσεις.");
@@ -328,23 +328,23 @@ public class BudgetCountriesComparator {
         }
         cur_value = GreecesData.getVatRatePercent();
         if (cur_value > VATRATEPERCENT_VALUES.get("Serbia")) {
-            System.out.println("Ο ΦΠΑ της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο ΦΠΑ  της Ελλάδας" + VATRATEPERCENT_VALUES.get("Serbia") + "ο ΦΠΑ της Σερβίας");
-        } else if(cur_value <VATRATEPERCENT_VALUES.get("Serbia")) {   
-            System.out.println( "Ο ΦΠΑ της Σερβίας είναι μεγαλύτερος της Ελλάδας");
-            System.out.println(cur_value + "ο ΦΠΑ της Ελλάδας" + VATRATEPERCENT_VALUES.get("Serbia") + "ο ΦΠΑ της Σερβίας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Σερβία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + "ο ΦΠΑ  της Ελλάδας " + VATRATEPERCENT_VALUES.get("Serbia") + " ο ΦΠΑ της Σερβίας.");
+        } else if(cur_value < VATRATEPERCENT_VALUES.get("Serbia")) {   
+            System.out.println(" Η Σερβία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο ΦΠΑ της Ελλάδας " + VATRATEPERCENT_VALUES.get("Serbia") + " ο ΦΠΑ της Σερβίας.");
         } else {
-            System.out.println("ο ΦΠΑ της Ελλάδας είναι ίσος με της Σερβίας και ισούται με" + cur_value);
+           System.out.println( "Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Σερβία.");
         }
         cur_value = GreecesData.getIncomeTaxRatePercent();
         if (cur_value > INCOMETAXRATEPERCENT_VALUES.get("Serbia")) {
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος της Ελλάδας ήταν μεγαλύτερος για το 2025");
-            System.out.println("Ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Serbia") + "ο φορολογικός συντελεστής εισοδήματος της Σερβίας");
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Σερβία επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value +" ο φορολογικός συντελεστής εισοδήματος  της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Serbia") + " ο φορολογικός συντελεστής εισοδήματος της Σερβίας.");
         } else if(cur_value <INCOMETAXRATEPERCENT_VALUES.get("Serbia")) {   
-            System.out.println( "Ο φορολογικός συντελεστής εισοδήματος της Σερβίας είναι μεγαλύτερος της Ελλάδας");
-            System.out.println(cur_value + "ο φορολογικός συντελεστής εισοδήματος της Ελλάδας" + INCOMETAXRATEPERCENT_VALUES.get("Serbia") + "ο φορολογικός συντελεστής εισοδήματος της Σερβίας");
+            System.out.println( "Η Σερβία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα επιδιώκει την ανάπτυξη, τις επενδύσεις και την κατανάλωση.");
+            System.out.println(cur_value + " ο φορολογικός συντελεστής εισοδήματος της Ελλάδας " + INCOMETAXRATEPERCENT_VALUES.get("Serbia") + " ο φορολογικός συντελεστής εισοδήματος της Σερβίας.");
         } else {
-            System.out.println("ο φορολογικός συντελεστής εισοδήματος της Ελλάδας είναι ίσος με της Σερβίας και ισούται με" + cur_value);
+            System.out.println("Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, την ανάπτυξη, τις επενδύσεις και την κατανάλωση όσο και η Σερβία.");
         }
     
         cur_value = GreecesData.getBaseRevenueForVat(); 
