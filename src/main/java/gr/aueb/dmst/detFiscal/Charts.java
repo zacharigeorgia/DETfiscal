@@ -24,6 +24,16 @@ public class Charts {
                 true, // Tooltip(το κουτάκι με την τιμή οταν το βελάκι είναι πάνω στην μπάρα)
                 false // URL δεν ανοίγει κάποιο λινκ
         );
+        // Κώδικας για το χρώμα να είναι μπλε με ασπρο φόντο
+        CategoryPlot plot = barChart.getCategoryPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        
+        renderer.setSeriesPaint(0, Color.BLUE);
+        renderer.setSeriesPaint(1, Color.BLUE);
+        renderer.setSeriesPaint(2, Color.BLUE);
+
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
 
         ChartPanel chartPanel = new ChartPanel(barChart);
         chartPanel.setPreferredSize(new Dimension(800, 500));
@@ -73,19 +83,23 @@ public class Charts {
         FederalBudget budget = FederalBudget.getInstance();
         BudgetSummary summary = budget.getSummary();
 
-        // υπολογισμος ισοζηυγίου 2025, χρήση revenues/expendures
-        double balance2025 = summary.calculateBalance();
+        // εσοδα εξοδα 2025
+        double rev2025 = summary.calculateTotalRevenues();
+        double exp2025 = summary.calculateTotalExpenditures();
 
-        // υπολογισμός για το 2024 που το συγκρίνουμε
-        double balance2024 = summary.calculateBalance2024();
+        // για το 2024 που το συγκρίνουμε
+        double rev2024 = summary.calculateTotalRevenues2024();
+        double exp2024 = summary.calculateTotalExpenditures2024();
 
         // Δημιουργία Dataset
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(balance2025, "Ισοζύγιο", "2025");
-        dataset.addValue(balance2024, "Ισοζύγιο", "2024");
+        dataset.addValue(rev2025, "Έσοδα", "2025");
+        dataset.addValue(rev2024, "Έσοδα", "2024");
+        dataset.addValue(exp2025, "Έξοδα", "2025");       
+        dataset.addValue(exp2024, "Έσοδα", "2024");
 
         // Εμφάνιση και JFreeChart
-        String title = String.format("Σύγκριση Ισοζυγίου: %s (2025 vs 2024)", budget.getCountryName());
+        String title = String.format("Σύγκριση Εσόδων-Εξόδων: %s (2025 vs 2024)", budget.getCountryName());
         displayChart(title, dataset, "Έτος Σύκρισης", "Ποσό (€)");
 
     }
@@ -113,9 +127,9 @@ public class Charts {
         if (BudgetCountriesComparator.INFLATION_VALUES.containsKey(selectedCountry)) {
             dataset.addValue(BudgetCountriesComparator.GDP_VALUES.get(selectedCountry), "GDP Growth (%)",
                     selectedCountry);
-            dataset.addValue(BudgetCountriesComparator.INFLATION_VALUES.get(selectedCountry), "Inflation(%)",
+            dataset.addValue(BudgetCountriesComparator.INFLATION_VALUES.get(selectedCountry), "Inflation (%)",
                     selectedCountry);
-            dataset.addValue(BudgetCountriesComparator.DEBTRATIO_VALUES.get(selectedCountry), "Dept Ratio (% of GDP)",
+            dataset.addValue(BudgetCountriesComparator.DEBTRATIO_VALUES.get(selectedCountry), "Debt Ratio (% of GDP)",
                     selectedCountry);
         }
 
