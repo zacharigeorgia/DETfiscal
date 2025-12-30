@@ -1,4 +1,5 @@
 package gr.aueb.dmst.detFiscal;
+
 public class BudgetDetails {
 
     private final MacroData data;
@@ -6,7 +7,7 @@ public class BudgetDetails {
     private double balance;
 
     public BudgetDetails(MacroData data, BudgetSummary summaryBalance) {
-        this.data =data;
+        this.data = data;
         this.summaryBalance = summaryBalance;
     }
 
@@ -32,7 +33,6 @@ public class BudgetDetails {
         return data.getGdp();
     }
 
-
     public void checkDebtRatio() {
         double debtRatio = data.getDebtRatio();
         if (debtRatio < 0 || debtRatio > 100) {
@@ -44,11 +44,10 @@ public class BudgetDetails {
         return data.getDebtRatio();
     }
 
-
     public void checkVatRatePercent() {
         double vatRatePerc = data.getVatRatePercent();
         if (vatRatePerc < 0 || vatRatePerc > 100) {
-                throw new IllegalArgumentException("Άκυρη τιμή ποσοστό ΦΠΑ");
+            throw new IllegalArgumentException("Άκυρη τιμή ποσοστό ΦΠΑ");
         }
     }
 
@@ -59,7 +58,7 @@ public class BudgetDetails {
     public void checkIncomeTaxRatePercent() {
         double incomeTaxPerc = data.getIncomeTaxRatePercent();
         if (incomeTaxPerc < 0 || incomeTaxPerc > 100) {
-                throw new IllegalArgumentException("Άκυρη τιμή ποσοστού φόρου εισοδήματος");
+            throw new IllegalArgumentException("Άκυρη τιμή ποσοστού φόρου εισοδήματος");
         }
     }
 
@@ -70,7 +69,7 @@ public class BudgetDetails {
     public void checkBaseRevenueForVat() {
         double bsRevForVat = data.getBaseRevenueForVat();
         if (bsRevForVat < 0) {
-                throw new IllegalArgumentException("Άκυρη τιμή βάσης εσόδων ΦΠΑ");
+            throw new IllegalArgumentException("Άκυρη τιμή βάσης εσόδων ΦΠΑ");
         }
     }
 
@@ -89,7 +88,7 @@ public class BudgetDetails {
         return data.getBaseRevenueForIncomeTax();
     }
 
-    public void valueForBalance () {
+    public void valueForBalance() {
         balance = summaryBalance.calculateBalance();
     }
 
@@ -104,6 +103,6 @@ public class BudgetDetails {
     }
 
     public MacroData getMacroData() {
-    return data;
+        return data;
     }
 }
