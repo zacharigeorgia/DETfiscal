@@ -126,23 +126,23 @@ public class CountryComparisonWindow extends JFrame {
                                 grDetails.getDebtRatio(),
                                 BudgetCountriesComparator.DEBTRATIO_VALUES, "%");
 
-                // Γραμμή 4: ΦΠΑ (Πολλαπλασιάζουμε επί 100 αν στην Ελλάδα είναι 0.24)
+                // Γραμμή 4: ΦΠΑ
                 addRow("ΦΠΑ (Βασικός Συντ.)",
-                                grDetails.getVatRatePercent() * 100,
+                                grDetails.getVatRatePercent(),
                                 BudgetCountriesComparator.VATRATEPERCENT_VALUES, "%");
 
                 // Γραμμή 5: Φόρος Εισοδήματος
                 addRow("Φόρος Εισοδήματος",
-                                grDetails.getIncomeTaxRatePercent() * 100,
+                                grDetails.getIncomeTaxRatePercent(),
                                 BudgetCountriesComparator.INCOMETAXRATEPERCENT_VALUES, "%");
 
-                // Γραμμή 6: Βάση Εσόδων ΦΠΑ (σε Δις)
-                addRow("Βάση Εσόδων ΦΠΑ (Δις)",
+                // Γραμμή 6: Βάση Εσόδων ΦΠΑ
+                addRow("Βάση Εσόδων ΦΠΑ",
                                 grDetails.getBaseRevenueForVat(),
                                 BudgetCountriesComparator.BASEREVENUEVAT_VALUES, "€");
 
-                // Γραμμή 7: Βάση Εσόδων Φόρου Εισοδήματος (σε Δις)
-                addRow("Βάση Εσόδων Φορ. Εισ. (Δις)",
+                // Γραμμή 7: Βάση Εσόδων Φόρου Εισοδήματος
+                addRow("Βάση Εσόδων Φορ. Εισ.",
                                 grDetails.getBaseRevenueForIncomeTax(),
                                 BudgetCountriesComparator.BASEREVENUEINCOME_VALUES, "€");
         }
