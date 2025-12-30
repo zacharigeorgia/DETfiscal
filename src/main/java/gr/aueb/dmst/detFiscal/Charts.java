@@ -3,11 +3,12 @@ package gr.aueb.dmst.detFiscal;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.JFrame;
 import java.awt.Dimension;
-import java.util.Map;
 import java.awt.Color;
 
 public class Charts {
@@ -27,7 +28,7 @@ public class Charts {
         // Κώδικας για το χρώμα να είναι μπλε με ασπρο φόντο
         CategoryPlot plot = barChart.getCategoryPlot();
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        
+
         renderer.setSeriesPaint(0, Color.BLUE);
         renderer.setSeriesPaint(1, Color.BLUE);
         renderer.setSeriesPaint(2, Color.BLUE);
@@ -95,7 +96,7 @@ public class Charts {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(rev2025, "Έσοδα", "2025");
         dataset.addValue(rev2024, "Έσοδα", "2024");
-        dataset.addValue(exp2025, "Έξοδα", "2025");       
+        dataset.addValue(exp2025, "Έξοδα", "2025");
         dataset.addValue(exp2024, "Έσοδα", "2024");
 
         // Εμφάνιση και JFreeChart
