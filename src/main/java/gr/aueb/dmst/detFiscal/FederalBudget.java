@@ -125,7 +125,7 @@ public class FederalBudget {
         System.out.println("Result: " + characterization);
         System.out.println("Inflation: " + details.getInflation() + "%");
 
-        details.plotGraph(); // Assumes this method exists in BudgetDetails
+
     }
 
     /**
