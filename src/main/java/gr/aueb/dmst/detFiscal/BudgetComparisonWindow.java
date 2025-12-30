@@ -78,6 +78,9 @@ public class BudgetComparisonWindow extends JFrame {
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
+        JPanel bottomContainer = new JPanel(new BorderLayout());
+        bottomContainer.setBackground(new Color(240, 240, 240));
+
         // Summary Panel (Κάτω μέρος)
         JPanel summaryPanel = new JPanel(new GridLayout(1, 2, 10, 10));
         summaryPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -91,7 +94,30 @@ public class BudgetComparisonWindow extends JFrame {
         JPanel summary2025 = createYearSummaryPanel("2025", revenues2025, expenditures2025, balance2025);
         summaryPanel.add(summary2025);
 
-        mainPanel.add(summaryPanel, BorderLayout.SOUTH);
+        bottomContainer.add(summaryPanel, BorderLayout.CENTER);
+
+        // 2. Button Panel (Το κουμπί για το γράφημα)
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBackground(new Color(240, 240, 240));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0)); // Λίγο κενό από κάτω
+
+        JButton chartButton = new JButton("Προβολή Γραφήματος Σύγκρισης (2024 vs 2025)");
+        chartButton.setBackground(new Color(7, 25, 82));
+        chartButton.setForeground(Color.WHITE);
+        chartButton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+
+        // ---ΓΡΑΦΗΜΑ ---
+        chartButton.addActionListener(e -> Charts.plotMultiYearComparison());
+
+        buttonPanel.add(chartButton);
+
+        // Προσθέτουμε το κουμπί στο κάτω μέρος του bottomContainer
+        bottomContainer.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Τέλος, προσθέτουμε όλο το κάτω μέρος στο κυρίως παράθυρο
+        mainPanel.add(bottomContainer, BorderLayout.SOUTH);
+
+        add(mainPanel);
     }
 
     /**
