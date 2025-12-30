@@ -3,9 +3,7 @@ package gr.aueb.dmst.detFiscal;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Κλάση για την εμφάνιση των στοιχείων του προϋπολογισμού (Έσοδα/Έξοδα)
@@ -22,6 +20,7 @@ public class BudgetDisplayWindow extends JFrame {
      */
     public BudgetDisplayWindow(FederalBudget budget) {
         this.budget = budget;
+
         initializeWindow();
         createUI();
     }

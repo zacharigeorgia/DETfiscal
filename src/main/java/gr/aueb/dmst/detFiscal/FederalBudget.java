@@ -1,15 +1,6 @@
 package gr.aueb.dmst.detFiscal;
-import gr.aueb.dmst.detFiscal.Expenditure;
-import gr.aueb.dmst.detFiscal.IDataLoader;
-import gr.aueb.dmst.detFiscal.MacroData;
-import gr.aueb.dmst.detFiscal.Ministry;
-import gr.aueb.dmst.detFiscal.Revenue;
 
-import java.awt.List;
-
-import gr.aueb.dmst.detFiscal.BudgetDetails;
-import gr.aueb.dmst.detFiscal.BudgetSummary;
-import gr.aueb.dmst.detFiscal.DataLoader;
+import java.util.List;
 
 public class FederalBudget {
 
@@ -20,18 +11,18 @@ public class FederalBudget {
     private BudgetSummary summary; // Object holding revenues and expenditures
     private BudgetDetails details; // Object holding macroeconomic data
     private IDataLoader dataLoader; // Object responsible for loading data
-    private MacroData infl;
+
 
     // Private constructor for Singleton
    private FederalBudget() {
         // Αρχικοποίηση βασικών στοιχείων
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
+         // Create a temporary MacroData for now
+         MacroData tempMacroData = new MacroData();
+        details = new BudgetDetails(tempMacroData, summary);
         this.countryName = "Greece";
         this.year = 2025;
-        // Σύνδεση των details με το αντικείμενο infl (MacroData)
-        this.infl = new MacroData();
-        this.details = new BudgetDetails(this.infl); 
     }
 
     /**
@@ -103,15 +94,11 @@ public class FederalBudget {
                 summary.getExpenditures2024().add(e);
             }
             // Φόρτωση MacroData και ενημέρωση των αντικειμένων infl και details
-            MacroData mData = dataLoader.loadMacroData(pathMain);
-            this.infl.setInflation(mData.getInflation());
-            this.infl.setGdp(mData.getGdp());
-            // Αν ο BudgetDetails χρειάζεται ολόκληρο το αντικείμενο:
-            this.details = new BudgetDetails(mData);
+            MacroData macroData = dataLoader.loadMacroData(pathMain);
+            this.details = new BudgetDetails(macroData, summary);
             // Simple validation check (using main budget data)
             assert summary.calculateTotalRevenues() >= 0 : "Data loading failed: Total revenues are zero or negative.";
             System.out.println("Data loading successful (OK).");
-            // ADD THIS BLOCK immediately after the closing '}' of the try block:
         } catch (Exception e) {
             System.err.println("ERROR! Could not load file: " + e.getMessage());
             e.printStackTrace();
@@ -136,7 +123,7 @@ public class FederalBudget {
         System.out.println("Total Expenditures: " + summary.calculateTotalExpenditures());
         System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
-        System.out.println("Inflation: " + infl.getInflation() + "%");
+        System.out.println("Inflation: " + details.getInflation() + "%");
 
         details.plotGraph(); // Assumes this method exists in BudgetDetails
     }
@@ -183,7 +170,9 @@ public class FederalBudget {
     public BudgetDetails getDetails() {
         return this.details;
     }
-
+    public IDataLoader getDataLoader() {
+    return this.dataLoader;
+}
     public String getCountryName() {
         return countryName;
     }

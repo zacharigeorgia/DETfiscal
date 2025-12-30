@@ -1,0 +1,40 @@
+package gr.aueb.dmst.detFiscal;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChangeLog {
+    private List<String> entries;
+
+    public ChangeLog() {
+        this.entries = new ArrayList<>();
+        // έναρξη εφαρμογής
+        log("Application started.");
+    }
+
+    // προσθήκη νέας εγγραφής
+    public void log(String message) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        entries.add("[" + timestamp + "] " + message);
+    }
+
+    // epistrefei όλο το ιστορικό σε κείμενο
+    public String getFormattedLog() {
+        StringBuilder sb = new StringBuilder();
+        if (entries.isEmpty()) {
+            return "No changes recorded yet.";
+        }
+        for (String entry : entries) {
+            sb.append(entry).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public void addChange(String name, String type, double oldVal, double newVal) {
+        // Διαμόρφωση του μηνύματος
+        String message = String.format("Changed %s '%s': %.2f -> %.2f", type, name, oldVal, newVal);
+        log(message);
+    }
+}

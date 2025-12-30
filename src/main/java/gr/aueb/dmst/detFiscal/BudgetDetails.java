@@ -103,8 +103,7 @@ public class BudgetDetails {
         }
     }
 
-    // Προστίθεται η μέθοδος plotGraph() (απαραίτητη αν καλείται από την FederalBudget)
-    public void plotGraph() {
-        System.out.println("Εκτύπωση γραφήματος...");
+    public MacroData getMacroData() {
+    return data;
     }
 }
