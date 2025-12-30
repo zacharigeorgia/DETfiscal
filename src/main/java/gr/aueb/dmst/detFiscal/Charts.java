@@ -73,7 +73,7 @@ public class Charts {
         double balance2025 = summary.calculateBalance();
 
         //υπολογισμός για το 2024 που το συγκρίνουμε
-        double balance2024 = summary.calculateBalance2024();
+        double balance2024 = summary.calculateTotalRevenues2024() - summary.calculateTotalExpenditures2024();
      
         //Δημιουργία Dataset
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -102,7 +102,7 @@ public class Charts {
         String greece = "Greece (2025)";
         dataset.addValue(details.getGdp(), "GDP Growth (%)", greece);
         dataset.addValue(details.getInflation(), "Inflation (%)", greece);
-        dataset.addValue(details.getDeptRatio(), "Dept Ratio (% of GDP)", greece);
+        dataset.addValue(details.getDebtRatio(), "Debt Ratio (% of GDP)", greece);
 
         // Παίρνουμε δεδομένα για την επιλεγμένη χώρα από την BudgetCountriesComparator
         // Πρώτα Έλεγχος αν η χώρα υπάρχει στους χάρτες τιμών
