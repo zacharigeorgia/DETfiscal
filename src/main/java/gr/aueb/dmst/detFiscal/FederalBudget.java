@@ -12,14 +12,13 @@ public class FederalBudget {
     private BudgetDetails details; // Object holding macroeconomic data
     private IDataLoader dataLoader; // Object responsible for loading data
 
-
     // Private constructor for Singleton
-   private FederalBudget() {
+    private FederalBudget() {
         // Αρχικοποίηση βασικών στοιχείων
         dataLoader = new DataLoader();
         summary = new BudgetSummary();
-         // Create a temporary MacroData for now
-         MacroData tempMacroData = new MacroData();
+        // Create a temporary MacroData for now
+        MacroData tempMacroData = new MacroData();
         details = new BudgetDetails(tempMacroData, summary);
         this.countryName = "Greece";
         this.year = 2025;
@@ -124,8 +123,6 @@ public class FederalBudget {
         System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
         System.out.println("Inflation: " + details.getInflation() + "%");
-
-        details.plotGraph(); // Assumes this method exists in BudgetDetails
     }
 
     /**
@@ -170,9 +167,11 @@ public class FederalBudget {
     public BudgetDetails getDetails() {
         return this.details;
     }
+
     public IDataLoader getDataLoader() {
-    return this.dataLoader;
-}
+        return this.dataLoader;
+    }
+
     public String getCountryName() {
         return countryName;
     }
