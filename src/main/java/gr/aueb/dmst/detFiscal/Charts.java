@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.util.Map;
 import java.awt.Color;
+import java.text.DecimalFormat;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.axis.NumberAxis;
 
 public class Charts {
     // Μέθοδος που βοηθάει στην εμφάνιση παραθύρου
@@ -27,14 +31,14 @@ public class Charts {
         // Κώδικας για το χρώμα να είναι μπλε με ασπρο φόντο
         CategoryPlot plot = barChart.getCategoryPlot();
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        
+
         renderer.setSeriesPaint(0, Color.BLUE);
-        renderer.setSeriesPaint(1, Color(135, 206, 235));
-        renderer.setSeriesPaint(2, Color(102, 255, 102));
+        renderer.setSeriesPaint(1, new Color(135, 206, 235));
+        renderer.setSeriesPaint(2, new Color(102, 255, 102));
 
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setNumberFormatOverride(new DecimalFormat('#,###.##'));
-        
+        rangeAxis.setNumberFormatOverride(new DecimalFormat("#,###.##"));
+
         plot.setBackgroundPaint(Color.WHITE);
         plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
 
@@ -98,7 +102,7 @@ public class Charts {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(rev2025, "Έσοδα", "2025");
         dataset.addValue(rev2024, "Έσοδα", "2024");
-        dataset.addValue(exp2025, "Έξοδα", "2025");       
+        dataset.addValue(exp2025, "Έξοδα", "2025");
         dataset.addValue(exp2024, "Έξοδα", "2024");
 
         // Εμφάνιση και JFreeChart
