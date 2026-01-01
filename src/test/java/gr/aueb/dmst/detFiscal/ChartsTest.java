@@ -1,3 +1,5 @@
+package gr.aueb.dmst.detFiscal;
+
 public class ChartsTest {
 
 }

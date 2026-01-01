@@ -81,8 +81,8 @@ public class BudgetCountriesComparator {
                         System.out.println(cur_value + " ο πληθωρισμός της Ελλάδας " + INFLATION_VALUES.get("Germany")
                                         + " ο πληθωρισμός της Γερμανίας.");
                 } else {
-                        System.out
-                                        .println("Η οικονομία της Ελλάδας ήταν το ίδιο σταθερή με της Γερμανίας και η ζωή το ίδιο ακριβή.");
+                        System.out.println(
+                                        "Η οικονομία της Ελλάδας ήταν το ίδιο σταθερή με της Γερμανίας και η ζωή το ίδιο ακριβή.");
                 }
 
                 cur_value = GreecesData.getGdp();

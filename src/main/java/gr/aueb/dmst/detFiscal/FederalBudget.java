@@ -123,6 +123,7 @@ public class FederalBudget {
         System.out.println("Balance: " + balance);
         System.out.println("Result: " + characterization);
         System.out.println("Inflation: " + details.getInflation() + "%");
+
     }
 
     /**
