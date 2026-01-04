@@ -1,7 +1,20 @@
 package gr.aueb.dmst.detFiscal;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Menu {
     public static void main(String[] args) {
@@ -37,8 +50,8 @@ public class Menu {
 
         FederalBudget fedBudget = FederalBudget.getInstance();
 
-        String pathMain = "DETfiscal/src/main/resources/data/sample_budget_2025.json";
-        String path2024 = "DETfiscal/src/main/resources/data/sample_budget_2024.json";
+        String pathMain = "src/main/resources/data/sample_budget_2025.json";
+        String path2024 = "src/main/resources/data/sample_budget_2024.json";
 
         fedBudget.initializeData(pathMain, path2024);
 
