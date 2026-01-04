@@ -1,10 +1,26 @@
 
 package gr.aueb.dmst.detFiscal;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Insets;
 import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 public class BudgetEditWindow extends JFrame {
 
@@ -279,7 +295,20 @@ public class BudgetEditWindow extends JFrame {
 
                 updateFooter();
 
-                JOptionPane.showMessageDialog(this, "Το προϋπολογισμός του Υπουργείου ενημερώθηκε.", "Επιτυχία",
+                // 1. Καλούμε το σενάριο για να πάρουμε την ανάλυση
+                // isRevenue = false, επειδή τα λεφτά στα υπουργεία είναι Έξοδα
+                String analysis = scenarioAnalyzer.analyzeScenario(
+                        min.getName(),
+                        oldTotal,
+                        newTotal,
+                        false,
+                        budget.getDetails()
+                );
+
+                // 2. Εμφανίζουμε την ανάλυση στο παράθυρο αντί για σκέτο μήνυμα
+                JOptionPane.showMessageDialog(this,
+                        "Το υπουργείο ενημερώθηκε!\n\n" + analysis,
+                        "Αποτέλεσμα Σεναρίου",
                         JOptionPane.INFORMATION_MESSAGE);
 
             } catch (NumberFormatException ex) {
