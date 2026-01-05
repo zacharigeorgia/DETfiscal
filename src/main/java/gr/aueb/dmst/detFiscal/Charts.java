@@ -7,7 +7,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.JFrame;
 import java.awt.Dimension;
-import java.util.Map;
 import java.awt.Color;
 import java.text.DecimalFormat;
 import org.jfree.chart.plot.CategoryPlot;
