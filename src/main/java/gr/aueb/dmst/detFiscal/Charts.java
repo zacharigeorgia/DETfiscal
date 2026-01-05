@@ -124,7 +124,7 @@ public class Charts {
 
         // Παίρνουμε δεδομένα Ελλάδας από MacroData
         String greece = "Greece (2025)";
-        dataset.addValue(details.getGdp(), "GDP Growth (%)", greece);
+        dataset.addValue(details.getGdp() / 1E11, "GDP Growth (%)", greece);
         dataset.addValue(details.getInflation(), "Inflation (%)", greece);
         dataset.addValue(details.getDebtRatio(), "Debt Ratio (% of GDP)", greece);
 
