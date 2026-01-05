@@ -36,7 +36,7 @@ public class Menu {
         gbc.fill = GridBagConstraints.NONE; // Να γεμίζουν τον οριζόντιο χώρο
 
         // titlos
-        JLabel titleLabel = new JLabel("DETfiscal", SwingConstants.LEFT);
+        JLabel titleLabel = new JLabel("myProipologismos", SwingConstants.LEFT);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
         titleLabel.setForeground(Color.WHITE);
 
