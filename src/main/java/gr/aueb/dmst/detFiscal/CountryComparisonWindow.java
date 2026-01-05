@@ -118,7 +118,7 @@ public class CountryComparisonWindow extends JFrame {
 
                 // Γραμμή 2: ΑΕΠ
                 addRow("ΑΕΠ (Ρυθμός Ανάπτυξης)",
-                                grDetails.getGdp(),
+                                grDetails.getGdp() / 1E11,
                                 BudgetCountriesComparator.GDP_VALUES, "%");
 
                 // Γραμμή 3: Λόγος Χρέους
