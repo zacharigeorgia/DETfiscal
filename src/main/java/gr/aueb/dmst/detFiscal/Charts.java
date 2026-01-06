@@ -7,12 +7,13 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.JFrame;
 import java.awt.Dimension;
-import java.util.Map;
 import java.awt.Color;
 import java.text.DecimalFormat;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 
 public class Charts {
     // Μέθοδος που βοηθάει στην εμφάνιση παραθύρου
@@ -125,7 +126,7 @@ public class Charts {
 
         // Παίρνουμε δεδομένα Ελλάδας από MacroData
         String greece = "Greece (2025)";
-        dataset.addValue(details.getGdp(), "GDP Growth (%)", greece);
+        dataset.addValue(details.getGdp() / 1E11, "GDP Growth (%)", greece);
         dataset.addValue(details.getInflation(), "Inflation (%)", greece);
         dataset.addValue(details.getDebtRatio(), "Debt Ratio (% of GDP)", greece);
 
@@ -144,4 +145,25 @@ public class Charts {
         String title = "Macroeconomic Comparison: Greece vs " + selectedCountry;
         displayChart(title, dataset, "Δείκτες", "Ποσοστό (%)");
     }
+
+        // add to class Charts (package-private)
+    static DefaultCategoryDataset buildMultiYearDatasetForCurrentBudget() {
+    FederalBudget budget = FederalBudget.getInstance();
+    BudgetSummary summary = budget.getSummary();
+
+    double rev2025 = summary.calculateTotalRevenues();
+    double exp2025 = summary.calculateTotalExpenditures();
+
+    double rev2024 = summary.calculateTotalRevenues2024();
+    double exp2024 = summary.calculateTotalExpenditures2024();
+
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    dataset.addValue(rev2025, "Έσοδα", "2025");
+    dataset.addValue(rev2024, "Έσοδα", "2024");
+    dataset.addValue(exp2025, "Έξοδα", "2025");
+    dataset.addValue(exp2024, "Έξοδα", "2024");
+
+    return dataset;
 }
+}
+
