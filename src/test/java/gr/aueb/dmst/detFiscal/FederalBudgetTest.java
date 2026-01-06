@@ -1,14 +1,15 @@
 package gr.aueb.dmst.detFiscal;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import java.lang.reflect.Field;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
 
 public class FederalBudgetTest {
 
@@ -120,21 +121,29 @@ public class FederalBudgetTest {
     // -----------------------------
     // 4. compareWith (λογικός έλεγχος)
     // -----------------------------
+
     @Test
     void testCompareWithDifferentBudgets() {
-        FederalBudget other = FederalBudget.getInstance();
+        // Επειδή είναι Singleton, δεν μπορούμε να έχουμε δύο διαφορετικά instances ταυτόχρονα.
+        // Λύση: Υπολογίζουμε το πρώτο σενάριο, καθαρίζουμε, και υπολογίζουμε το δεύτερο.
 
-        budget.getSummary().addRevenue(new Revenue() {{
-            setAmount(1000);
-        }});
+        // Σενάριο 1: Έσοδα 1000
+        budget.getSummary().getRevenues().clear(); // Καθαρισμός
+        Revenue r1 = new Revenue();
+        r1.setAmount(1000);
+        budget.getSummary().addRevenue(r1);
 
-        other.getSummary().addRevenue(new Revenue() {{
-            setAmount(500);
-        }});
+        double scenarioA = budget.calculateTotalBudget();
 
-        assertTrue(
-                budget.calculateTotalBudget() >
-                other.calculateTotalBudget()
-        );
+        // Σενάριο 2: Έσοδα 500
+        budget.getSummary().getRevenues().clear(); // Καθαρισμός
+        Revenue r2 = new Revenue();
+        r2.setAmount(500);
+        budget.getSummary().addRevenue(r2);
+
+        double scenarioB = budget.calculateTotalBudget();
+
+        // Τώρα συγκρίνουμε τις τιμές που αποθηκεύσαμε
+        assertTrue(scenarioA > scenarioB, "Το budget των 1000 πρέπει να είναι μεγαλύτερο από των 500");
     }
 }
