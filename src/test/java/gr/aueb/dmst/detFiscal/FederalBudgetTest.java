@@ -1,11 +1,16 @@
 package gr.aueb.dmst.detFiscal;
 
+import java.util.Locale;
+import java.lang.reflect.Field;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Locale;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
 
 public class FederalBudgetTest {
 
@@ -76,4 +81,33 @@ public class FederalBudgetTest {
         // Πρέπει να περιέχει τη λέξη 'Έλλειμμα' ή 'Deficit'
         assertTrue(status.toLowerCase().contains("έλλειμμα") || status.toLowerCase().contains("deficit"));
     }
+    // -----------------------------
+    // 4. compareWith (λογικός έλεγχος)
+    // -----------------------------
+
+    @Test
+    void testCompareWithDifferentBudgets() {
+        // Επειδή είναι Singleton, δεν μπορούμε να έχουμε δύο διαφορετικά instances ταυτόχρονα.
+        // Λύση: Υπολογίζουμε το πρώτο σενάριο, καθαρίζουμε, και υπολογίζουμε το δεύτερο.
+
+        // Σενάριο 1: Έσοδα 1000
+        budget.getSummary().getRevenues().clear(); // Καθαρισμός
+        Revenue r1 = new Revenue();
+        r1.setAmount(1000);
+        budget.getSummary().addRevenue(r1);
+
+        double scenarioA = budget.calculateTotalBudget();
+
+        // Σενάριο 2: Έσοδα 500
+        budget.getSummary().getRevenues().clear(); // Καθαρισμός
+        Revenue r2 = new Revenue();
+        r2.setAmount(500);
+        budget.getSummary().addRevenue(r2);
+
+        double scenarioB = budget.calculateTotalBudget();
+
+        // Τώρα συγκρίνουμε τις τιμές που αποθηκεύσαμε
+        assertTrue(scenarioA > scenarioB, "Το budget των 1000 πρέπει να είναι μεγαλύτερο από των 500");
+
+}
 }
