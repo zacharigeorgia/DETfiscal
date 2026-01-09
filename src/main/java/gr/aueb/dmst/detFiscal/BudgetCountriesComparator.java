@@ -85,7 +85,7 @@ public class BudgetCountriesComparator {
         cur_value = GreecesData.getGdp();
         if (cur_value > GDP_VALUES.get("Germany")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
-            System.out.println(cur_value + " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Germany") + " το ΑΕΠ της Γερμανίας.");
+            System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Germany") + " το ΑΕΠ της Γερμανίας.");
         } else if (cur_value < GDP_VALUES.get("Germany")) {
             System.out.println("Η Γερμανία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Germany") + " το ΑΕΠ της Γερμανίας.");
@@ -160,7 +160,7 @@ public class BudgetCountriesComparator {
         cur_value = GreecesData.getGdp();
         if (cur_value > GDP_VALUES.get("Bulgaria")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
-            System.out.println(cur_value + " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Bulgaria") + " το ΑΕΠ της Βουλγαρίας.");
+            System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Bulgaria") + " το ΑΕΠ της Βουλγαρίας.");
         } else if (cur_value < GDP_VALUES.get("Bulgaria")) {
             System.out.println("Η Βουλγαρία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Bulgaria") + " το ΑΕΠ της Βουλγαρίας.");
@@ -239,7 +239,7 @@ public class BudgetCountriesComparator {
         cur_value = GreecesData.getGdp();
         if (cur_value > GDP_VALUES.get("Italy")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
-            System.out.println(cur_value + " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Italy") + " το ΑΕΠ της Ιταλίας.");
+            System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Italy") + " το ΑΕΠ της Ιταλίας.");
         } else if (cur_value < GDP_VALUES.get("Italy")) {
             System.out.println("Η Ιταλία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Italy") + " το ΑΕΠ της Ιταλίας.");
@@ -317,7 +317,7 @@ public class BudgetCountriesComparator {
         cur_value = GreecesData.getGdp();
         if (cur_value > GDP_VALUES.get("Serbia")) {
             System.out.println("Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
-            System.out.println(cur_value + " ο πληθωρισμός της Ελλάδας " + GDP_VALUES.get("Serbia") + " το ΑΕΠ της Σερβίας.");
+            System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Serbia") + " το ΑΕΠ της Σερβίας.");
         } else if (cur_value < GDP_VALUES.get("Serbia")) {
             System.out.println("Η Σερβία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.");
             System.out.println(cur_value + " το ΑΕΠ της Ελλάδας " + GDP_VALUES.get("Serbia") + " το ΑΕΠ της Σερβίας.");
