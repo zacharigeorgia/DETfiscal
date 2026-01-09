@@ -164,7 +164,7 @@ version 1.0: Δημιουργία δομής maven, κλάσεων, και πρ�
 Σαραφίδου Νίκη, Presentation Designer, Front End Developer, nikisarafidou (https://github.com/nikisarafidou)
 Κυριακοπούλου Ελπίδα, Back End &  Database Developer, ElpidaKyriakopoulou (https://github.com/ElpidaKyriakopoulou)
 Τζιούφα Μιράντα, Back End Developer, Maven Supervisor, Presentation Designer, README.md, mirandatzioufa (https://github.com/mirandatzioufa)
-Αγγελίδου Ευαγγελία, Front End Developer, evangeliaangelidou (https://github.com/evangeliaangelidou)
+Αγγελίδου Ευαγγελία, Front End Developer, Video Editor evangeliaangelidou (https://github.com/evangeliaangelidou)
 Ζαχάρη Γεωργία, Back End Developer, Maven Supervisor, zacharigeorgia (https://github.com/zacharigeorgia)
 Πολυχρονόπουλος Μάριος, Back End Developer, Mariosfren (https://github.com/Mariosfren)
 
