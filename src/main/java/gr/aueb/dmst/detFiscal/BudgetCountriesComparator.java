@@ -76,11 +76,11 @@ public class BudgetCountriesComparator {
 
         cur_value = GreecesData.getInflation();
         if (cur_value > INFLATION_VALUES.get("Germany")) {
-            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή και η ζωή πιο οικονομική.\n");
+            sb.append("- Η οικονομία στη Γερμανία ήταν πιο σταθερή και η ζωή πιο οικονομική.\n");
             sb.append("  (Ελλάδα: ").append(cur_value).append("% vs Γερμανία: ").append(INFLATION_VALUES.get("Germany"))
                     .append("%)\n");
         } else if (cur_value < INFLATION_VALUES.get("Germany")) {
-            sb.append("- Η οικονομία στη Γερμανία ήταν πιο σταθερή και η ζωή πιο οικονομική.\n");
+            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή και η ζωή πιο οικονομική.\n");
             sb.append("  (Ελλάδα: ").append(cur_value).append("% vs Γερμανία: ").append(INFLATION_VALUES.get("Germany"))
                     .append("%)\n");
         } else {
@@ -93,7 +93,7 @@ public class BudgetCountriesComparator {
         } else if (cur_value < GDP_VALUES.get("Germany")) {
             sb.append("- Η Γερμανία είχε μεγαλύτερη οικονομική δραστηριότητα και πλούτο ανά άτομο.\n");
         } else {
-            sb.append("- Η Ελλάδα είχε την ίδια οικονομική δραστηριότητα με την Γερμανία.\n");
+            sb.append("- Η Ελλάδα είχε την ίδια οικονομική δραστηριότητα με τη Γερμανία.\n");
         }
 
         cur_value = GreecesData.getDebtRatio();
@@ -110,7 +110,7 @@ public class BudgetCountriesComparator {
             sb.append("- Η Ελλάδα αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Γερμανία στην ανάπτυξη.\n");
         } else if (cur_value < VATRATEPERCENT_VALUES.get("Germany")) {
             sb.append("- Η Γερμανία αποσκοπεί στην αύξηση των κρατικών εσόδων, ενώ η Ελλάδα στην ανάπτυξη.\n");
-        }
+        } 
 
         sb.append("\n"); // Κενή γραμμή
 
@@ -119,11 +119,11 @@ public class BudgetCountriesComparator {
 
         cur_value = GreecesData.getInflation();
         if (cur_value > INFLATION_VALUES.get("Bulgaria")) {
-            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή.\n");
-        } else if (cur_value < INFLATION_VALUES.get("Bulgaria")) {
             sb.append("- Η οικονομία στη Βουλγαρία ήταν πιο σταθερή.\n");
+        } else if (cur_value < INFLATION_VALUES.get("Bulgaria")) {
+            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή.\n");
         } else {
-            sb.append("- Ίδια σταθερότητα.\n");
+            sb.append("- Η οικονομία της Ελλάδας ήταν το ίδιο σταθερή με της Βουλγαρίας.\n");
         }
 
         cur_value = GreecesData.getGdp();
@@ -131,6 +131,8 @@ public class BudgetCountriesComparator {
             sb.append("- Η Ελλάδα είχε μεγαλύτερη οικονομική δραστηριότητα.\n");
         } else if (cur_value < GDP_VALUES.get("Bulgaria")) {
             sb.append("- Η Βουλγαρία είχε μεγαλύτερη οικονομική δραστηριότητα.\n");
+        } else {
+            sb.append("- Η Ελλάδα είχε την ίδια οικονομική δραστηριότητα με τη Βουλγαρία.\n");
         }
 
         cur_value = GreecesData.getDebtRatio();
@@ -138,6 +140,8 @@ public class BudgetCountriesComparator {
             sb.append("- H Βουλγαρία είχε μεγαλύτερη ευελιξία σε επενδύσεις.\n");
         } else if (cur_value < DEBTRATIO_VALUES.get("Bulgaria")) {
             sb.append("- Η Ελλάδα είχε μεγαλύτερη ευελιξία σε επενδύσεις.\n");
+        } else {
+            sb.append("- Η Ελλάδα είχε την ίδια ευελιξία με τη Βουλγαρία.\n");
         }
 
         cur_value = GreecesData.getIncomeTaxRatePercent();
@@ -154,9 +158,11 @@ public class BudgetCountriesComparator {
 
         cur_value = GreecesData.getInflation();
         if (cur_value > INFLATION_VALUES.get("Italy")) {
-            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή.\n");
-        } else if (cur_value < INFLATION_VALUES.get("Italy")) {
             sb.append("- Η οικονομία στην Ιταλία ήταν πιο σταθερή.\n");
+        } else if (cur_value < INFLATION_VALUES.get("Italy")) {
+            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή.\n");
+        } else {
+            sb.append("- Η οικονομία της Ελλάδας ήταν το ίδιο σταθερή με της Ιταλίας.\n");
         }
 
         cur_value = GreecesData.getGdp();
@@ -164,6 +170,8 @@ public class BudgetCountriesComparator {
             sb.append("- Η Ελλάδα είχε μεγαλύτερη ανάπτυξη.\n");
         } else if (cur_value < GDP_VALUES.get("Italy")) {
             sb.append("- Η Ιταλία είχε μεγαλύτερη ανάπτυξη.\n");
+        } else {
+            sb.append("- Η Ελλάδα είχε την ίδια οικονομική δραστηριότητα με την Ιταλία.\n");
         }
 
         cur_value = GreecesData.getDebtRatio();
@@ -180,9 +188,11 @@ public class BudgetCountriesComparator {
 
         cur_value = GreecesData.getInflation();
         if (cur_value > INFLATION_VALUES.get("Serbia")) {
-            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή.\n");
-        } else if (cur_value < INFLATION_VALUES.get("Serbia")) {
             sb.append("- Η οικονομία στη Σερβία ήταν πιο σταθερή.\n");
+        } else if (cur_value < INFLATION_VALUES.get("Serbia")) {
+            sb.append("- Η οικονομία στην Ελλάδα ήταν πιο σταθερή.\n");
+        } else {
+            sb.append("- Η οικονομία της Ελλάδας ήταν το ίδιο σταθερή με της Σερβίας.\n");
         }
 
         cur_value = GreecesData.getDebtRatio();
@@ -190,6 +200,8 @@ public class BudgetCountriesComparator {
             sb.append("- H Σερβία είχε μεγαλύτερη ευελιξία σε επενδύσεις.\n");
         } else if (cur_value < DEBTRATIO_VALUES.get("Serbia")) {
             sb.append("- H Ελλάδα είχε μεγαλύτερη ευελιξία σε επενδύσεις.\n");
+        } else {
+            sb.append("- Η Ελλάδα είχε την ίδια οικονομική δραστηριότητα με τη Σερβία.\n");
         }
 
         return sb.toString();
