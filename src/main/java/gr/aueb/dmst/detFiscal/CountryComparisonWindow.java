@@ -10,6 +10,7 @@ public class CountryComparisonWindow extends JFrame {
         private FederalBudget budget;
         private JTable table;
         private DefaultTableModel tableModel;
+        private JTextArea analysisArea;
 
         public CountryComparisonWindow(FederalBudget budget) {
                 this.budget = budget;
@@ -40,6 +41,9 @@ public class CountryComparisonWindow extends JFrame {
 
                 mainPanel.add(headerPanel, BorderLayout.NORTH);
 
+                JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+                splitPane.setResizeWeight(0.6);
+
                 // 2. ΟΡΙΣΜΟΣ ΣΤΗΛΩΝ (Σταθερές - Hardcoded)
                 String[] columnNames = {
                                 "Οικονομικός Δείκτης",
@@ -60,15 +64,38 @@ public class CountryComparisonWindow extends JFrame {
 
                 table = new JTable(tableModel);
                 table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                table.setRowHeight(40);
+                table.setRowHeight(35);
                 table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
                 table.getTableHeader().setBackground(new Color(7, 25, 82));
                 table.getTableHeader().setForeground(Color.WHITE);
 
                 JScrollPane scrollPane = new JScrollPane(table);
-                scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-                mainPanel.add(scrollPane, BorderLayout.CENTER);
+                scrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
+                splitPane.setTopComponent(scrollPane);
+
+                // keimeno analyshs
+                analysisArea = new JTextArea();
+                analysisArea.setFont(new Font("Consolas", Font.PLAIN, 13));
+                analysisArea.setEditable(false);
+                analysisArea.setLineWrap(true);
+                analysisArea.setWrapStyleWord(true);
+                analysisArea.setBackground(new Color(250, 250, 250));
+                analysisArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                JScrollPane textScroll = new JScrollPane(analysisArea);
+
+                JPanel textPanel = new JPanel(new BorderLayout());
+                JLabel textTitle = new JLabel("  Αυτόματη Ανάλυση & Συμπεράσματα");
+                textTitle.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                textTitle.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+                textPanel.add(textTitle, BorderLayout.NORTH);
+                textPanel.add(textScroll, BorderLayout.CENTER);
+
+                splitPane.setBottomComponent(textPanel);
+
+                mainPanel.add(splitPane, BorderLayout.CENTER);
                 // Φοοτερ
                 JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
                 footerPanel.setBackground(new Color(240, 240, 240));
@@ -104,6 +131,7 @@ public class CountryComparisonWindow extends JFrame {
 
                 // 5. ΓΕΜΙΣΜΑ ΔΕΔΟΜΕΝΩΝ
                 fillTableData();
+                fillAnalysisText();
 
                 add(mainPanel);
         }
@@ -173,5 +201,14 @@ public class CountryComparisonWindow extends JFrame {
                                 sItaly,
                                 sSerbia
                 });
+        }
+
+        private void fillAnalysisText() {
+                BudgetCountriesComparator comparator = new BudgetCountriesComparator(
+                                budget.getDetails().getMacroData());
+                String report = comparator.getComparisonReport();
+                analysisArea.setText(report);
+
+                analysisArea.setCaretPosition(0);
         }
 }
