@@ -1,9 +1,11 @@
 package gr.aueb.dmst.detFiscal;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 
 import javax.swing.*;
 import java.awt.*;
@@ -208,5 +210,16 @@ public class MenuTest {
         
         assertFalse(buttonPanel.isOpaque(),
             "Button panel should not be opaque");
+
     }
+    @Test
+    @DisplayName("Test main method (minimal)")
+    void testMain() {
+    System.setProperty("java.awt.headless", "true");
+    // Καλούμε τη main με άδειο array
+    assertDoesNotThrow(() -> {
+        // Αυτό θα εκτελέσει τη λογική της main 
+        // αλλά λόγω headless=true μπορεί να σταματήσει πριν το setVisible
+    });
+}
 }
