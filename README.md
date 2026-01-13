@@ -164,9 +164,9 @@ version 1.0: Δημιουργία δομής maven, κλάσεων, και πρ�
 ## Δημιουργοί
 
 Η εφαρμογή αυτή αποτελεί δημιούργημα της ομάδας detFiscal στο πλαίσιο του μαθήματος Προγραμματισμός ΙΙ, ΔΕΤ, ΟΠΑ.
-Κρουσταλάκης Δημήτρης,  Project Manager, Back End Developer, τεχνική αναφορά, dimkroustalakis (https://github.com/dimkroustalakis)
+Κρουσταλάκης Δημήτρης,  Project Manager, Back End Developer, τεχνική αναφορά,Version control supervisor dimkroustalakis (https://github.com/dimkroustalakis)
 Σαραφίδου Νίκη, Presentation Designer, Front End Developer, nikisarafidou (https://github.com/nikisarafidou)
-Κυριακοπούλου Ελπίδα, Back End &  Database Developer, ElpidaKyriakopoulou (https://github.com/ElpidaKyriakopoulou)
+Κυριακοπούλου Ελπίδα, Back End, Database Developer and Version Control Supervisor, ElpidaKyriakopoulou (https://github.com/ElpidaKyriakopoulou)
 Τζιούφα Μιράντα, Back End Developer, Maven Supervisor, Presentation Designer, README.md, mirandatzioufa (https://github.com/mirandatzioufa)
 Αγγελίδου Ευαγγελία, Front End Developer, Video Editor evangeliaangelidou (https://github.com/evangeliaangelidou)
 Ζαχάρη Γεωργία, Back End Developer, Maven Supervisor, zacharigeorgia (https://github.com/zacharigeorgia)
