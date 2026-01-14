@@ -24,7 +24,7 @@ Apache Maven
 3. Αποσυμπιέστε το αρχείο 
 
 ## Λήψη του Προγράμματος
-Κατεβάστε την εργασία από το GitHub [link]
+Κατεβάστε την εργασία από το GitHub [(https://github.com/zacharigeorgia/DETfiscal)]
 
 ## Εκτέλεση Προγράμματος
 
@@ -154,6 +154,12 @@ In-Memory Data:
 
 ## Τεχνική Αναφορά
 
+1. javadoc:
+- Η τεκμηρίωση δημιουργήθηκε μέσω του maven-javadoc-plugin. 
+- Σκοπός αποτελεί η αποτύπωση της δομής του κώδικα, των κλάσεων και μεθόδων του έργου.
+- Προκειμένου να δείτε το JavaDoc, και επειδή ο φάκελος target, όπου υπάρχουν τα δεδομένα εξαιρείται απ΄το Version Control, μπορείτε να τρέξετε τοπικά την εντολή mvn javadoc:javadoc. Η άναφορά θα βρίσκεται στο αρχείο target/site/apidocs/index.
+- Στο αρχείο αυτό περιλαμβάνονται όλες οι κλάσεις και διεπαφές, καθώς και πληροφορίες για το καθένα από αυτά(περιγραφή, πληροφορίες για τις μεθόδους, τους κατασκευαστές, τα πεδία). 
+
 ## Εκδόσεις
 
 version 1.3: τρέχουσα έκδοση, προσθήκη README.md και τεχνικής αναφοράς.
@@ -164,7 +170,7 @@ version 1.0: Δημιουργία δομής maven, κλάσεων, και πρ�
 ## Δημιουργοί
 
 Η εφαρμογή αυτή αποτελεί δημιούργημα της ομάδας detFiscal στο πλαίσιο του μαθήματος Προγραμματισμός ΙΙ, ΔΕΤ, ΟΠΑ.
-Κρουσταλάκης Δημήτρης,  Project Manager, Back End Developer, τεχνική αναφορά,Version control supervisor dimkroustalakis (https://github.com/dimkroustalakis)
+Κρουσταλάκης Δημήτρης,  Project Manager, Back End Developer, τεχνική αναφορά,Version Control Supervisor dimkroustalakis (https://github.com/dimkroustalakis)
 Σαραφίδου Νίκη, Presentation Designer, Front End Developer, nikisarafidou (https://github.com/nikisarafidou)
 Κυριακοπούλου Ελπίδα, Back End, Database Developer and Version Control Supervisor, ElpidaKyriakopoulou (https://github.com/ElpidaKyriakopoulou)
 Τζιούφα Μιράντα, Back End Developer, Maven Supervisor, Presentation Designer, README.md, mirandatzioufa (https://github.com/mirandatzioufa)
